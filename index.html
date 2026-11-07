@@ -85,6 +85,22 @@
 @media(prefers-reduced-motion:reduce){.sidebar,.mobile-scrim,.mobile-dock{transition:none!important}}
 
 </style>
+<style>
+/* MAEL HUB 3.1 · Mobile modal and assistant usability fixes */
+.mai-message p{white-space:pre-line;line-height:1.55}
+@media(max-width:760px){
+  .modal-backdrop{align-items:center;overflow-y:auto;padding:8px 8px max(8px,env(safe-area-inset-bottom))}
+  .modal{width:100%;max-width:560px;max-height:calc(100vh - 16px);max-height:calc(100dvh - 16px);display:flex;flex-direction:column;overflow:hidden;padding:16px}
+  .modal-head{flex:0 0 auto;margin-bottom:12px}
+  #modalForm{display:flex;flex:1 1 auto;min-height:0;flex-direction:column}
+  #modalFields{display:grid;grid-template-columns:1fr;flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:2px 2px 16px 0}
+  #modalFields .field.full{grid-column:auto}
+  .modal-actions{position:sticky;bottom:0;z-index:2;display:flex;flex:0 0 auto;gap:10px;margin-top:4px;padding:12px 0 max(10px,env(safe-area-inset-bottom));background:#0b1b2c;border-top:1px solid var(--line)}
+  .modal-actions button{flex:1;min-height:46px;padding:12px 14px;font-size:13px}
+  .mai-suggestions{flex-wrap:wrap}
+  .mai-suggestions button{min-height:36px}
+}
+</style>
 </head>
 <body>
   <button id="installApp" class="install-app-btn" type="button" hidden>⬇ Instalar MAEL HUB</button>
@@ -247,12 +263,12 @@
     </main>
   </div>
 
-  <div class="modal-backdrop" id="modalBackdrop"><section class="modal" role="dialog" aria-modal="true"><div class="modal-head"><div><span class="eyebrow">MAEL HUB / EDITOR</span><h2 id="modalTitle">Editar elemento</h2></div><button class="icon-btn" id="closeModal" aria-label="Cerrar">×</button></div><form id="modalForm"><div id="modalFields" class="modal-fields"></div><div class="modal-actions"><button type="button" class="secondary-btn" id="cancelModal">Cancelar</button><button type="submit" class="primary-btn">Guardar cambios</button></div></form></section></div>
+  <div class="modal-backdrop" id="modalBackdrop"><section class="modal" role="dialog" aria-modal="true"><div class="modal-head"><div><span class="eyebrow">MAEL HUB / EDITOR</span><h2 id="modalTitle">Editar elemento</h2></div><button class="icon-btn" id="closeModal" aria-label="Cerrar">×</button></div><form id="modalForm"><div id="modalFields" class="modal-fields"></div><div class="modal-actions"><button type="button" class="secondary-btn" id="cancelModal">Cancelar</button><button type="button" class="primary-btn" id="modalSaveBtn">Guardar</button></div></form></section></div>
 
   <button class="mai-float" id="maiFloat" title="Activar MAI · Alt + J" aria-label="Abrir asistente MAI"><span>✳</span><small>MAI</small></button>
   <div class="toast-stack" id="toastStack"></div>
   <div class="search-results" id="searchResults"></div>
-  <aside class="mai-drawer" id="maiDrawer"><div class="mai-head"><div class="mai-avatar large">M<span></span></div><div><b>MAI</b><small>LOCAL COMMAND ASSISTANT</small></div><button class="icon-btn" id="closeMai">×</button></div><div class="mai-state"><span class="pulse"></span> SISTEMA LISTO <span class="mode-label">RULE-BASED</span></div><div class="mai-messages" id="maiMessages"><div class="mai-message bot"><b>MAI</b><p>Hola. Soy MAI, tu asistente local. Puedo consultar y modificar los datos guardados en MAEL HUB mediante comandos programados.</p><small>Prueba: «¿Qué deberes tengo pendientes?»</small></div></div><div class="mai-suggestions"><button data-command="¿Qué deberes tengo pendientes?">Deberes pendientes</button><button data-command="¿Cuándo es mi próximo examen?">Próximo examen</button><button data-command="Abre mi horario">Abrir horario</button></div><form id="maiForm" class="mai-input"><input id="maiInput" placeholder="Escribe un comando..." autocomplete="off"><button type="submit">➤</button></form><div class="mai-disclaimer">MAI funciona con reglas JavaScript locales. No es una IA conectada.</div></aside>
+  <aside class="mai-drawer" id="maiDrawer"><div class="mai-head"><div class="mai-avatar large">M<span></span></div><div><b>MAI</b><small>LOCAL COMMAND ASSISTANT</small></div><button class="icon-btn" id="closeMai">×</button></div><div class="mai-state"><span class="pulse"></span> SISTEMA LISTO <span class="mode-label">RULE-BASED</span></div><div class="mai-messages" id="maiMessages"><div class="mai-message bot"><b>MAI</b><p>Hola. Soy MAI, tu asistente local. Puedo consultar y modificar los datos guardados en MAEL HUB mediante comandos programados.</p><small>Prueba: «¿Qué deberes tengo pendientes?»</small></div></div><div class="mai-suggestions"><button data-command="Ayuda">Ayuda · comandos</button><button data-command="¿Qué deberes tengo pendientes?">Deberes pendientes</button><button data-command="¿Cuándo es mi próximo examen?">Próximo examen</button><button data-command="Abre mi horario">Abrir horario</button></div><form id="maiForm" class="mai-input"><input id="maiInput" placeholder="Escribe un comando..." autocomplete="off"><button type="submit">➤</button></form><div class="mai-disclaimer">MAI funciona con reglas JavaScript locales. No es una IA conectada.</div></aside>
   <script>
 (() => {
 'use strict';
@@ -275,7 +291,9 @@ function tab(group,name){const root=group==='instituto'?'page-instituto':'page-i
 function modal(title,fields,initial,onSave){$('#modalTitle').textContent=title;$('#modalFields').innerHTML=fields.map(f=>fieldHTML(f,initial?.[f.name])).join('');modalSave=onSave;$('#modalBackdrop').classList.add('open')}
 function fieldHTML(f,v){let val=v??f.value??'';let html='';if(f.type==='textarea')html=`<textarea name="${f.name}" ${f.required?'required':''} placeholder="${esc(f.placeholder||'')}">${esc(val)}</textarea>`;else if(f.type==='select')html=`<select name="${f.name}" ${f.required?'required':''}>${f.options.map(o=>`<option value="${esc(o)}" ${String(val)===String(o)?'selected':''}>${esc(o)}</option>`).join('')}</select>`;else html=`<input name="${f.name}" type="${f.type||'text'}" value="${esc(val)}" ${f.required?'required':''} placeholder="${esc(f.placeholder||'')}" ${f.step?`step="${f.step}"`:''}>`;return `<label class="field ${f.full?'full':''}">${esc(f.label)}${html}</label>`}
 function closeModal(){$('#modalBackdrop').classList.remove('open');modalSave=null}
-$('#modalForm').addEventListener('submit',e=>{e.preventDefault();if(!modalSave)return;const obj=Object.fromEntries(new FormData(e.currentTarget).entries());modalSave(obj);closeModal();save();toast('Cambios guardados correctamente')});
+function saveModalForm(){const form=$('#modalForm');if(!modalSave)return;if(!form.checkValidity()){form.reportValidity();return}const obj=Object.fromEntries(new FormData(form).entries());const commit=modalSave;commit(obj);closeModal();save();toast('Cambios guardados correctamente')}
+$('#modalForm').addEventListener('submit',e=>{e.preventDefault();saveModalForm()});
+$('#modalSaveBtn').addEventListener('click',saveModalForm);
 $('#closeModal').onclick=$('#cancelModal').onclick=closeModal;
 $('#modalBackdrop').addEventListener('click',e=>{if(e.target.id==='modalBackdrop')closeModal()});
 function confirmDelete(label){return confirm(`¿Seguro que quieres eliminar ${label}? Esta acción no se puede deshacer.`)}
@@ -322,7 +340,156 @@ function renderGamification(){const v=levelInfo(),g=data.gamification;$('#levelN
  const feed=$('#activityFeed');feed.innerHTML=g.activity.length?g.activity.slice(0,12).map(a=>`<div class="activity-item"><div class="activity-symbol">${a.xp?'✦':'◈'}</div><div><b>${esc(a.title)}</b><small>${esc(a.detail)} · ${new Date(a.date).toLocaleString('es-ES',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})}</small></div>${a.xp?`<span class="activity-xp">+${a.xp} XP</span>`:''}</div>`).join(''):'<div class="empty-state">Todavía no hay actividad. Completa una tarea para empezar a ganar experiencia.</div>';
 }
 function addTask(title){data.tasks.push({id:uid(),title,description:'Añadida mediante MAI',date:'',done:false});save()}
-function maiReply(msg){let q=msg.toLowerCase().trim();if(/deber|tarea.*pendiente|pendiente.*tarea/.test(q)){let list=data.homework.concat(data.tasks).filter(x=>!x.done);return list.length?'Tienes '+list.length+' elemento(s) pendiente(s):\n'+list.map(x=>'• '+x.title+(x.date?' — '+x.date:'')).join('\n'):'No tienes tareas pendientes. Buen trabajo.'}if(/pr[oó]ximo examen|cu[aá]ndo.*examen|examen.*pr[oó]ximo/.test(q)){let e=data.exams.filter(x=>x.date>=today()).sort((a,b)=>a.date.localeCompare(b.date))[0];return e?`Tu próximo examen es ${e.title||e.subject} (${e.subject}) el ${e.date}. Temas: ${e.topics||'No has añadido el temario'}.`:'No tienes exámenes futuros registrados.'}if(/a[nñ]ade|crear|nueva tarea/.test(q)){let m=msg.match(/(?:añade|agrega|crear|nueva tarea)\s+(?:la tarea de\s+|tarea\s+)?(.+)/i);if(m){addTask(m[1].replace(/[.!?]$/,''));return `He añadido «${m[1]}» a Organización.`}return 'Dime el título de la tarea. Ejemplo: «Añade estudiar matemáticas».'}if(/horario/.test(q)){openPage('instituto');tab('instituto','horario');return 'He abierto tu horario del instituto.'}if(/guarda.*idea|idea.*inform[aá]tica/.test(q)){let m=msg.match(/(?:idea|informática)\s*(?:de|:)?\s*(.+)/i);if(m){data.ideas.push({id:uid(),title:m[1],category:'MAI',description:'Guardada mediante MAI'});save();return `Idea guardada en Informática: «${m[1]}».`}return 'Escribe la idea que quieres guardar.'}if(/abre.*(proyecto|inform[aá]tica)/.test(q)){openPage('informatica');return 'He abierto el laboratorio de Informática.'}if(/abre.*nota/.test(q)){openPage('notas');return 'He abierto Notas y archivos.'}if(/ayuda|qu[eé].*puedes hacer/.test(q))return 'Puedo añadir tareas («Añade estudiar matemáticas»), consultar deberes pendientes, decirte el próximo examen, guardar ideas en Informática y abrir tu horario, proyectos o notas.';return 'No reconozco ese comando todavía. Escribe «ayuda» para ver los comandos disponibles.'}
+function maiCommandHelp(){return [
+'MAI · MANUAL DE COMANDOS',
+'Puedes escribir los comandos con tus propias palabras. Estos ejemplos están disponibles:',
+'',
+'CONSULTAS',
+'• «¿Qué tareas tengo pendientes?»',
+'• «¿Qué deberes tengo pendientes?»',
+'• «¿Cuándo es mi próximo examen?»',
+'• «Lista mis exámenes»',
+'• «Muéstrame mis notas» o «Media de Matemáticas»',
+'• «¿Qué proyectos tengo?»',
+'• «Lista mis ideas»',
+'• «¿Qué eventos tengo?»',
+'• «¿Qué objetivos tengo?»',
+'• «¿Qué nivel tengo?» o «¿Cuántos XP tengo?»',
+'• «¿Cuántas tareas he completado?»',
+'• «Estadísticas»',
+'',
+'CREAR Y GUARDAR',
+'• «Añade tarea: estudiar Matemáticas»',
+'• «Añade deber: entregar el trabajo de Historia»',
+'• «Añade examen: control de Biología»',
+'• «Registra nota 8,5 en Matemáticas»',
+'• «Nuevo proyecto: mi página web»',
+'• «Guarda idea: una app para organizar libros»',
+'• «Guarda nota: repasar el tema 4»',
+'• «Añade evento: cumpleaños de Ana»',
+'',
+'ORGANIZAR',
+'• «Completa tarea: estudiar Matemáticas»',
+'• «Planifica mi día»',
+'• «Busca: Matemáticas»',
+'',
+'ABRIR SECCIONES',
+'• «Abre inicio»',
+'• «Abre instituto», «Abre horario», «Abre deberes»',
+'• «Abre exámenes» o «Abre calificaciones»',
+'• «Abre organización»',
+'• «Abre informática» o «Abre proyectos»',
+'• «Abre música»',
+'• «Abre notas»',
+'• «Abre actividad», «Abre estadísticas» o «Abre Focus»',
+'• «Abre configuración»',
+'',
+'CONSEJO: escribe «Ayuda» cuando quieras volver a consultar esta lista.'
+].join('\n')}
+function maiNorm(value){return String(value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim()}
+function maiReply(msg){
+ const raw=String(msg||'').trim(), q=maiNorm(raw);
+ if(!q)return 'Escribe «Ayuda» para ver lo que puedo hacer.';
+ if(/^(ayuda|help|comandos|lista de comandos|que puedes hacer|manual|menu de ayuda)$/.test(q))return maiCommandHelp();
+ if(/^(hola|buenas|buenos dias|buenas tardes|buenas noches)$/.test(q))return '¡Hola! Sistema listo. Escribe «Ayuda» para consultar todos mis comandos.';
+ const normTitle=s=>maiNorm(s);
+ const formatList=(items,empty)=>items.length?items.slice(0,12).map((x,i)=>(i+1)+'. '+(x.title||x.subject||x.name||'Sin título')+(x.date?' · '+x.date:'')+(x.subject?' · '+x.subject:'')).join('\n'):empty;
+ if(/^(?:completa|termina|finaliza|marca)\s+(?:la\s+)?(?:tarea|deber)\s*[:\-]?\s*(.+)$/i.test(raw)){
+  const term=raw.replace(/^(?:completa|termina|finaliza|marca)\s+(?:la\s+)?(?:tarea|deber)\s*[:\-]?\s*/i,'').trim();
+  const all=data.tasks.map(x=>({item:x,arr:data.tasks})).concat(data.homework.map(x=>({item:x,arr:data.homework})));
+  const found=all.find(x=>!x.item.done&&normTitle(x.item.title||'').includes(maiNorm(term)));
+  if(!found)return 'No encuentro una tarea pendiente que coincida con «'+term+'». Prueba a escribir parte de su título.';
+  found.item.done=true;
+  if(!found.item.xpAwarded){found.item.xpAwarded=true;awardXP(10,'Tarea completada',found.item.title||term)}
+  save();return '¡Hecho! He marcado «'+(found.item.title||term)+'» como completada.';
+ }
+ if(/(?:deberes pendientes|mis deberes|lista de deberes|que deberes tengo)/.test(q)){
+  return formatList(data.homework.filter(x=>!x.done),'No tienes deberes pendientes registrados.');
+ }
+ if(/(?:tareas pendientes|mis tareas|lista de tareas|que tareas tengo|pendientes)/.test(q)){
+  return formatList(data.homework.concat(data.tasks).filter(x=>!x.done),'No tienes tareas pendientes. ¡Todo al día!');
+ }
+ if(/(?:proximo examen|cuando.*examen|examen.*proximo)/.test(q)){
+  const e=data.exams.filter(x=>x.date&&x.date>=today()).sort((a,b)=>a.date.localeCompare(b.date))[0];
+  return e?'Tu próximo examen es «'+(e.title||e.subject||'Examen')+'»'+(e.subject?' de '+e.subject:'')+' el '+e.date+'. Temario: '+(e.topics||'No has añadido el temario')+'.':'No tienes exámenes futuros registrados.';
+ }
+ if(/(?:lista mis examenes|mis examenes|que examenes tengo|ver examenes)/.test(q)){
+  return formatList([...data.exams].sort((a,b)=>(a.date||'').localeCompare(b.date||'')),'Todavía no has registrado exámenes.');
+ }
+ const gradeMatch=raw.match(/^(?:media|promedio)(?:\s+de)?\s+(.+)$/i);
+ if(gradeMatch){
+  const subject=maiNorm(gradeMatch[1]), nums=data.grades.filter(x=>maiNorm(x.subject).includes(subject)).map(x=>Number(x.grade)).filter(Number.isFinite);
+  return nums.length?'La media de '+gradeMatch[1]+' es '+(nums.reduce((a,b)=>a+b,0)/nums.length).toFixed(2)+'. ('+nums.length+' calificaciones).':'No encuentro calificaciones de '+gradeMatch[1]+'.';
+ }
+ if(/(?:mis notas|mis calificaciones|lista.*notas|que notas tengo)/.test(q)){
+  return data.grades.length?data.grades.slice(0,15).map(x=>'• '+(x.subject||'Asignatura')+': '+x.grade+(x.label?' · '+x.label:'')).join('\n'):'Todavía no has registrado calificaciones.';
+ }
+ if(/(?:cuantos xp|cuanta experiencia|que nivel|mi nivel|nivel tengo)/.test(q)){
+  const g=data.gamification||{};const xp=Number(g.xp)||0;return 'Estás en el nivel '+(Math.floor(xp/100)+1)+' y tienes '+xp+' XP. Tu racha actual es de '+(g.streak||0)+' día(s).';
+ }
+ if(/(?:cuantas tareas.*complet|tareas completadas|trabajo completado)/.test(q)){
+  const n=data.tasks.concat(data.homework).filter(x=>x.done).length;return 'Has completado '+n+' tarea(s) o deber(es). ¡Sigue así!';
+ }
+ if(/(?:estadisticas|resumen|mi progreso)/.test(q)){
+  const g=data.gamification||{};return 'RESUMEN DE MAEL HUB\n• Tareas pendientes: '+data.tasks.concat(data.homework).filter(x=>!x.done).length+'\n• Tareas completadas: '+data.tasks.concat(data.homework).filter(x=>x.done).length+'\n• Exámenes registrados: '+data.exams.length+'\n• Proyectos: '+data.projects.length+'\n• XP: '+(g.xp||0)+' · Nivel '+(Math.floor((g.xp||0)/100)+1)+'\n• Racha: '+(g.streak||0)+' día(s).';
+ }
+ if(/(?:que proyectos|mis proyectos|lista.*proyectos)/.test(q)){
+  return data.projects.length?data.projects.slice(0,12).map((x,i)=>(i+1)+'. '+x.title+' · '+(x.status||'Sin estado')).join('\n'):'Todavía no tienes proyectos guardados.';
+ }
+ if(/(?:lista mis ideas|mis ideas|que ideas tengo)/.test(q)){
+  return formatList(data.ideas,'Todavía no has guardado ideas.');
+ }
+ if(/(?:que eventos|mis eventos|lista.*eventos)/.test(q)){
+  return formatList([...data.events].sort((a,b)=>(a.date||'').localeCompare(b.date||'')),'No tienes eventos registrados.');
+ }
+ if(/(?:que objetivos|mis objetivos|lista.*objetivos)/.test(q)){
+  return data.goals.length?data.goals.slice(0,12).map((x,i)=>(i+1)+'. '+x.title+' · '+(x.progress||0)+'%').join('\n'):'Todavía no tienes objetivos guardados.';
+ }
+ if(/(?:planifica mi dia|planifica el dia|organiza mi dia|que tengo hoy)/.test(q)){
+  const d=today(), tasks=data.tasks.concat(data.homework).filter(x=>!x.done&&x.date===d), exams=data.exams.filter(x=>x.date===d), events=data.events.filter(x=>x.date===d);
+  const lines=['PLAN DEL DÍA · '+d];
+  lines.push('Tareas para hoy: '+(tasks.length?tasks.map(x=>x.title).join(', '):'ninguna registrada'));
+  lines.push('Exámenes de hoy: '+(exams.length?exams.map(x=>x.title||x.subject).join(', '):'ninguno'));
+  lines.push('Eventos de hoy: '+(events.length?events.map(x=>x.title).join(', '):'ninguno'));
+  return lines.join('\n');
+ }
+ const addProject=raw.match(/^(?:nuevo|añade|agrega|crea)\s+proyecto\s*[:\-]?\s*(.+)$/i);
+ if(addProject){const title=addProject[1].trim();data.projects.push({id:uid(),title,type:'MAI',status:'Pendiente',description:''});save();return 'Proyecto creado: «'+title+'». Lo encontrarás en Informática → Proyectos.'}
+ const addHomework=raw.match(/^(?:añade|agrega|crea)\s+deber\s*[:\-]?\s*(.+)$/i);
+ if(addHomework){const title=addHomework[1].trim();data.homework.push({id:uid(),title,subject:'',date:'',description:'Añadido mediante MAI',done:false});save();return 'Deber añadido: «'+title+'». Puedes completar la asignatura y la fecha desde Instituto → Deberes.'}
+ const addTaskMatch=raw.match(/^(?:añade|agrega|crea)\s+tarea\s*[:\-]?\s*(.+)$/i);
+ if(addTaskMatch){const title=addTaskMatch[1].trim();addTask(title);return 'Tarea añadida: «'+title+'». La encontrarás en Organización.'}
+ const quickTask=raw.match(/^(?:añade|agrega)\s+(?:la\s+tarea\s+de\s+)(.+)$/i);
+ if(quickTask){addTask(quickTask[1].trim());return 'Tarea añadida: «'+quickTask[1].trim()+'».'}
+ const addExam=raw.match(/^(?:añade|agrega|crea)\s+examen\s*[:\-]?\s*(.+)$/i);
+ if(addExam){const title=addExam[1].trim();data.exams.push({id:uid(),title,subject:'',date:'',topics:''});save();return 'Examen creado: «'+title+'». Añade después la asignatura, fecha y temario en Instituto → Exámenes.'}
+ const addGrade=raw.match(/^(?:registra|añade)\s+nota\s+(\d+(?:[.,]\d+)?)\s+(?:en|de)\s+(.+)$/i);
+ if(addGrade){const subject=addGrade[2].trim(),grade=addGrade[1].replace(',','.');data.grades.push({id:uid(),subject,grade,label:'Añadida mediante MAI',date:today()});save();return 'He registrado un '+grade+' en '+subject+'.'}
+ const addIdea=raw.match(/^(?:guarda|añade|crea)\s+idea\s*[:\-]?\s*(.+)$/i);
+ if(addIdea){const title=addIdea[1].trim();data.ideas.push({id:uid(),title,category:'MAI',description:'Guardada mediante MAI'});save();return 'Idea guardada: «'+title+'». La encontrarás en Informática → Banco de ideas.'}
+ const addNote=raw.match(/^(?:guarda|añade|crea)\s+nota\s*[:\-]?\s*(.+)$/i);
+ if(addNote){const title=addNote[1].trim();data.quickNotes.push({id:uid(),title,content:'Nota creada mediante MAI'});save();return 'Nota rápida guardada: «'+title+'». La encontrarás en Organización → Notas rápidas.'}
+ const addEvent=raw.match(/^(?:añade|agrega|crea)\s+evento\s*[:\-]?\s*(.+)$/i);
+ if(addEvent){const title=addEvent[1].trim();data.events.push({id:uid(),title,date:'',description:'Creado mediante MAI'});save();return 'Evento añadido: «'+title+'». Puedes indicar la fecha desde Organización.'}
+ const searchMatch=raw.match(/^(?:busca|buscar|encuentra)\s*[:\-]?\s*(.+)$/i);
+ if(searchMatch){$('#globalSearch').value=searchMatch[1].trim();globalSearch(searchMatch[1].trim());$('#maiDrawer').classList.remove('open');return 'He buscado «'+searchMatch[1].trim()+'». Cierra el chat si aún lo ves para consultar los resultados.'}
+ if(/(?:horario)/.test(q)){openPage('instituto');tab('instituto','horario');return 'He abierto tu horario del instituto.'}
+ if(/(?:abre|abrir|ve a|ir a|muestra|mostrar)/.test(q)){
+  if(/inicio|dashboard/.test(q)){openPage('dashboard');return 'Inicio abierto.'}
+  if(/horario/.test(q)){openPage('instituto');tab('instituto','horario');return 'Horario del instituto abierto.'}
+  if(/deber|academ/.test(q)){openPage('instituto');tab('instituto','deberes');return 'Deberes del instituto abiertos.'}
+  if(/examen/.test(q)){openPage('instituto');tab('instituto','examenes');return 'Exámenes abiertos.'}
+  if(/calificacion|notas del instituto/.test(q)){openPage('instituto');tab('instituto','notas');return 'Calificaciones abiertas.'}
+  if(/instituto/.test(q)){openPage('instituto');return 'Módulo Instituto abierto.'}
+  if(/organizacion|tareas|objetivos/.test(q)){openPage('organizacion');return 'Organización abierta.'}
+  if(/proyecto|informatica|codigo/.test(q)){openPage('informatica');tab('informatica','proyectos');return 'Laboratorio de Informática abierto.'}
+  if(/musica|cancion|playlist/.test(q)){openPage('musica');return 'Música abierta.'}
+  if(/nota|archivo|biblioteca/.test(q)){openPage('notas');return 'Notas y archivos abiertos.'}
+  if(/actividad|estadistica|focus/.test(q)){openPage('actividad');return 'Centro de Actividad y Focus abierto.'}
+  if(/configuracion|ajustes/.test(q)){openPage('configuracion');return 'Configuración abierta.'}
+ }
+ return 'No reconozco ese comando todavía. Escribe «Ayuda» para ver el catálogo de comandos disponibles.';
+}
 function sendMai(text){if(!text.trim())return;let box=$('#maiMessages');box.insertAdjacentHTML('beforeend',`<div class="mai-message user"><b>TÚ</b><p>${esc(text)}</p></div>`);let reply=maiReply(text);box.insertAdjacentHTML('beforeend',`<div class="mai-message bot"><b>MAI</b><p>${esc(reply)}</p></div>`);box.scrollTop=box.scrollHeight}
 function openMai(){$('#maiDrawer').classList.add('open');$('#maiInput').focus()}
 function globalSearch(q){let box=$('#searchResults');if(!q.trim()){box.classList.remove('open');return}let entries=[];const add=(arr,type)=>arr.forEach(x=>{let title=x.title||x.name||x.subject||'';let sub=x.subject||x.description||x.date||type;if((title+' '+sub+' '+(x.content||'')).toLowerCase().includes(q.toLowerCase()))entries.push({title,sub,type,page:type==='Deberes'||type==='Exámenes'||type==='Calificaciones'?'instituto':type==='Proyectos'||type==='Ideas'?'informatica':type==='Tareas'||type==='Eventos'?'organizacion':type==='Canciones'?'musica':'notas'})});add(data.homework,'Deberes');add(data.exams,'Exámenes');add(data.grades,'Calificaciones');add(data.tasks,'Tareas');add(data.events,'Eventos');add(data.projects,'Proyectos');add(data.ideas,'Ideas');add(data.songs,'Canciones');add(data.notes,'Notas');box.innerHTML=entries.length?entries.slice(0,12).map((x,i)=>`<div class="search-result" data-search-index="${i}"><b>${esc(x.title)}</b><small>${esc(x.type)} · ${esc(x.sub)}</small></div>`).join(''):'<div class="empty-state">No se han encontrado resultados.</div>';box.classList.add('open');box.querySelectorAll('[data-search-index]').forEach(b=>b.onclick=()=>{openPage(entries[Number(b.dataset.searchIndex)].page);box.classList.remove('open');$('#globalSearch').value=''})}
