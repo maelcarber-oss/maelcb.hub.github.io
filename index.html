@@ -101,7 +101,34 @@
   .mai-suggestions button{min-height:36px}
 }
 </style>
-</head>
+<style id="mobile-modal-fix">
+/* MAEL HUB 3.0 — modal móvil táctil y guardado accesible */
+.modal-backdrop{overscroll-behavior:contain}
+.modal{box-sizing:border-box}
+#modalForm{min-height:0}
+#modalSaveBtn{touch-action:manipulation;cursor:pointer}
+@media(max-width:760px){
+  .modal-backdrop.open{align-items:flex-end;padding:0; padding-bottom:env(safe-area-inset-bottom)}
+  .modal{width:100%;max-width:none;max-height: min(92dvh, 820px);height:auto;margin:0;border-radius:18px 18px 0 0;padding:16px 16px max(12px,env(safe-area-inset-bottom));border-bottom:0;display:flex;flex-direction:column;overflow:hidden}
+  .modal-head{margin-bottom:10px;align-items:center}
+  .modal-head h2{font-size:18px}
+  #modalForm{display:flex;flex:1 1 auto;min-height:0;overflow:hidden;flex-direction:column}
+  #modalFields{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:3px 2px 18px}
+  #modalFields .field{min-width:0}
+  #modalFields input,#modalFields select,#modalFields textarea{box-sizing:border-box;width:100%;min-height:46px;font-size:16px;padding:12px}
+  #modalFields textarea{min-height:100px}
+  .modal-actions{position:relative;inset:auto;display:flex;flex:0 0 auto;gap:10px;margin:8px -16px -16px;padding:12px 16px max(14px,env(safe-area-inset-bottom));background:#0b1b2c;border-top:1px solid var(--line);box-shadow:0 -8px 20px #0003}
+  .modal-actions button{display:flex;align-items:center;justify-content:center;min-height:50px;flex:1 1 0;font-size:14px;touch-action:manipulation}
+  .mai-drawer{padding:14px; padding-bottom:max(14px,env(safe-area-inset-bottom))}
+  .mai-messages{min-height:0;overscroll-behavior:contain}
+  .mai-message p{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.55}
+  .mai-input input{min-width:0;font-size:16px}
+}
+@media(max-width:380px){
+  .modal{padding-left:13px;padding-right:13px}
+  .modal-actions{margin-left:-13px;margin-right:-13px;padding-left:13px;padding-right:13px}
+}
+</style>\n</head>
 <body>
   <button id="installApp" class="install-app-btn" type="button" hidden>⬇ Instalar MAEL HUB</button>
   <style>
@@ -263,7 +290,7 @@
     </main>
   </div>
 
-  <div class="modal-backdrop" id="modalBackdrop"><section class="modal" role="dialog" aria-modal="true"><div class="modal-head"><div><span class="eyebrow">MAEL HUB / EDITOR</span><h2 id="modalTitle">Editar elemento</h2></div><button class="icon-btn" id="closeModal" aria-label="Cerrar">×</button></div><form id="modalForm"><div id="modalFields" class="modal-fields"></div><div class="modal-actions"><button type="button" class="secondary-btn" id="cancelModal">Cancelar</button><button type="button" class="primary-btn" id="modalSaveBtn">Guardar</button></div></form></section></div>
+  <div class="modal-backdrop" id="modalBackdrop"><section class="modal" role="dialog" aria-modal="true"><div class="modal-head"><div><span class="eyebrow">MAEL HUB / EDITOR</span><h2 id="modalTitle">Editar elemento</h2></div><button class="icon-btn" id="closeModal" aria-label="Cerrar">×</button></div><form id="modalForm"><div id="modalFields" class="modal-fields"></div><div class="modal-actions"><button type="button" class="secondary-btn" id="cancelModal">Cancelar</button><button type="submit" class="primary-btn" id="modalSaveBtn">Guardar</button></div></form></section></div>
 
   <button class="mai-float" id="maiFloat" title="Activar MAI · Alt + J" aria-label="Abrir asistente MAI"><span>✳</span><small>MAI</small></button>
   <div class="toast-stack" id="toastStack"></div>
@@ -293,7 +320,7 @@ function fieldHTML(f,v){let val=v??f.value??'';let html='';if(f.type==='textarea
 function closeModal(){$('#modalBackdrop').classList.remove('open');modalSave=null}
 function saveModalForm(){const form=$('#modalForm');if(!modalSave)return;if(!form.checkValidity()){form.reportValidity();return}const obj=Object.fromEntries(new FormData(form).entries());const commit=modalSave;commit(obj);closeModal();save();toast('Cambios guardados correctamente')}
 $('#modalForm').addEventListener('submit',e=>{e.preventDefault();saveModalForm()});
-$('#modalSaveBtn').addEventListener('click',saveModalForm);
+// El botón Guardar usa el envío nativo del formulario (más fiable en pantallas táctiles).
 $('#closeModal').onclick=$('#cancelModal').onclick=closeModal;
 $('#modalBackdrop').addEventListener('click',e=>{if(e.target.id==='modalBackdrop')closeModal()});
 function confirmDelete(label){return confirm(`¿Seguro que quieres eliminar ${label}? Esta acción no se puede deshacer.`)}
@@ -341,51 +368,72 @@ function renderGamification(){const v=levelInfo(),g=data.gamification;$('#levelN
 }
 function addTask(title){data.tasks.push({id:uid(),title,description:'Añadida mediante MAI',date:'',done:false});save()}
 function maiCommandHelp(){return [
-'MAI · MANUAL DE COMANDOS',
-'Puedes escribir los comandos con tus propias palabras. Estos ejemplos están disponibles:',
+'MAI · CENTRO DE COMANDOS',
+'Puedes escribirlos tal cual o usar frases naturales parecidas. Los comandos actúan sobre tus datos guardados en este dispositivo.',
 '',
-'CONSULTAS',
-'• «¿Qué tareas tengo pendientes?»',
-'• «¿Qué deberes tengo pendientes?»',
-'• «¿Cuándo es mi próximo examen?»',
-'• «Lista mis exámenes»',
-'• «Muéstrame mis notas» o «Media de Matemáticas»',
-'• «¿Qué proyectos tengo?»',
-'• «Lista mis ideas»',
-'• «¿Qué eventos tengo?»',
-'• «¿Qué objetivos tengo?»',
-'• «¿Qué nivel tengo?» o «¿Cuántos XP tengo?»',
-'• «¿Cuántas tareas he completado?»',
-'• «Estadísticas»',
+'📋 CONSULTAR TUS COSAS',
+'• Ayuda / comandos / ¿qué puedes hacer?',
+'• ¿Qué tareas tengo pendientes? / Lista mis tareas',
+'• ¿Qué deberes tengo pendientes? / Mis deberes',
+'• ¿Qué tengo pendiente? / Pendientes',
+'• ¿Cuándo es mi próximo examen? / Próximo examen',
+'• Lista mis exámenes / ¿Qué exámenes tengo?',
+'• Muéstrame mis notas / Mis calificaciones',
+'• Media de Matemáticas / Promedio de Lengua',
+'• ¿Qué proyectos tengo? / Lista mis proyectos',
+'• Lista mis ideas / ¿Qué ideas tengo?',
+'• ¿Qué eventos tengo? / Mis eventos',
+'• ¿Qué objetivos tengo? / Lista mis objetivos',
+'• ¿Qué nivel tengo? / ¿Cuántos XP tengo?',
+'• ¿Cuántas tareas he completado?',
+'• Estadísticas / Mi progreso / Resumen',
+'• ¿Qué tengo hoy? / Planifica mi día',
 '',
-'CREAR Y GUARDAR',
-'• «Añade tarea: estudiar Matemáticas»',
-'• «Añade deber: entregar el trabajo de Historia»',
-'• «Añade examen: control de Biología»',
-'• «Registra nota 8,5 en Matemáticas»',
-'• «Nuevo proyecto: mi página web»',
-'• «Guarda idea: una app para organizar libros»',
-'• «Guarda nota: repasar el tema 4»',
-'• «Añade evento: cumpleaños de Ana»',
+'➕ CREAR Y GUARDAR',
+'• Añade tarea: estudiar Matemáticas',
+'• Crea tarea: preparar la mochila',
+'• Añade deber: entregar Historia',
+'• Crea deber: ejercicios de Física',
+'• Añade examen: control de Biología',
+'• Crea examen: evaluación de Inglés',
+'• Registra nota 8,5 en Matemáticas',
+'• Añade nota 9 en Lengua',
+'• Nuevo proyecto: mi página web',
+'• Crea proyecto: aplicación móvil',
+'• Guarda idea: una app de recetas',
+'• Añade idea: diseñar un videojuego',
+'• Guarda nota: repasar el tema 4',
+'• Crea nota: ideas para el proyecto',
+'• Añade evento: cumpleaños',
+'• Crea evento: entrega del trabajo',
 '',
-'ORGANIZAR',
-'• «Completa tarea: estudiar Matemáticas»',
-'• «Planifica mi día»',
-'• «Busca: Matemáticas»',
+'✅ ORGANIZAR Y COMPLETAR',
+'• Completa tarea: estudiar Matemáticas',
+'• Termina deber: ejercicios de Física',
+'• Marca tarea: preparar mochila',
+'• Planifica mi día / Organiza mi día',
+'• Busca: Matemáticas / Buscar: proyecto',
 '',
-'ABRIR SECCIONES',
-'• «Abre inicio»',
-'• «Abre instituto», «Abre horario», «Abre deberes»',
-'• «Abre exámenes» o «Abre calificaciones»',
-'• «Abre organización»',
-'• «Abre informática» o «Abre proyectos»',
-'• «Abre música»',
-'• «Abre notas»',
-'• «Abre actividad», «Abre estadísticas» o «Abre Focus»',
-'• «Abre configuración»',
+'🧭 ABRIR APARTADOS',
+'• Abre inicio / abre dashboard',
+'• Abre instituto',
+'• Abre horario / abre deberes',
+'• Abre exámenes / abre calificaciones',
+'• Abre organización / abre tareas / abre objetivos',
+'• Abre informática / abre proyectos / abre código',
+'• Abre música / abre canciones / abre playlist',
+'• Abre notas / abre archivos / abre biblioteca',
+'• Abre actividad / abre estadísticas / abre Focus',
+'• Abre configuración / abre ajustes',
 '',
-'CONSEJO: escribe «Ayuda» cuando quieras volver a consultar esta lista.'
-].join('\n')}
+'💡 CONSEJOS',
+'• Para crear algo rápido, escribe «Añade tarea:» y el título.',
+'• Para completar una tarea, escribe «Completa tarea:» y parte de su nombre.',
+'• Para buscar algo, escribe «Busca:» seguido de una palabra.',
+'• Escribe «Ayuda» siempre que quieras volver a ver este manual.',
+'',
+'Nota: MAI es un asistente local programado. No es una IA conectada y solo ejecuta las acciones incluidas en este manual.'
+].join('\\n')}
 function maiNorm(value){return String(value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim()}
 function maiReply(msg){
  const raw=String(msg||'').trim(), q=maiNorm(raw);
