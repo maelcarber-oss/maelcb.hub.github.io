@@ -696,7 +696,7 @@ $('#globalSearch').oninput=e=>globalSearch(e.target.value);$('#globalSearch').on
 updateStreak();localStorage.setItem(KEY,JSON.stringify(data));// Dashboard widgets can be reordered by dragging their cards.
 const dashboardGrid=$('#dashboardGrid');let draggedWidget=null;
 dashboardGrid.addEventListener('dragstart',e=>{const card=e.target.closest('[data-widget]');if(!card)return;draggedWidget=card;card.classList.add('dragging');e.dataTransfer.effectAllowed='move';e.dataTransfer.setData('text/plain',card.dataset.widget)});
-dashboardGrid.addEventListener('dragend',()=>{if(draggedWidget)draggedWidget.classList.remove('dragging');draggedWidget=null;data.widgetOrder=[...dashboardGrid.querySelectorAll('[data-widget]')].map(x=>x.dataset.widget);localStorage.setItem(KEY,JSON.stringify(data))});
+dashboardGrid.addEventListener('dragend',()=>{if(draggedWidget)draggedWidget.classList.remove('dragging');draggedWidget=null;data.widgetOrder=[...dashboardGrid.querySelectorAll('[data-widget]')].map(x=>x.dataset.widget);localStorage.setItem(KEY,JSON.stringify(data));window.dispatchEvent(new CustomEvent('maelhub:datachange'))});
 dashboardGrid.addEventListener('dragover',e=>{e.preventDefault();const target=e.target.closest('[data-widget]');if(!target||!draggedWidget||target===draggedWidget)return;const r=target.getBoundingClientRect();const after=(e.clientY-r.top)/r.height>.5;dashboardGrid.insertBefore(draggedWidget,after?target.nextSibling:target)});
 $$('#dashboardGrid [data-widget]').forEach(card=>card.draggable=true);
 // MAEL HUB 2.0: persistent assistant launcher, command palette and focus timer
