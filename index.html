@@ -189,7 +189,7 @@
  .modal-actions button{display:flex;align-items:center;justify-content:center;min-height:50px;flex:1 1 0;font-size:14px;touch-action:manipulation}
 }
 </style>
-</head>
+<style>.sync-account{display:grid;gap:10px}.sync-account label{display:grid;gap:6px;font-size:10px;color:#8ea7b9}.sync-account input{width:100%;border:1px solid var(--line2);background:#091827;color:var(--text);border-radius:7px;padding:10px;outline:none;font-size:11px}.sync-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sync-status{font-size:10px;color:var(--muted);line-height:1.6;padding:10px;border:1px solid var(--line);border-radius:8px;background:rgba(8,23,37,.55);margin:12px 0}.sync-status[data-state=success]{color:var(--good)}.sync-status[data-state=error]{color:var(--danger)}.sync-now{width:100%}.sync-account [hidden]{display:none!important}@media(max-width:760px){.sync-actions{grid-template-columns:1fr}}</style></head>
 <body>
   <button id="installApp" class="install-app-btn" type="button" hidden>⬇ Instalar MAEL HUB</button>
   <style>
@@ -334,7 +334,7 @@
           <article class="panel settings-card"><h2>Apariencia</h2><p class="muted">Ajusta la interfaz a tu gusto.</p><label>Tema<select id="settingTheme"><option value="dark">Oscuro</option><option value="light">Claro</option></select></label><label>Color principal<select id="settingAccent"><option value="cyan">Cian eléctrico</option><option value="blue">Azul tecnológico</option><option value="violet">Violeta</option><option value="green">Verde terminal</option></select></label><button class="primary-btn" id="saveAppearance">Aplicar apariencia</button></article>
           <article class="panel settings-card"><h2>Módulos del dashboard</h2><p class="muted">Activa o desactiva widgets.</p><div id="widgetSettings" class="toggle-list"></div></article>
           <article class="panel settings-card"><h2>Notificaciones</h2><p class="muted">Avisos dentro de la aplicación.</p><label class="switch-row">Mostrar avisos de tareas <input type="checkbox" id="notifyTasks"></label><label class="switch-row">Avisar de exámenes próximos <input type="checkbox" id="notifyExams"></label><label class="switch-row">Avisar de eventos <input type="checkbox" id="notifyEvents"></label><button class="primary-btn" id="saveNotifications">Guardar preferencias</button></article>
-          <article class="panel settings-card"><h2>Datos y copias de seguridad</h2><p class="muted">Tus datos se guardan en este navegador.</p><div class="button-stack"><button class="secondary-btn" id="exportData">↓ Exportar copia JSON</button><label class="secondary-btn file-label">↑ Importar copia JSON<input type="file" id="importData" accept=".json,application/json"></label><button class="danger-outline" id="resetData">Restaurar ajustes iniciales</button></div><small class="muted">La importación reemplaza los datos actuales. Exporta una copia antes.</small></article>
+          <article class="panel settings-card"><h2>Sincronización en la nube</h2><p class="muted">Accede con tu cuenta para compartir tus datos entre dispositivos. La sincronización es manual.</p><div id="syncAccount" class="sync-account"><label>Correo electrónico<input id="syncEmail" type="email" autocomplete="email" placeholder="tu correo"></label><label>Contraseña<input id="syncPassword" type="password" autocomplete="current-password" placeholder="Contraseña"></label><div class="sync-actions"><button class="secondary-btn" id="syncRegister" type="button">Crear cuenta</button><button class="primary-btn" id="syncLogin" type="button">Iniciar sesión</button></div><button class="text-action" id="syncLogout" type="button" hidden>Cerrar sesión</button></div><div class="sync-status" id="syncStatus" role="status" aria-live="polite">Comprueba la configuración de sincronización.</div><button class="primary-btn sync-now" id="syncNow" type="button">↻ Sincronizar ahora</button><small class="muted">La primera sincronización puede importar tus datos actuales. No compartas tu contraseña con nadie.</small></article><article class="panel settings-card"><h2>Datos y copias de seguridad</h2><p class="muted">Tus datos se guardan en este navegador.</p><div class="button-stack"><button class="secondary-btn" id="exportData">↓ Exportar copia JSON</button><label class="secondary-btn file-label">↑ Importar copia JSON<input type="file" id="importData" accept=".json,application/json"></label><button class="danger-outline" id="resetData">Restaurar ajustes iniciales</button></div><small class="muted">La importación reemplaza los datos actuales. Exporta una copia antes.</small></article>
           <article class="panel settings-card"><h2>Estado del sistema</h2><div class="system-info"><span>Versión</span><b>2.0.0</b><span>Almacenamiento</span><b>LocalStorage</b><span>Asistente MAI</span><b>Comandos locales</b><span>API meteorológica</span><b>Open-Meteo</b></div></article>
         </div>
       </section>
@@ -384,7 +384,7 @@ const defaults=()=>({profile:{username:'Usuario',city:''},appearance:{theme:'dar
 let data=load(), modalSave=null;
 data.widgets={...defaults().widgets,...(data.widgets||{})};data.widgetOrder=Array.isArray(data.widgetOrder)?data.widgetOrder:defaults().widgetOrder;data.gamification={xp:0,streak:0,lastActiveDate:'',activity:[],focusSessions:0,...(data.gamification||{})};data.gamification.activity=Array.isArray(data.gamification.activity)?data.gamification.activity:[];
 function load(){try{return {...defaults(),...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch{return defaults()}}
-function save(){localStorage.setItem(KEY,JSON.stringify(data));renderAll()}
+function save(){localStorage.setItem(KEY,JSON.stringify(data));renderAll();window.dispatchEvent(new CustomEvent('maelhub:datachange'))}
 function toast(msg){const el=document.createElement('div');el.className='toast';el.textContent=msg;$('#toastStack').append(el);setTimeout(()=>el.remove(),3000)}
 function closeMobileMenu(){ $('#sidebar').classList.remove('mobile-open'); $('#mobileScrim')?.classList.remove('open'); document.body.classList.remove('menu-open'); }
 function openPage(page){$$('.page-view').forEach(x=>x.classList.toggle('active',x.id==='page-'+page));$$('.nav-item[data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===page));$$('#mobileDock [data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===page));$('#pageName').textContent=({dashboard:'INICIO',instituto:'INSTITUTO',calendario:'CALENDARIO',organizacion:'ORGANIZACIÓN',informatica:'INFORMÁTICA',musica:'MÚSICA',notas:'NOTAS Y ARCHIVOS',actividad:'CENTRO DE ACTIVIDAD',configuracion:'CONFIGURACIÓN'})[page]||page.toUpperCase();if(page==='calendario')renderCalendar();closeMobileMenu();window.scrollTo({top:0,behavior:'smooth'})}
@@ -714,8 +714,12 @@ globalSearch=function(q){baseGlobalSearch(q);const box=$('#searchResults');if(!q
 document.addEventListener('keydown',e=>{if(e.altKey&&e.key.toLowerCase()==='j'){e.preventDefault();openMai()}});
 paintFocus();
 updateClock();setInterval(updateClock,1000);renderAll();if(data.profile.city)weather();
+window.MAELHUB_SYNC_API={getData:()=>data,setData:next=>{data={...defaults(),...(next||{})};data.widgets={...defaults().widgets,...(data.widgets||{})};data.widgetOrder=Array.isArray(data.widgetOrder)?data.widgetOrder:defaults().widgetOrder;data.gamification={...defaults().gamification,...(data.gamification||{})};localStorage.setItem(KEY,JSON.stringify(data));renderAll()},getStorageKey:()=>KEY};
 })();
   </script>
+<script src="./sync-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./sync.js"></script>
 <script>
 // Instalación de MAEL HUB como aplicación (PWA). Los datos siguen guardándose localmente.
 (()=>{
