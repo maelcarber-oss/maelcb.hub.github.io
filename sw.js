@@ -1,5 +1,5 @@
-const CACHE_NAME = 'mael-hub-pwa-v4';
-const CORE = ['./', './index.html', './manifest.webmanifest', './icon.svg'];
+const CACHE_NAME = 'mael-hub-pwa-v5';
+const CORE = ['./', './index.html', './manifest.webmanifest', './icon.svg', './sync.js', './sync-config.js'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(CORE)).then(() => self.skipWaiting()));
 });
