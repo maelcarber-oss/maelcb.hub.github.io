@@ -3,5 +3,5 @@
 // La clave anon/publishable es pública por diseño; la seguridad depende de RLS.
 window.MAELHUB_SUPABASE_CONFIG = {
   url: "https://zkrlrhdzkjwxwfrkiage.supabase.co",
-  anonKey: "PEGA_AQUI_TU_CLAVE_ANON_O_PUBLISHABLE"
+  anonKey: "sb_publishable_X_qLQtP0dp9UMbdah1NQ9g_a2PVIpbi"
 };
