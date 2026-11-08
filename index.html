@@ -523,6 +523,7 @@ function maiCommandHelp(){return [
 '🧭 ABRIR APARTADOS',
 '• Abre inicio / abre dashboard',
 '• Abre instituto',
+'• Abre calendario / agenda mensual',
 '• Abre horario / abre deberes',
 '• Abre exámenes / abre calificaciones',
 '• Abre organización / abre tareas / abre objetivos',
@@ -708,7 +709,7 @@ $('#focusStart').onclick=()=>{if(focusInterval){stopFocus();$('#focusStart').tex
 $('#focusReset').onclick=()=>{stopFocus();focusRemaining=focusDuration;$('#focusStart').textContent='▶ Iniciar';$('#focusStatus').textContent='LISTO PARA EMPEZAR';paintFocus()};
 // Search results also expose quick system commands and page shortcuts.
 const baseGlobalSearch=globalSearch;
-globalSearch=function(q){baseGlobalSearch(q);const box=$('#searchResults');if(!q.trim())return;const commands=[{title:'Abrir Dashboard',sub:'Comando del sistema',page:'dashboard'},{title:'Abrir Centro de actividad',sub:'Comando del sistema',page:'actividad'},{title:'Abrir Instituto',sub:'Comando del sistema',page:'instituto'},{title:'Abrir Organización',sub:'Comando del sistema',page:'organizacion'},{title:'Abrir Informática',sub:'Comando del sistema',page:'informatica'},{title:'Abrir Música',sub:'Comando del sistema',page:'musica'},{title:'Abrir Notas y archivos',sub:'Comando del sistema',page:'notas'},{title:'Abrir Configuración',sub:'Comando del sistema',page:'configuracion'}].filter(x=>x.title.toLowerCase().includes(q.toLowerCase()));if(commands.length){const start=box.querySelectorAll('[data-search-index]').length;box.insertAdjacentHTML('beforeend',commands.map((x,i)=>`<div class="search-result command-result" data-command-page="${x.page}"><b>⌘ ${x.title}</b><small>${x.sub}</small></div>`).join(''));box.querySelectorAll('[data-command-page]').forEach(b=>b.onclick=()=>{openPage(b.dataset.commandPage);box.classList.remove('open');$('#globalSearch').value=''})}};
+globalSearch=function(q){baseGlobalSearch(q);const box=$('#searchResults');if(!q.trim())return;const commands=[{title:'Abrir Dashboard',sub:'Comando del sistema',page:'dashboard'},{title:'Abrir Centro de actividad',sub:'Comando del sistema',page:'actividad'},{title:'Abrir Instituto',sub:'Comando del sistema',page:'instituto'},{title:'Abrir Calendario',sub:'Comando del sistema',page:'calendario'},{title:'Abrir Organización',sub:'Comando del sistema',page:'organizacion'},{title:'Abrir Informática',sub:'Comando del sistema',page:'informatica'},{title:'Abrir Música',sub:'Comando del sistema',page:'musica'},{title:'Abrir Notas y archivos',sub:'Comando del sistema',page:'notas'},{title:'Abrir Configuración',sub:'Comando del sistema',page:'configuracion'}].filter(x=>x.title.toLowerCase().includes(q.toLowerCase()));if(commands.length){const start=box.querySelectorAll('[data-search-index]').length;box.insertAdjacentHTML('beforeend',commands.map((x,i)=>`<div class="search-result command-result" data-command-page="${x.page}"><b>⌘ ${x.title}</b><small>${x.sub}</small></div>`).join(''));box.querySelectorAll('[data-command-page]').forEach(b=>b.onclick=()=>{openPage(b.dataset.commandPage);box.classList.remove('open');$('#globalSearch').value=''})}};
 // JARVIS-style shortcut. Ctrl/Cmd+K opens universal search; Alt+J opens MAI.
 document.addEventListener('keydown',e=>{if(e.altKey&&e.key.toLowerCase()==='j'){e.preventDefault();openMai()}});
 paintFocus();
