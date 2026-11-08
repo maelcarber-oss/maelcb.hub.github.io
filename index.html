@@ -128,7 +128,68 @@
   .modal{padding-left:13px;padding-right:13px}
   .modal-actions{margin-left:-13px;margin-right:-13px;padding-left:13px;padding-right:13px}
 }
-</style>\n</head>
+</style>\n<style id="calendar-mobile-and-modal-fix">
+.calendar-toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px;padding:14px}
+.calendar-month-nav{display:flex;align-items:center;gap:10px;min-width:0}
+.calendar-month-nav h2{font-size:17px;min-width:150px;text-transform:capitalize}
+.calendar-create-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.calendar-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.8fr);gap:14px}
+.calendar-month-panel,.calendar-day-panel{min-width:0;padding:16px}
+.calendar-weekdays,.calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.calendar-weekdays{margin-bottom:8px}
+.calendar-weekdays span{text-align:center;color:#819aab;font:9px 'DM Mono',monospace;letter-spacing:.6px;padding:8px 0}
+.calendar-grid{grid-auto-rows:minmax(66px,1fr)}
+.calendar-empty{min-height:66px}
+.calendar-day{position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;min-width:0;min-height:66px;padding:8px;border:1px solid var(--line);border-radius:10px;background:rgba(10,27,43,.7);color:#c6d9e5;text-align:left;cursor:pointer}
+.calendar-day:hover,.calendar-day.selected{border-color:var(--cyan);background:rgba(22,77,96,.26);box-shadow:inset 0 0 0 1px rgba(57,217,245,.12)}
+.calendar-day.is-today .calendar-day-number{color:var(--cyan);font-weight:800}
+.calendar-day-number{font-size:13px}
+.calendar-day-count{position:absolute;top:7px;right:8px;color:#9bb3c3;font:9px 'DM Mono'}
+.calendar-dots{display:flex;gap:4px;min-height:5px}
+.dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#38d9ef}
+.dot.exam,.calendar-entry-mark.exam{background:#c084fc}
+.dot.project,.calendar-entry-mark.project{background:#39d9f5}
+.dot.event,.calendar-entry-mark.event{background:#f7b955}
+.dot.task,.calendar-entry-mark.task,.calendar-entry-mark.homework{background:#52d6a5}
+.calendar-legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;color:#91a9ba;font-size:9px}
+.calendar-legend span{display:flex;align-items:center;gap:5px}
+.calendar-day-items{display:grid;gap:9px}
+.calendar-entry{display:flex;align-items:center;gap:11px;border:1px solid var(--line);border-radius:10px;padding:12px;background:rgba(9,25,40,.65);min-width:0}
+.calendar-entry-mark{width:4px;align-self:stretch;border-radius:4px;background:var(--cyan)}
+.calendar-entry-main{display:grid;gap:3px;min-width:0}
+.calendar-entry-main span{font:8px 'DM Mono';letter-spacing:.7px;color:var(--cyan);text-transform:uppercase}
+.calendar-entry-main b{font-size:12px;overflow-wrap:anywhere}
+.calendar-entry-main small{font-size:10px;color:#86a0b2}
+#calendarSelectedTitle{text-transform:capitalize}
+@media(max-width:900px){.calendar-layout{grid-template-columns:1fr}}
+@media(max-width:760px){
+ .mobile-dock{display:none!important}
+ .main-area,.collapsed .main-area{padding-bottom:22px!important}
+ .calendar-toolbar{align-items:stretch;flex-direction:column;padding:12px}
+ .calendar-month-nav{justify-content:space-between}
+ .calendar-month-nav h2{flex:1;min-width:0;text-align:center;font-size:16px}
+ .calendar-create-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+ .calendar-create-actions button{min-height:44px;padding:10px 8px;font-size:11px}
+ .calendar-month-panel,.calendar-day-panel{padding:10px}
+ .calendar-weekdays,.calendar-grid{gap:4px}
+ .calendar-weekdays span{font-size:8px;padding:5px 0}
+ .calendar-grid{grid-auto-rows:minmax(48px,1fr)}
+ .calendar-empty{min-height:48px}
+ .calendar-day{min-height:48px;padding:6px 5px;border-radius:8px}
+ .calendar-day-number{font-size:11px}
+ .calendar-day-count{top:5px;right:5px;font-size:8px}
+ .calendar-dots{gap:3px}
+ .calendar-dots .dot{width:5px;height:5px}
+ .calendar-legend{gap:9px;font-size:8px}
+ .modal-backdrop.open{align-items:flex-end;padding:0;overflow:hidden}
+ .modal{width:100%;max-width:none;max-height:92dvh;height:auto;margin:0;border-radius:18px 18px 0 0;padding:16px 14px max(12px,env(safe-area-inset-bottom));display:flex;flex-direction:column;overflow:hidden}
+ #modalForm{display:flex;flex:1 1 auto;min-height:0;overflow:hidden;flex-direction:column}
+ #modalFields{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding-bottom:18px}
+ .modal-actions{position:sticky;bottom:0;z-index:5;display:flex;flex:0 0 auto;gap:9px;margin:8px -14px -12px;padding:12px 14px max(14px,env(safe-area-inset-bottom));background:#0b1b2c;border-top:1px solid var(--line);box-shadow:0 -8px 20px #0004}
+ .modal-actions button{display:flex;align-items:center;justify-content:center;min-height:50px;flex:1 1 0;font-size:14px;touch-action:manipulation}
+}
+</style>
+</head>
 <body>
   <button id="installApp" class="install-app-btn" type="button" hidden>⬇ Instalar MAEL HUB</button>
   <style>
@@ -146,6 +207,7 @@
       <nav id="mainNav" class="nav-list">
         <button class="nav-item active" data-page="dashboard"><i>◈</i><span>Inicio</span><kbd>01</kbd></button>
         <button class="nav-item" data-page="instituto"><i>▤</i><span>Instituto</span><kbd>02</kbd></button>
+        <button class="nav-item" data-page="calendario"><i>▦</i><span>Calendario</span><kbd>03</kbd></button>
         <button class="nav-item" data-page="organizacion"><i>◷</i><span>Organización</span><kbd>03</kbd></button>
         <button class="nav-item" data-page="informatica"><i>⌘</i><span>Informática</span><kbd>04</kbd></button>
         <button class="nav-item" data-page="musica"><i>♫</i><span>Música</span><kbd>05</kbd></button>
@@ -276,6 +338,18 @@
           <article class="panel settings-card"><h2>Estado del sistema</h2><div class="system-info"><span>Versión</span><b>2.0.0</b><span>Almacenamiento</span><b>LocalStorage</b><span>Asistente MAI</span><b>Comandos locales</b><span>API meteorológica</span><b>Open-Meteo</b></div></article>
         </div>
       </section>
+      <section class="page-view" id="page-calendario">
+        <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> PERSONAL SCHEDULE</div><h1>Calendario</h1><p class="muted">Exámenes, tareas, proyectos y eventos en un mismo lugar.</p></div><span class="live-tag"><i></i> LOCAL CALENDAR</span></div>
+        <div class="calendar-toolbar panel">
+          <div class="calendar-month-nav"><button class="icon-btn" id="calendarPrev" aria-label="Mes anterior">‹</button><h2 id="calendarMonthTitle">Mes</h2><button class="icon-btn" id="calendarNext" aria-label="Mes siguiente">›</button><button class="secondary-btn" id="calendarToday">Hoy</button></div>
+          <div class="calendar-create-actions"><button class="primary-btn" id="calendarAddEvent">＋ Evento</button><button class="secondary-btn" id="calendarAddTask">＋ Tarea</button><button class="secondary-btn" id="calendarAddProject">＋ Proyecto</button><button class="secondary-btn" id="calendarAddExam">＋ Examen</button></div>
+        </div>
+        <div class="calendar-layout">
+          <article class="panel calendar-month-panel"><div class="calendar-weekdays"><span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span></div><div id="calendarGrid" class="calendar-grid"></div><div class="calendar-legend"><span><i class="dot task"></i>Tareas</span><span><i class="dot exam"></i>Exámenes</span><span><i class="dot project"></i>Proyectos</span><span><i class="dot event"></i>Eventos</span></div></article>
+          <article class="panel calendar-day-panel"><div class="section-head"><div><h2 id="calendarSelectedTitle">Agenda del día</h2><p class="muted" id="calendarSelectedMeta">Selecciona un día para ver tus actividades.</p></div><span class="tiny-status">DAY PLAN</span></div><div id="calendarDayItems" class="calendar-day-items"></div></article>
+        </div>
+      </section>
+
       <section class="page-view" id="page-actividad">
         <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> SYSTEM INTELLIGENCE</div><h1>Centro de actividad</h1><p class="muted">Tu progreso, tus logros y tu espacio de concentración.</p></div><span class="live-tag"><i></i> PERSONAL TRACKER</span></div>
         <div class="stats-strip activity-stats"><div><small>EXPERIENCIA TOTAL</small><b id="activityXP">0 XP</b></div><div><small>NIVEL ACTUAL</small><b id="activityLevel">1</b></div><div><small>RACHA ACTUAL</small><b id="activityStreak">0 días</b></div><div><small>LOGROS DESBLOQUEADOS</small><b id="achievementCount">0 / 6</b></div></div>
@@ -313,7 +387,7 @@ function load(){try{return {...defaults(),...JSON.parse(localStorage.getItem(KEY
 function save(){localStorage.setItem(KEY,JSON.stringify(data));renderAll()}
 function toast(msg){const el=document.createElement('div');el.className='toast';el.textContent=msg;$('#toastStack').append(el);setTimeout(()=>el.remove(),3000)}
 function closeMobileMenu(){ $('#sidebar').classList.remove('mobile-open'); $('#mobileScrim')?.classList.remove('open'); document.body.classList.remove('menu-open'); }
-function openPage(page){$$('.page-view').forEach(x=>x.classList.toggle('active',x.id==='page-'+page));$$('.nav-item[data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===page));$$('#mobileDock [data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===page));$('#pageName').textContent=({dashboard:'INICIO',instituto:'INSTITUTO',organizacion:'ORGANIZACIÓN',informatica:'INFORMÁTICA',musica:'MÚSICA',notas:'NOTAS Y ARCHIVOS',actividad:'CENTRO DE ACTIVIDAD',configuracion:'CONFIGURACIÓN'})[page]||page.toUpperCase();closeMobileMenu();window.scrollTo({top:0,behavior:'smooth'})}
+function openPage(page){$('.page-view').forEach(x=>x.classList.toggle('active',x.id==='page-'+page));$('.nav-item[data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===page));$('#mobileDock [data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===page));$('#pageName').textContent=({dashboard:'INICIO',instituto:'INSTITUTO',calendario:'CALENDARIO',organizacion:'ORGANIZACIÓN',informatica:'INFORMÁTICA',musica:'MÚSICA',notas:'NOTAS Y ARCHIVOS',actividad:'CENTRO DE ACTIVIDAD',configuracion:'CONFIGURACIÓN'})[page]||page.toUpperCase();if(page==='calendario')renderCalendar();closeMobileMenu();window.scrollTo({top:0,behavior:'smooth'})}
 function tab(group,name){const root=group==='instituto'?'page-instituto':'page-informatica';$(`#${root} .tab-bar`).querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.tab===name));$(`#${root}`).querySelectorAll('.tab-content').forEach(x=>x.classList.toggle('active',x.id==='tab-'+name))}
 function modal(title,fields,initial,onSave){$('#modalTitle').textContent=title;$('#modalFields').innerHTML=fields.map(f=>fieldHTML(f,initial?.[f.name])).join('');modalSave=onSave;$('#modalBackdrop').classList.add('open')}
 function fieldHTML(f,v){let val=v??f.value??'';let html='';if(f.type==='textarea')html=`<textarea name="${f.name}" ${f.required?'required':''} placeholder="${esc(f.placeholder||'')}">${esc(val)}</textarea>`;else if(f.type==='select')html=`<select name="${f.name}" ${f.required?'required':''}>${f.options.map(o=>`<option value="${esc(o)}" ${String(val)===String(o)?'selected':''}>${esc(o)}</option>`).join('')}</select>`;else html=`<input name="${f.name}" type="${f.type||'text'}" value="${esc(val)}" ${f.required?'required':''} placeholder="${esc(f.placeholder||'')}" ${f.step?`step="${f.step}"`:''}>`;return `<label class="field ${f.full?'full':''}">${esc(f.label)}${html}</label>`}
@@ -339,8 +413,8 @@ renderSimpleList('#goalList',data.goals,x=>`${x.description||''} · ${x.progress
 renderSimpleList('#eventList',data.events,x=>`${x.date||'Sin fecha'} · ${x.description||''}`,id=>editItem(data.events,id,'Editar evento',[{name:'title',label:'Evento',required:true},{name:'date',label:'Fecha',type:'date'},{name:'description',label:'Descripción',type:'textarea',full:true}]),'este evento');
 renderSimpleList('#quickNotes',data.quickNotes,x=>x.content||'',id=>editItem(data.quickNotes,id,'Editar nota rápida',[{name:'title',label:'Título',required:true},{name:'content',label:'Contenido',type:'textarea',full:true}]),'esta nota rápida')}
 function renderSimpleList(sel,arr,meta,edit,label){let box=$(sel);box.innerHTML=arr.length?arr.map(x=>`<div class="data-row"><div class="data-main"><b>${esc(x.title)}</b><small>${esc(meta(x))}</small>${x.progress!==undefined?`<div class="goal-progress"><span style="width:${Math.max(0,Math.min(100,Number(x.progress)||0))}%"></span></div>`:''}</div>${actions([],x.id)}</div>`).join(''):'<div class="empty-state">No hay elementos todavía.</div>';bindRowActions(box,arr,edit,label)}
-function renderProjects(){let box=$('#projectList'),f=$('#projectFilter').value;let arr=data.projects.filter(p=>f==='all'||p.status===f);box.innerHTML=arr.length?arr.map(p=>`<article class="info-card"><div class="card-meta">${esc(p.type||'PROYECTO')} · ${esc(p.status)}</div><h3>${esc(p.title)}</h3><p>${esc(p.description||'Sin descripción')}</p>${p.url?`<p><a href="${esc(p.url)}" target="_blank" rel="noopener" style="color:var(--cyan)">Abrir proyecto ↗</a></p>`:''}<div class="card-actions"><button data-project-edit="${p.id}">✎ Editar</button><button data-project-del="${p.id}">× Eliminar</button></div></article>`).join(''):'<div class="empty-state">Añade tu primer proyecto tecnológico.</div>';box.querySelectorAll('[data-project-edit]').forEach(b=>b.onclick=()=>editItem(data.projects,b.dataset.projectEdit,'Editar proyecto',projectFields));box.querySelectorAll('[data-project-del]').forEach(b=>b.onclick=()=>{if(confirmDelete('este proyecto')){data.projects=data.projects.filter(p=>p.id!==b.dataset.projectDel);save()}})}
-const projectFields=[{name:'title',label:'Nombre del proyecto',required:true},{name:'type',label:'Tecnología',value:'HTML / CSS / JS'},{name:'status',label:'Estado',type:'select',options:['Pendiente','En desarrollo','Terminado']},{name:'url',label:'Enlace publicado',full:true},{name:'description',label:'Descripción',type:'textarea',full:true}];
+function renderProjects(){let box=$('#projectList'),f=$('#projectFilter').value;let arr=data.projects.filter(p=>f==='all'||p.status===f);box.innerHTML=arr.length?arr.map(p=>`<article class="info-card"><div class="card-meta">${esc(p.area||'Informática')} · ${esc(p.type||'PROYECTO')} · ${esc(p.status)}${p.date?' · '+esc(p.date):''}</div><h3>${esc(p.title)}</h3><p>${esc(p.description||'Sin descripción')}</p>${p.url?`<p><a href="${esc(p.url)}" target="_blank" rel="noopener" style="color:var(--cyan)">Abrir proyecto ↗</a></p>`:''}<div class="card-actions"><button data-project-edit="${p.id}">✎ Editar</button><button data-project-del="${p.id}">× Eliminar</button></div></article>`).join(''):'<div class="empty-state">Añade tu primer proyecto.</div>';box.querySelectorAll('[data-project-edit]').forEach(b=>b.onclick=()=>editItem(data.projects,b.dataset.projectEdit,'Editar proyecto',projectFields));box.querySelectorAll('[data-project-del]').forEach(b=>b.onclick=()=>{if(confirmDelete('este proyecto')){data.projects=data.projects.filter(p=>p.id!==b.dataset.projectDel);save()}})}
+const projectFields=[{name:'title',label:'Nombre del proyecto',required:true},{name:'area',label:'Tipo de proyecto',type:'select',options:['Informática','Instituto']},{name:'type',label:'Tecnología o categoría',value:'HTML / CSS / JS'},{name:'status',label:'Estado',type:'select',options:['Pendiente','En desarrollo','Terminado']},{name:'date',label:'Fecha prevista / entrega',type:'date'},{name:'url',label:'Enlace publicado',full:true},{name:'description',label:'Descripción',type:'textarea',full:true}];
 function renderSnippets(){renderSimpleList('#snippetList',data.snippets,x=>`${x.language||'Texto'} · ${x.description||''}`,id=>editItem(data.snippets,id,'Editar fragmento',[{name:'title',label:'Nombre',required:true},{name:'language',label:'Lenguaje'},{name:'description',label:'Descripción'},{name:'code',label:'Código',type:'textarea',full:true}]),'este fragmento');$('#snippetList').querySelectorAll('.data-row').forEach((r,i)=>{let s=data.snippets[i];if(s){let b=document.createElement('button');b.textContent='Copiar';b.className='text-action';b.onclick=()=>{navigator.clipboard?.writeText(s.code||'');toast('Código copiado (si el navegador lo permite)')};r.append(b)}})}
 function renderIdeas(){let box=$('#ideaList');box.innerHTML=data.ideas.length?data.ideas.map(x=>`<article class="info-card"><div class="card-meta">IDEA / ${esc(x.category||'GENERAL')}</div><h3>${esc(x.title)}</h3><p>${esc(x.description||'')}</p><div class="card-actions"><button data-idea-edit="${x.id}">✎ Editar</button><button data-idea-del="${x.id}">× Eliminar</button></div></article>`).join(''):'<div class="empty-state">Tu banco de ideas está listo.</div>';box.querySelectorAll('[data-idea-edit]').forEach(b=>b.onclick=()=>editItem(data.ideas,b.dataset.ideaEdit,'Editar idea',[{name:'title',label:'Idea',required:true},{name:'category',label:'Categoría'},{name:'description',label:'Descripción',type:'textarea',full:true}]));box.querySelectorAll('[data-idea-del]').forEach(b=>b.onclick=()=>{if(confirmDelete('esta idea')){data.ideas=data.ideas.filter(x=>x.id!==b.dataset.ideaDel);save()}})}
 function renderTools(){let box=$('#toolList');box.innerHTML=data.tools.length?data.tools.map(t=>`<div class="tool-link"><b>${esc(t.title)}</b><small>${esc(t.description||'')}</small><div class="card-actions"><a href="${esc(t.url)}" target="_blank" rel="noopener">Abrir ↗</a><button data-tool-edit="${t.id}">✎</button><button data-tool-del="${t.id}">×</button></div></div>`).join(''):'<div class="empty-state">Añade enlaces a tus herramientas favoritas.</div>';box.querySelectorAll('[data-tool-edit]').forEach(b=>b.onclick=()=>editItem(data.tools,b.dataset.toolEdit,'Editar enlace',[{name:'title',label:'Nombre',required:true},{name:'url',label:'URL',required:true},{name:'description',label:'Descripción'}]));box.querySelectorAll('[data-tool-del]').forEach(b=>b.onclick=()=>{if(confirmDelete('este enlace')){data.tools=data.tools.filter(x=>x.id!==b.dataset.toolDel);save()}})}
@@ -352,7 +426,39 @@ const noteFields=[{name:'title',label:'Título',required:true},{name:'category',
 function applyDashboardOrder(){const grid=$('#dashboardGrid');if(!grid)return;const rank=new Map((data.widgetOrder||[]).map((id,i)=>[id,i]));[...grid.querySelectorAll('[data-widget]')].sort((a,b)=>(rank.get(a.dataset.widget)??999)-(rank.get(b.dataset.widget)??999)).forEach(el=>grid.appendChild(el))}
 function renderDashboard(){let tasks=data.tasks.concat(data.homework).filter(x=>!x.done),done=data.tasks.concat(data.homework).filter(x=>x.done).length;$('#pendingMetric').textContent=tasks.length;$('#completedMetric').textContent=`${done} completadas`;$('#taskProgress').style.width=(done+tasks.length?done/(done+tasks.length)*100:0)+'%';let exams=data.exams.filter(x=>x.date>=today()).sort((a,b)=>a.date.localeCompare(b.date));let e=exams[0];if(e){let d=Math.ceil((new Date(e.date+'T00:00:00')-new Date(today()+'T00:00:00'))/86400000);$('#nextExamDays').textContent=d===0?'HOY':`${d} días`;$('#nextExamName').textContent=e.title||e.subject;$('#nextExamDate').textContent=`${e.subject} · ${e.date}`}else{$('#nextExamDays').textContent='—';$('#nextExamName').textContent='No hay exámenes próximos';$('#nextExamDate').textContent='Añade tu calendario académico'}let agenda=data.events.filter(x=>x.date>=today()).sort((a,b)=>a.date.localeCompare(b.date)).slice(0,3);$('#agendaPreview').innerHTML=agenda.length?agenda.map(x=>`<div class="preview-row"><div class="preview-date">${esc(x.date.slice(8,10))}</div><div><b>${esc(x.title)}</b><small>${esc(x.date)} · ${esc(x.description||'')}</small></div></div>`).join(''):'<div class="empty-state">No hay eventos próximos.</div>';let total=done+tasks.length,pct=total?Math.round(done/total*100):0;$('#productivityPercent').textContent=pct+'%';$('#productivityDonut').style.background=`conic-gradient(var(--cyan) ${pct}%,#1a3348 ${pct}%)`;$('#chartDone').textContent=done;$('#chartPending').textContent=tasks.length;$('#chartProjects').textContent=data.projects.filter(p=>p.status==='En desarrollo').length;$('#welcomeName').textContent=`Bienvenido, ${data.profile.username||'usuario'}.`;$('#greeting').textContent=`${new Date().getHours()<12?'Buenos días':new Date().getHours()<20?'Buenas tardes':'Buenas noches'}, ${data.profile.username||'usuario'}.`;$$('[data-widget]').forEach(el=>el.style.display=data.widgets[el.dataset.widget]===false?'none':'');let count=(data.notifications.tasks?tasks.length:0)+(data.notifications.exams?exams.filter(x=>(new Date(x.date)-new Date())/86400000<4).length:0)+(data.notifications.events?agenda.length:0);$('#notificationCount').textContent=count>9?'9+':count;applyDashboardOrder()}
 function renderSettings(){$('#settingUsername').value=data.profile.username||'';$('#settingCity').value=data.profile.city||'';$('#settingTheme').value=data.appearance.theme;$('#settingAccent').value=data.appearance.accent;$('#notifyTasks').checked=data.notifications.tasks;$('#notifyExams').checked=data.notifications.exams;$('#notifyEvents').checked=data.notifications.events;$('#widgetSettings').innerHTML=Object.keys(data.widgets).map(k=>`<label class="switch-row">${({welcome:'Panel de bienvenida',weather:'Meteorología',tasks:'Tareas pendientes',exams:'Próximo examen',agenda:'Agenda próxima',quick:'Accesos rápidos',productivity:'Productividad',mai:'Asistente MAI',level:'Nivel y experiencia'})[k]} <input type="checkbox" data-widget-toggle="${k}" ${data.widgets[k]!==false?'checked':''}></label>`).join('');$('#widgetSettings').querySelectorAll('[data-widget-toggle]').forEach(c=>c.onchange=()=>{data.widgets[c.dataset.widgetToggle]=c.checked;save()})}
-function renderAll(){renderSchedule();renderHomework();renderExams();renderGrades();renderOrg();renderProjects();renderSnippets();renderIdeas();renderTools();renderMusic();renderNotes();renderDashboard();renderSettings();renderGamification();applyAppearance()}
+
+let calendarCursor=new Date(new Date().getFullYear(),new Date().getMonth(),1);
+let calendarSelected=today();
+function calendarDateObject(value){const p=String(value||'').split('-').map(Number);return p.length===3?new Date(p[0],p[1]-1,p[2]):new Date()}
+function calendarItemsFor(date){
+ const items=[];
+ data.tasks.filter(x=>x.date===date).forEach(x=>items.push({id:x.id,source:'task',kind:'Tarea',title:x.title,meta:x.done?'Completada':'Organización'}));
+ data.homework.filter(x=>x.date===date).forEach(x=>items.push({id:x.id,source:'homework',kind:'Deber',title:x.title,meta:x.subject||'Instituto'}));
+ data.exams.filter(x=>x.date===date).forEach(x=>items.push({id:x.id,source:'exam',kind:'Examen',title:x.title||x.subject,meta:x.subject||'Instituto'}));
+ data.projects.filter(x=>x.date===date).forEach(x=>items.push({id:x.id,source:'project',kind:'Proyecto · '+(x.area||'Informática'),title:x.title,meta:x.status||'Pendiente'}));
+ data.events.filter(x=>x.date===date).forEach(x=>items.push({id:x.id,source:'event',kind:'Evento',title:x.title,meta:x.description||'Evento personal'}));
+ return items;
+}
+function renderCalendar(){
+ const grid=$('#calendarGrid');if(!grid)return;
+ const year=calendarCursor.getFullYear(),month=calendarCursor.getMonth();
+ $('#calendarMonthTitle').textContent=calendarCursor.toLocaleDateString('es-ES',{month:'long',year:'numeric'});
+ const offset=(new Date(year,month,1).getDay()+6)%7,days=new Date(year,month+1,0).getDate(),cells=[];
+ for(let i=0;i<offset;i++)cells.push('<div class="calendar-empty" aria-hidden="true"></div>');
+ for(let day=1;day<=days;day++){
+  const key=year+'-'+String(month+1).padStart(2,'0')+'-'+String(day).padStart(2,'0'),items=calendarItemsFor(key),types=[...new Set(items.map(x=>x.source))];
+  cells.push(`<button type="button" class="calendar-day ${key===calendarSelected?'selected':''} ${key===today()?'is-today':''}" data-calendar-date="${key}" aria-label="${day} de ${calendarCursor.toLocaleDateString('es-ES',{month:'long'})}"><span class="calendar-day-number">${day}</span>${items.length?`<span class="calendar-day-count">${items.length}</span><span class="calendar-dots">${types.slice(0,4).map(t=>`<i class="dot ${t==='exam'?'exam':t==='project'?'project':t==='event'?'event':'task'}"></i>`).join('')}</span>`:''}</button>`);
+ }
+ grid.innerHTML=cells.join('');
+ grid.querySelectorAll('[data-calendar-date]').forEach(b=>b.onclick=()=>{calendarSelected=b.dataset.calendarDate;renderCalendar()});
+ const chosen=calendarDateObject(calendarSelected),items=calendarItemsFor(calendarSelected);
+ $('#calendarSelectedTitle').textContent=chosen.toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'});
+ $('#calendarSelectedMeta').textContent=items.length?items.length+' elemento(s) programado(s)':'No hay nada programado para este día.';
+ $('#calendarDayItems').innerHTML=items.length?items.map(x=>`<div class="calendar-entry"><div class="calendar-entry-mark ${x.source}"></div><div class="calendar-entry-main"><span>${esc(x.kind)}</span><b>${esc(x.title||'Sin título')}</b><small>${esc(x.meta||'')}</small></div></div>`).join(''):'<div class="empty-state">Día libre. Puedes añadir una tarea, proyecto, examen o evento usando los botones de arriba.</div>';
+}
+function calendarMoveMonth(delta){calendarCursor=new Date(calendarCursor.getFullYear(),calendarCursor.getMonth()+delta,1);renderCalendar()}
+
+function renderAll(){renderSchedule();renderHomework();renderExams();renderGrades();renderOrg();renderProjects();renderCalendar();renderSnippets();renderIdeas();renderTools();renderMusic();renderNotes();renderDashboard();renderSettings();renderGamification();applyAppearance()}
 function applyAppearance(){document.documentElement.classList.toggle('theme-light',data.appearance.theme==='light');document.documentElement.classList.remove('accent-blue','accent-violet','accent-green');if(data.appearance.accent!=='cyan')document.documentElement.classList.add('accent-'+data.appearance.accent)}
 function updateClock(){let d=new Date();$('#clockTime').textContent=d.toLocaleTimeString('es-ES');$('#clockDate').textContent=d.toLocaleDateString('es-ES',{weekday:'short',day:'2-digit',month:'short'}).toUpperCase();$('#welcomeClock').textContent=d.toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'});$('#fullDate').textContent=d.toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).toUpperCase()}
 async function weather(){let city=data.profile.city.trim();if(!city){toast('Añade una ciudad en Configuración para consultar el tiempo.');return}$('#weatherText').textContent='Consultando...';try{let g=await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=es&format=json`);let gj=await g.json();if(!gj.results?.length)throw Error('No se encontró la ciudad');let p=gj.results[0];let r=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${p.latitude}&longitude=${p.longitude}&current=temperature_2m,weather_code&timezone=auto`);let j=await r.json();let code=j.current.weather_code;let desc=code===0?'Despejado':code<=3?'Parcialmente nublado':code<=48?'Niebla':code<=67?'Lluvia':code<=77?'Nieve':code<=82?'Chubascos':'Tormenta';$('#weatherTemp').textContent=Math.round(j.current.temperature_2m)+'°';$('#weatherText').textContent=desc;$('#weatherLocation').textContent=`${p.name}, ${p.country} · Datos de Open-Meteo`}catch(e){$('#weatherText').textContent='No disponible';$('#weatherLocation').textContent='Comprueba la ciudad o la conexión.';toast('No se ha podido consultar el tiempo.')}}
@@ -523,6 +629,7 @@ function maiReply(msg){
  if(searchMatch){$('#globalSearch').value=searchMatch[1].trim();globalSearch(searchMatch[1].trim());$('#maiDrawer').classList.remove('open');return 'He buscado «'+searchMatch[1].trim()+'». Cierra el chat si aún lo ves para consultar los resultados.'}
  if(/(?:horario)/.test(q)){openPage('instituto');tab('instituto','horario');return 'He abierto tu horario del instituto.'}
  if(/(?:abre|abrir|ve a|ir a|muestra|mostrar)/.test(q)){
+  if(/calendario|agenda mensual/.test(q)){openPage('calendario');return 'Calendario abierto.'}
   if(/inicio|dashboard/.test(q)){openPage('dashboard');return 'Inicio abierto.'}
   if(/horario/.test(q)){openPage('instituto');tab('instituto','horario');return 'Horario del instituto abierto.'}
   if(/deber|academ/.test(q)){openPage('instituto');tab('instituto','deberes');return 'Deberes del instituto abiertos.'}
@@ -550,6 +657,13 @@ $('#collapseSidebar').onclick=()=>document.body.classList.toggle('collapsed');
 function toggleMobileMenu(){const opening=!$('#sidebar').classList.contains('mobile-open');$('#sidebar').classList.toggle('mobile-open',opening);$('#mobileScrim').classList.toggle('open',opening);document.body.classList.toggle('menu-open',opening)}
 $('#mobileMenu').onclick=toggleMobileMenu;$('#mobileMore').onclick=toggleMobileMenu;$('#mobileScrim').onclick=closeMobileMenu;$('#mobileDock').addEventListener('click',e=>{const b=e.target.closest('[data-page]');if(b)openPage(b.dataset.page)});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMobileMenu()});
 $$('[data-tabs]').forEach(bar=>bar.addEventListener('click',e=>{let b=e.target.closest('[data-tab]');if(b)tab(bar.dataset.tabs,b.dataset.tab)}));
+$('#calendarPrev').onclick=()=>calendarMoveMonth(-1);
+$('#calendarNext').onclick=()=>calendarMoveMonth(1);
+$('#calendarToday').onclick=()=>{calendarSelected=today();calendarCursor=new Date(new Date().getFullYear(),new Date().getMonth(),1);renderCalendar()};
+$('#calendarAddEvent').onclick=()=>addItem(data.events,'Nuevo evento del calendario',[{name:'title',label:'Nombre del evento',required:true},{name:'date',label:'Fecha',type:'date',required:true},{name:'description',label:'Descripción',type:'textarea',full:true}],{date:calendarSelected});
+$('#calendarAddTask').onclick=()=>addItem(data.tasks,'Nueva tarea del calendario',[{name:'title',label:'Tarea',required:true},{name:'date',label:'Fecha',type:'date',required:true},{name:'description',label:'Descripción',type:'textarea',full:true}],{date:calendarSelected});
+$('#calendarAddProject').onclick=()=>addItem(data.projects,'Nuevo proyecto del calendario',projectFields,{area:'Informática',status:'Pendiente',type:'HTML / CSS / JS',date:calendarSelected});
+$('#calendarAddExam').onclick=()=>addItem(data.exams,'Nuevo examen del calendario',[{name:'title',label:'Nombre del examen',required:true},{name:'subject',label:'Asignatura'},{name:'date',label:'Fecha',type:'date',required:true},{name:'topics',label:'Temas que entran',type:'textarea',full:true}],{date:calendarSelected});
 $('#editSchedule').onclick=$('#editSchedule2').onclick=editSchedule;
 $('#addHomework').onclick=()=>addItem(data.homework,'Añadir deber',[{name:'title',label:'Título',required:true},{name:'subject',label:'Asignatura'},{name:'date',label:'Fecha de entrega',type:'date'},{name:'description',label:'Descripción',type:'textarea',full:true}]);
 $('#homeworkSort').onchange=renderHomework;
@@ -560,7 +674,7 @@ $('#personalFilter').onchange=renderOrg;
 $('#addGoal').onclick=()=>addItem(data.goals,'Nuevo objetivo',[{name:'title',label:'Objetivo',required:true},{name:'description',label:'Descripción'},{name:'progress',label:'Progreso (%)',type:'number',value:0}]);
 $('#addEvent').onclick=()=>addItem(data.events,'Nuevo evento',[{name:'title',label:'Evento',required:true},{name:'date',label:'Fecha',type:'date'},{name:'description',label:'Descripción',type:'textarea',full:true}]);
 $('#addQuickNote').onclick=()=>addItem(data.quickNotes,'Nueva nota rápida',[{name:'title',label:'Título',required:true},{name:'content',label:'Contenido',type:'textarea',full:true}]);
-$('#addProject').onclick=()=>addItem(data.projects,'Nuevo proyecto',projectFields,{status:'Pendiente',type:'HTML / CSS / JS'});$('#projectFilter').onchange=renderProjects;
+$('#addProject').onclick=()=>addItem(data.projects,'Nuevo proyecto',projectFields,{area:'Informática',status:'Pendiente',type:'HTML / CSS / JS'});$('#projectFilter').onchange=renderProjects;
 $('#addSnippet').onclick=()=>addItem(data.snippets,'Guardar fragmento',[{name:'title',label:'Nombre',required:true},{name:'language',label:'Lenguaje'},{name:'description',label:'Descripción'},{name:'code',label:'Código',type:'textarea',full:true}]);
 $('#addIdea').onclick=()=>addItem(data.ideas,'Nueva idea',[{name:'title',label:'Idea',required:true},{name:'category',label:'Categoría'},{name:'description',label:'Descripción',type:'textarea',full:true}]);
 $('#addTool').onclick=()=>addItem(data.tools,'Añadir herramienta',[{name:'title',label:'Nombre',required:true},{name:'url',label:'URL',required:true},{name:'description',label:'Descripción'}]);
