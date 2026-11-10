@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mael-hub-pwa-v5';
+const CACHE_NAME = 'nexus-hub-pwa-v6';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon.svg', './sync.js', './sync-config.js'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(CORE)).then(() => self.skipWaiting()));
