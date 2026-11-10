@@ -1,8 +1,8 @@
 {
   "id": "./",
-  "name": "MAEL HUB",
-  "short_name": "MAEL HUB",
-  "description": "Tu centro de control personal",
+  "name": "NEXUS HUB",
+  "short_name": "NEXUS HUB",
+  "description": "Centro de control personal para estudio y organización",
   "lang": "es",
   "start_url": "./",
   "scope": "./",
@@ -10,5 +10,12 @@
   "orientation": "portrait-primary",
   "background_color": "#07111f",
   "theme_color": "#07111f",
-  "icons": [{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
 }
