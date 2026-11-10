@@ -464,7 +464,7 @@ function renderMyDay(){
   if(!item.date)return;
   const delta=Math.round((new Date(item.date+'T12:00:00')-new Date(day+'T12:00:00'))/86400000);
   const isDue=delta<=0,examSoon=source==='exam'&&delta>=0&&delta<=7;
-  if(!isDue&&!examSoon)return;
+  if(source==='exam'?!examSoon:!isDue)return;
   items.push({key:source+':'+item.id,id:item.id,source,kind,go,title:item.title||item.subject||kind,date:item.date,delta,detail:detail||'',canComplete});
  };
  data.tasks.filter(x=>!x.done).forEach(x=>add('task',x,'Tarea','organizacion',x.description||'Tarea personal',true));
