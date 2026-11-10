@@ -7,11 +7,11 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="MAEL HUB">
+  <meta name="apple-mobile-web-app-title" content="NEXUS HUB">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="icon.svg">
-  <title>MAEL HUB — Personal Control System</title>
+  <title>NEXUS HUB — Personal Control System</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -24,13 +24,13 @@
 @media(max-width:390px){.dashboard-grid{grid-template-columns:1fr}.dashboard-grid>.panel{grid-column:1!important}.schedule-grid{grid-template-columns:1fr}.top-actions .clock{display:none}.welcome-panel{min-height:145px}}
 
   
-/* MAEL HUB 2.0 — command intelligence, gamification and focus */
+/* NEXUS HUB 2.0 — command intelligence, gamification and focus */
 .dashboard-grid [data-widget]{cursor:grab}.dashboard-grid [data-widget].dragging{opacity:.4;outline:1px dashed var(--cyan)}.level-panel{grid-column:span 2;min-height:180px}.level-main{display:flex;align-items:center;justify-content:space-between}.level-number{font-size:43px;line-height:1;font-weight:800;letter-spacing:-2px;color:var(--cyan);text-shadow:0 0 24px #39d9f544}.level-emblem{width:58px;height:58px;border:1px solid var(--line2);border-radius:18px;display:grid;place-items:center;color:var(--cyan);font-size:28px;background:radial-gradient(circle,rgba(57,217,245,.15),transparent 70%);transform:rotate(45deg)}.level-emblem::first-letter{transform:rotate(-45deg)}.xp-track{height:7px;background:#1a3348;border-radius:8px;margin:17px 0 10px;overflow:hidden}.xp-track span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--cyan));border-radius:8px;box-shadow:0 0 12px #39d9f566;transition:width .4s}.level-foot{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font:9px 'DM Mono'}.activity-layout{margin-bottom:15px}.activity-feed{display:grid;gap:0}.activity-item{display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}.activity-item:last-child{border:0}.activity-symbol{width:28px;height:28px;border:1px solid var(--line2);border-radius:9px;display:grid;place-items:center;color:var(--cyan);background:#10283a}.activity-item b,.activity-item small{display:block}.activity-item b{font-size:10px}.activity-item small{font-size:9px;color:var(--muted);margin-top:3px}.activity-xp{font:9px 'DM Mono';color:var(--good)}.achievement-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.achievement{border:1px solid var(--line);background:rgba(12,29,45,.55);border-radius:11px;padding:14px;min-height:115px;opacity:.52;filter:saturate(.55)}.achievement.unlocked{opacity:1;filter:none;border-color:rgba(57,217,245,.3);background:linear-gradient(145deg,rgba(25,70,89,.48),rgba(10,26,42,.7))}.achievement-icon{font-size:22px;color:var(--cyan);margin-bottom:9px}.achievement b{display:block;font-size:10px}.achievement p{font-size:9px;color:var(--muted);margin:5px 0 0;line-height:1.5}.focus-panel{text-align:center}.focus-panel .section-head{text-align:left}.focus-orb{width:170px;height:170px;margin:12px auto 16px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(57,217,245,.35);background:radial-gradient(circle,rgba(57,217,245,.13),rgba(9,25,41,.2) 62%,transparent 64%);box-shadow:0 0 35px #39d9f510,inset 0 0 25px #39d9f510;position:relative}.focus-orb:before{content:'';position:absolute;inset:9px;border:1px dashed rgba(57,217,245,.35);border-radius:50%;animation:spin 30s linear infinite}.focus-orb strong{display:block;font:28px 'DM Mono';letter-spacing:1px}.focus-orb small{display:block;color:var(--muted);font:8px 'DM Mono';letter-spacing:1px;margin-top:7px}.focus-presets,.focus-actions{display:flex;justify-content:center;gap:7px}.focus-preset{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:7px;padding:7px 12px;font-size:9px}.focus-preset.active{border-color:var(--cyan);color:var(--cyan);background:#123246}.focus-actions{margin-top:12px}.focus-note{font-size:9px;color:var(--muted);line-height:1.5;max-width:270px;margin:13px auto 0}.mai-float{position:fixed;right:25px;bottom:24px;z-index:30;width:58px;height:58px;border-radius:18px;border:1px solid rgba(57,217,245,.5);background:linear-gradient(145deg,#12394d,#091a2b);color:var(--cyan);box-shadow:0 8px 30px #0008,0 0 22px #39d9f522;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;transition:.2s}.mai-float:hover{transform:translateY(-3px);box-shadow:0 10px 34px #0009,0 0 28px #39d9f544}.mai-float span{font-size:21px;line-height:1}.mai-float small{font:8px 'DM Mono';letter-spacing:1.5px}.command-hint{font:9px 'DM Mono';color:var(--muted)}
 @media(max-width:900px){.achievement-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.mai-float{right:16px;bottom:16px}}
 @media(max-width:600px){.achievement-grid{grid-template-columns:1fr}.level-panel{grid-column:span 2}.activity-layout{grid-template-columns:1fr}.focus-orb{width:150px;height:150px}}
 
 
-/* ===== MAEL HUB · experiencia móvil dedicada ===== */
+/* ===== NEXUS HUB · experiencia móvil dedicada ===== */
 .mobile-scrim{display:none}
 .mobile-dock{display:none}
 @media(max-width:760px){
@@ -86,7 +86,7 @@
 
 </style>
 <style>
-/* MAEL HUB 3.1 · Mobile modal and assistant usability fixes */
+/* NEXUS HUB 3.1 · Mobile modal and assistant usability fixes */
 .mai-message p{white-space:pre-line;line-height:1.55}
 @media(max-width:760px){
   .modal-backdrop{align-items:center;overflow-y:auto;padding:8px 8px max(8px,env(safe-area-inset-bottom))}
@@ -102,7 +102,7 @@
 }
 </style>
 <style id="mobile-modal-fix">
-/* MAEL HUB 3.0 — modal móvil táctil y guardado accesible */
+/* NEXUS HUB 3.0 — modal móvil táctil y guardado accesible */
 .modal-backdrop{overscroll-behavior:contain}
 .modal{box-sizing:border-box}
 #modalForm{min-height:0}
@@ -189,9 +189,29 @@
  .modal-actions button{display:flex;align-items:center;justify-content:center;min-height:50px;flex:1 1 0;font-size:14px;touch-action:manipulation}
 }
 </style>
-<style>.sync-account{display:grid;gap:10px}.sync-account label{display:grid;gap:6px;font-size:10px;color:#8ea7b9}.sync-account input{width:100%;border:1px solid var(--line2);background:#091827;color:var(--text);border-radius:7px;padding:10px;outline:none;font-size:11px}.sync-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sync-status{font-size:10px;color:var(--muted);line-height:1.6;padding:10px;border:1px solid var(--line);border-radius:8px;background:rgba(8,23,37,.55);margin:12px 0}.sync-status[data-state=success]{color:var(--good)}.sync-status[data-state=error]{color:var(--danger)}.sync-now{width:100%}.sync-account [hidden]{display:none!important}@media(max-width:760px){.sync-actions{grid-template-columns:1fr}}</style></head>
+<style>.sync-account{display:grid;gap:10px}.sync-account label{display:grid;gap:6px;font-size:10px;color:#8ea7b9}.sync-account input{width:100%;border:1px solid var(--line2);background:#091827;color:var(--text);border-radius:7px;padding:10px;outline:none;font-size:11px}.sync-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sync-status{font-size:10px;color:var(--muted);line-height:1.6;padding:10px;border:1px solid var(--line);border-radius:8px;background:rgba(8,23,37,.55);margin:12px 0}.sync-status[data-state=success]{color:var(--good)}.sync-status[data-state=error]{color:var(--danger)}.sync-now{width:100%}.sync-account [hidden]{display:none!important}@media(max-width:760px){.sync-actions{grid-template-columns:1fr}}</style><style id="mobile-readable-ui">
+@media(max-width:760px){
+  .nav-item{padding:14px 12px;font-size:14px}
+  .nav-item span{font-size:13px}
+  .page-heading h1{font-size:29px}
+  .page-heading .muted,.muted{font-size:12px}
+  .panel h2,.section-head h2{font-size:16px}
+  .primary-btn,.secondary-btn,.small-btn,.outline-action,.danger-outline{font-size:12px;padding:11px 14px;min-height:42px}
+  .small-btn{padding:9px 11px}
+  .tab{font-size:12px;padding:14px 16px}
+  .data-row{padding:13px 12px}
+  .data-main b{font-size:12px}
+  .data-main small{font-size:10px}
+  .row-date{font-size:10px}
+  .quick-grid button{font-size:10px;padding:12px 9px}
+  .section-head select,.section-head>select{font-size:11px;min-height:40px}
+  .field{font-size:12px}
+  .modal-actions button{font-size:14px;min-height:50px}
+  .calendar-create-actions button{font-size:12px}
+}
+</style></head>
 <body>
-  <button id="installApp" class="install-app-btn" type="button" hidden>⬇ Instalar MAEL HUB</button>
+  <button id="installApp" class="install-app-btn" type="button" hidden>⬇ Instalar NEXUS HUB</button>
   <style>
     .install-app-btn{position:fixed;right:14px;top:78px;z-index:100;border:1px solid rgba(57,217,245,.5);background:rgba(5,22,37,.96);color:#bdf7ff;border-radius:12px;padding:11px 14px;font:600 11px Manrope,Arial,sans-serif;box-shadow:0 0 22px #39d9f522;backdrop-filter:blur(12px)}
     .install-app-btn[hidden]{display:none}
@@ -201,7 +221,7 @@
     <aside class="sidebar" id="sidebar">
       <div class="brand">
         <div class="brand-mark"><span></span><span></span><span></span></div>
-        <div class="brand-copy"><b>MAEL<span>HUB</span></b><small>PERSONAL CONTROL SYSTEM</small></div>
+        <div class="brand-copy"><b>NEXUS<span>HUB</span></b><small>PERSONAL CONTROL SYSTEM</small></div>
       </div>
       <div class="side-label">WORKSPACE</div>
       <nav id="mainNav" class="nav-list">
@@ -217,7 +237,7 @@
       <div class="sidebar-bottom">
         <div class="system-card"><span class="pulse"></span><div><b>SISTEMA OPERATIVO</b><small>Todos los módulos activos</small></div></div>
         <button class="nav-item" data-page="configuracion"><i>⚙</i><span>Configuración</span></button>
-        <div class="sidebar-foot">MAEL HUB <span>v2.0.0</span></div>
+        <div class="sidebar-foot">NEXUS HUB <span>v2.0.0</span></div>
       </div>
     </aside>
     <div class="mobile-scrim" id="mobileScrim" aria-hidden="true"></div>
@@ -233,9 +253,9 @@
       <header class="topbar">
         <button class="icon-btn mobile-menu" id="mobileMenu" aria-label="Abrir menú">☰</button>
         <button class="icon-btn collapse-btn" id="collapseSidebar" title="Contraer menú">⇤</button>
-        <div class="breadcrumb"><span>MAEL HUB</span><b>/</b><strong id="pageName">INICIO</strong></div>
+        <div class="breadcrumb"><span>NEXUS HUB</span><b>/</b><strong id="pageName">INICIO</strong></div>
         <div class="top-actions">
-          <label class="global-search"><span>⌕</span><input id="globalSearch" placeholder="Buscar en MAEL HUB..." autocomplete="off"><kbd>CTRL K</kbd></label>
+          <label class="global-search"><span>⌕</span><input id="globalSearch" placeholder="Buscar en NEXUS HUB..." autocomplete="off"><kbd>CTRL K</kbd></label>
           <div class="system-status"><span class="pulse"></span><span>ONLINE</span></div>
           <button class="icon-btn" id="notificationsBtn" title="Notificaciones">♧<em id="notificationCount" class="count">0</em></button>
           <button class="icon-btn" data-go="configuracion" title="Configuración">⚙</button>
@@ -328,9 +348,9 @@
       </section>
 
       <section class="page-view" id="page-configuracion">
-        <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> SYSTEM PREFERENCES</div><h1>Configuración</h1><p class="muted">Personaliza MAEL HUB y gestiona tus datos.</p></div></div>
+        <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> SYSTEM PREFERENCES</div><h1>Configuración</h1><p class="muted">Personaliza NEXUS HUB y gestiona tus datos.</p></div></div>
         <div class="settings-grid">
-          <article class="panel settings-card"><h2>Perfil de usuario</h2><p class="muted">Personaliza cómo te recibe el sistema.</p><label>Nombre de usuario<input id="settingUsername" placeholder="Tu nombre"></label><label>Ciudad para el tiempo<input id="settingCity" placeholder="Ej. Madrid"></label><button class="primary-btn" id="saveProfile">Guardar perfil</button></article>
+          <article class="panel settings-card"><h2>Perfil de usuario</h2><p class="muted">Personaliza cómo te recibe el sistema.</p><label>Nombre de usuario<input id="settingUsername" placeholder="Tu nombre"></label><label>Ciudad para el tiempo<input id="settingCity" placeholder="Ej. Madrid"></label><label>Tratamiento<select id="settingGender"><option value="masculino">Masculino · Bienvenido</option><option value="femenino">Femenino · Bienvenida</option></select></label><button class="primary-btn" id="saveProfile">Guardar perfil</button></article>
           <article class="panel settings-card"><h2>Apariencia</h2><p class="muted">Ajusta la interfaz a tu gusto.</p><label>Tema<select id="settingTheme"><option value="dark">Oscuro</option><option value="light">Claro</option></select></label><label>Color principal<select id="settingAccent"><option value="cyan">Cian eléctrico</option><option value="blue">Azul tecnológico</option><option value="violet">Violeta</option><option value="green">Verde terminal</option></select></label><button class="primary-btn" id="saveAppearance">Aplicar apariencia</button></article>
           <article class="panel settings-card"><h2>Módulos del dashboard</h2><p class="muted">Activa o desactiva widgets.</p><div id="widgetSettings" class="toggle-list"></div></article>
           <article class="panel settings-card"><h2>Notificaciones</h2><p class="muted">Avisos dentro de la aplicación.</p><label class="switch-row">Mostrar avisos de tareas <input type="checkbox" id="notifyTasks"></label><label class="switch-row">Avisar de exámenes próximos <input type="checkbox" id="notifyExams"></label><label class="switch-row">Avisar de eventos <input type="checkbox" id="notifyEvents"></label><button class="primary-btn" id="saveNotifications">Guardar preferencias</button></article>
@@ -355,21 +375,21 @@
         <div class="stats-strip activity-stats"><div><small>EXPERIENCIA TOTAL</small><b id="activityXP">0 XP</b></div><div><small>NIVEL ACTUAL</small><b id="activityLevel">1</b></div><div><small>RACHA ACTUAL</small><b id="activityStreak">0 días</b></div><div><small>LOGROS DESBLOQUEADOS</small><b id="achievementCount">0 / 6</b></div></div>
         <div class="two-col activity-layout">
           <article class="panel"><div class="section-head"><div><h2>Registro reciente</h2><p class="muted">Acciones y avances guardados en este dispositivo.</p></div><span class="tiny-status">ACTIVITY LOG</span></div><div id="activityFeed" class="activity-feed"></div></article>
-          <article class="panel focus-panel"><div class="section-head"><div><h2>Focus session</h2><p class="muted">Un espacio sin distracciones para concentrarte.</p></div><span class="tiny-status">POMODORO</span></div><div class="focus-orb"><div><strong id="focusTime">25:00</strong><small id="focusStatus">LISTO PARA EMPEZAR</small></div></div><div class="focus-presets"><button class="focus-preset active" data-minutes="25">25 min</button><button class="focus-preset" data-minutes="15">15 min</button><button class="focus-preset" data-minutes="5">5 min</button></div><div class="focus-actions"><button class="primary-btn" id="focusStart">▶ Iniciar</button><button class="secondary-btn" id="focusReset">↺ Reiniciar</button></div><p class="focus-note">Completar una sesión suma 15 XP. El temporizador funciona mientras MAEL HUB permanezca abierto.</p></article>
+          <article class="panel focus-panel"><div class="section-head"><div><h2>Focus session</h2><p class="muted">Un espacio sin distracciones para concentrarte.</p></div><span class="tiny-status">POMODORO</span></div><div class="focus-orb"><div><strong id="focusTime">25:00</strong><small id="focusStatus">LISTO PARA EMPEZAR</small></div></div><div class="focus-presets"><button class="focus-preset active" data-minutes="25">25 min</button><button class="focus-preset" data-minutes="15">15 min</button><button class="focus-preset" data-minutes="5">5 min</button></div><div class="focus-actions"><button class="primary-btn" id="focusStart">▶ Iniciar</button><button class="secondary-btn" id="focusReset">↺ Reiniciar</button></div><p class="focus-note">Completar una sesión suma 15 XP. El temporizador funciona mientras NEXUS HUB permanezca abierto.</p></article>
         </div>
         <article class="panel achievements-panel"><div class="section-head"><div><h2>Logros</h2><p class="muted">Pequeños hitos que reconocen tu constancia.</p></div><span class="tiny-status">ACHIEVEMENTS</span></div><div class="achievement-grid" id="achievementGrid"></div></article>
       </section>
 
-      <footer class="app-footer"><span>MAEL HUB <b>·</b> PERSONAL CONTROL SYSTEM</span><span>LOCAL INSTANCE <i class="pulse"></i></span></footer>
+      <footer class="app-footer"><span>NEXUS HUB <b>·</b> PERSONAL CONTROL SYSTEM</span><span>LOCAL INSTANCE <i class="pulse"></i></span></footer>
     </main>
   </div>
 
-  <div class="modal-backdrop" id="modalBackdrop"><section class="modal" role="dialog" aria-modal="true"><div class="modal-head"><div><span class="eyebrow">MAEL HUB / EDITOR</span><h2 id="modalTitle">Editar elemento</h2></div><button class="icon-btn" id="closeModal" aria-label="Cerrar">×</button></div><form id="modalForm"><div id="modalFields" class="modal-fields"></div><div class="modal-actions"><button type="button" class="secondary-btn" id="cancelModal">Cancelar</button><button type="submit" class="primary-btn" id="modalSaveBtn">Guardar</button></div></form></section></div>
+  <div class="modal-backdrop" id="modalBackdrop"><section class="modal" role="dialog" aria-modal="true"><div class="modal-head"><div><span class="eyebrow">NEXUS HUB / EDITOR</span><h2 id="modalTitle">Editar elemento</h2></div><button class="icon-btn" id="closeModal" aria-label="Cerrar">×</button></div><form id="modalForm"><div id="modalFields" class="modal-fields"></div><div class="modal-actions"><button type="button" class="secondary-btn" id="cancelModal">Cancelar</button><button type="submit" class="primary-btn" id="modalSaveBtn">Guardar</button></div></form></section></div>
 
   <button class="mai-float" id="maiFloat" title="Activar MAI · Alt + J" aria-label="Abrir asistente MAI"><span>✳</span><small>MAI</small></button>
   <div class="toast-stack" id="toastStack"></div>
   <div class="search-results" id="searchResults"></div>
-  <aside class="mai-drawer" id="maiDrawer"><div class="mai-head"><div class="mai-avatar large">M<span></span></div><div><b>MAI</b><small>LOCAL COMMAND ASSISTANT</small></div><button class="icon-btn" id="closeMai">×</button></div><div class="mai-state"><span class="pulse"></span> SISTEMA LISTO <span class="mode-label">RULE-BASED</span></div><div class="mai-messages" id="maiMessages"><div class="mai-message bot"><b>MAI</b><p>Hola. Soy MAI, tu asistente local. Puedo consultar y modificar los datos guardados en MAEL HUB mediante comandos programados.</p><small>Prueba: «¿Qué deberes tengo pendientes?»</small></div></div><div class="mai-suggestions"><button data-command="Ayuda">Ayuda · comandos</button><button data-command="¿Qué deberes tengo pendientes?">Deberes pendientes</button><button data-command="¿Cuándo es mi próximo examen?">Próximo examen</button><button data-command="Abre mi horario">Abrir horario</button></div><form id="maiForm" class="mai-input"><input id="maiInput" placeholder="Escribe un comando..." autocomplete="off"><button type="submit">➤</button></form><div class="mai-disclaimer">MAI funciona con reglas JavaScript locales. No es una IA conectada.</div></aside>
+  <aside class="mai-drawer" id="maiDrawer"><div class="mai-head"><div class="mai-avatar large">M<span></span></div><div><b>MAI</b><small>LOCAL COMMAND ASSISTANT</small></div><button class="icon-btn" id="closeMai">×</button></div><div class="mai-state"><span class="pulse"></span> SISTEMA LISTO <span class="mode-label">RULE-BASED</span></div><div class="mai-messages" id="maiMessages"><div class="mai-message bot"><b>MAI</b><p>Hola. Soy MAI, tu asistente local. Puedo consultar y modificar los datos guardados en NEXUS HUB mediante comandos programados.</p><small>Prueba: «¿Qué deberes tengo pendientes?»</small></div></div><div class="mai-suggestions"><button data-command="Ayuda">Ayuda · comandos</button><button data-command="¿Qué deberes tengo pendientes?">Deberes pendientes</button><button data-command="¿Cuándo es mi próximo examen?">Próximo examen</button><button data-command="Abre mi horario">Abrir horario</button></div><form id="maiForm" class="mai-input"><input id="maiInput" placeholder="Escribe un comando..." autocomplete="off"><button type="submit">➤</button></form><div class="mai-disclaimer">MAI funciona con reglas JavaScript locales. No es una IA conectada.</div></aside>
   <script>
 (() => {
 'use strict';
@@ -380,8 +400,9 @@ const today=()=>new Date().toISOString().slice(0,10);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const blankSchedule=()=>['Lunes','Martes','Miércoles','Jueves','Viernes'].map(day=>({day,periods:[
 {subject:'',start:'08:00',end:'09:00',room:''},{subject:'',start:'09:00',end:'10:00',room:''},{subject:'',start:'10:00',end:'11:00',room:''},{subject:'RECREO',start:'11:00',end:'11:30',room:'',type:'break'},{subject:'',start:'11:30',end:'12:30',room:''},{subject:'',start:'12:30',end:'13:30',room:''},{subject:'',start:'13:30',end:'14:30',room:''}]}));
-const defaults=()=>({profile:{username:'Usuario',city:''},appearance:{theme:'dark',accent:'cyan'},notifications:{tasks:true,exams:true,events:true},widgets:{welcome:true,weather:true,tasks:true,exams:true,agenda:true,quick:true,productivity:true,mai:true,level:true},widgetOrder:['welcome','weather','tasks','exams','agenda','quick','productivity','mai','level'],schedule:blankSchedule(),homework:[],exams:[],grades:[],tasks:[],goals:[],events:[],quickNotes:[],projects:[],snippets:[],ideas:[],tools:[],songs:[],playlists:[],notes:[],gamification:{xp:0,streak:0,lastActiveDate:'',activity:[],focusSessions:0}});
+const defaults=()=>({profile:{username:'Usuario',city:'',gender:'masculino'},appearance:{theme:'dark',accent:'cyan'},notifications:{tasks:true,exams:true,events:true},widgets:{welcome:true,weather:true,tasks:true,exams:true,agenda:true,quick:true,productivity:true,mai:true,level:true},widgetOrder:['welcome','weather','tasks','exams','agenda','quick','productivity','mai','level'],schedule:blankSchedule(),homework:[],exams:[],grades:[],tasks:[],goals:[],events:[],quickNotes:[],projects:[],snippets:[],ideas:[],tools:[],songs:[],playlists:[],notes:[],gamification:{xp:0,streak:0,lastActiveDate:'',activity:[],focusSessions:0}});
 let data=load(), modalSave=null;
+data.profile={...defaults().profile,...(data.profile||{})};
 data.widgets={...defaults().widgets,...(data.widgets||{})};data.widgetOrder=Array.isArray(data.widgetOrder)?data.widgetOrder:defaults().widgetOrder;data.gamification={xp:0,streak:0,lastActiveDate:'',activity:[],focusSessions:0,...(data.gamification||{})};data.gamification.activity=Array.isArray(data.gamification.activity)?data.gamification.activity:[];
 function load(){try{return {...defaults(),...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch{return defaults()}}
 function save(){localStorage.setItem(KEY,JSON.stringify(data));renderAll();window.dispatchEvent(new CustomEvent('maelhub:datachange'))}
@@ -424,8 +445,8 @@ const playlistFields=[{name:'title',label:'Nombre',required:true},{name:'type',l
 function renderNotes(){let q=$('#noteSearch').value.toLowerCase();let arr=data.notes.filter(n=>`${n.title} ${n.content} ${n.tags}`.toLowerCase().includes(q));$('#noteCount').textContent=`${arr.length} elemento(s)`;let box=$('#noteGrid');box.innerHTML=arr.length?arr.map(n=>`<article class="info-card"><div class="card-meta">${esc(n.category||'NOTA')} · ${esc(n.date||'')}</div><h3>${esc(n.title)}</h3><p>${esc(n.content||'')}</p>${n.url?`<p><a href="${esc(n.url)}" target="_blank" rel="noopener" style="color:var(--cyan)">Abrir enlace ↗</a></p>`:''}<div class="card-actions"><button data-note-edit="${n.id}">✎ Editar</button><button data-note-del="${n.id}">× Eliminar</button></div></article>`).join(''):'<div class="empty-state">No hay notas que coincidan con la búsqueda.</div>';box.querySelectorAll('[data-note-edit]').forEach(b=>b.onclick=()=>editItem(data.notes,b.dataset.noteEdit,'Editar nota',noteFields));box.querySelectorAll('[data-note-del]').forEach(b=>b.onclick=()=>{if(confirmDelete('esta nota')){data.notes=data.notes.filter(n=>n.id!==b.dataset.noteDel);save()}})}
 const noteFields=[{name:'title',label:'Título',required:true},{name:'category',label:'Categoría',type:'select',options:['Nota','Idea','Información','Enlace','Documento']},{name:'date',label:'Fecha',type:'date'},{name:'url',label:'Enlace (opcional)',full:true},{name:'tags',label:'Etiquetas'},{name:'content',label:'Contenido',type:'textarea',full:true}];
 function applyDashboardOrder(){const grid=$('#dashboardGrid');if(!grid)return;const rank=new Map((data.widgetOrder||[]).map((id,i)=>[id,i]));[...grid.querySelectorAll('[data-widget]')].sort((a,b)=>(rank.get(a.dataset.widget)??999)-(rank.get(b.dataset.widget)??999)).forEach(el=>grid.appendChild(el))}
-function renderDashboard(){let tasks=data.tasks.concat(data.homework).filter(x=>!x.done),done=data.tasks.concat(data.homework).filter(x=>x.done).length;$('#pendingMetric').textContent=tasks.length;$('#completedMetric').textContent=`${done} completadas`;$('#taskProgress').style.width=(done+tasks.length?done/(done+tasks.length)*100:0)+'%';let exams=data.exams.filter(x=>x.date>=today()).sort((a,b)=>a.date.localeCompare(b.date));let e=exams[0];if(e){let d=Math.ceil((new Date(e.date+'T00:00:00')-new Date(today()+'T00:00:00'))/86400000);$('#nextExamDays').textContent=d===0?'HOY':`${d} días`;$('#nextExamName').textContent=e.title||e.subject;$('#nextExamDate').textContent=`${e.subject} · ${e.date}`}else{$('#nextExamDays').textContent='—';$('#nextExamName').textContent='No hay exámenes próximos';$('#nextExamDate').textContent='Añade tu calendario académico'}let agenda=data.events.filter(x=>x.date>=today()).sort((a,b)=>a.date.localeCompare(b.date)).slice(0,3);$('#agendaPreview').innerHTML=agenda.length?agenda.map(x=>`<div class="preview-row"><div class="preview-date">${esc(x.date.slice(8,10))}</div><div><b>${esc(x.title)}</b><small>${esc(x.date)} · ${esc(x.description||'')}</small></div></div>`).join(''):'<div class="empty-state">No hay eventos próximos.</div>';let total=done+tasks.length,pct=total?Math.round(done/total*100):0;$('#productivityPercent').textContent=pct+'%';$('#productivityDonut').style.background=`conic-gradient(var(--cyan) ${pct}%,#1a3348 ${pct}%)`;$('#chartDone').textContent=done;$('#chartPending').textContent=tasks.length;$('#chartProjects').textContent=data.projects.filter(p=>p.status==='En desarrollo').length;$('#welcomeName').textContent=`Bienvenido, ${data.profile.username||'usuario'}.`;$('#greeting').textContent=`${new Date().getHours()<12?'Buenos días':new Date().getHours()<20?'Buenas tardes':'Buenas noches'}, ${data.profile.username||'usuario'}.`;$$('[data-widget]').forEach(el=>el.style.display=data.widgets[el.dataset.widget]===false?'none':'');let count=(data.notifications.tasks?tasks.length:0)+(data.notifications.exams?exams.filter(x=>(new Date(x.date)-new Date())/86400000<4).length:0)+(data.notifications.events?agenda.length:0);$('#notificationCount').textContent=count>9?'9+':count;applyDashboardOrder()}
-function renderSettings(){$('#settingUsername').value=data.profile.username||'';$('#settingCity').value=data.profile.city||'';$('#settingTheme').value=data.appearance.theme;$('#settingAccent').value=data.appearance.accent;$('#notifyTasks').checked=data.notifications.tasks;$('#notifyExams').checked=data.notifications.exams;$('#notifyEvents').checked=data.notifications.events;$('#widgetSettings').innerHTML=Object.keys(data.widgets).map(k=>`<label class="switch-row">${({welcome:'Panel de bienvenida',weather:'Meteorología',tasks:'Tareas pendientes',exams:'Próximo examen',agenda:'Agenda próxima',quick:'Accesos rápidos',productivity:'Productividad',mai:'Asistente MAI',level:'Nivel y experiencia'})[k]} <input type="checkbox" data-widget-toggle="${k}" ${data.widgets[k]!==false?'checked':''}></label>`).join('');$('#widgetSettings').querySelectorAll('[data-widget-toggle]').forEach(c=>c.onchange=()=>{data.widgets[c.dataset.widgetToggle]=c.checked;save()})}
+function renderDashboard(){let tasks=data.tasks.concat(data.homework).filter(x=>!x.done),done=data.tasks.concat(data.homework).filter(x=>x.done).length;$('#pendingMetric').textContent=tasks.length;$('#completedMetric').textContent=`${done} completadas`;$('#taskProgress').style.width=(done+tasks.length?done/(done+tasks.length)*100:0)+'%';let exams=data.exams.filter(x=>x.date>=today()).sort((a,b)=>a.date.localeCompare(b.date));let e=exams[0];if(e){let d=Math.ceil((new Date(e.date+'T00:00:00')-new Date(today()+'T00:00:00'))/86400000);$('#nextExamDays').textContent=d===0?'HOY':`${d} días`;$('#nextExamName').textContent=e.title||e.subject;$('#nextExamDate').textContent=`${e.subject} · ${e.date}`}else{$('#nextExamDays').textContent='—';$('#nextExamName').textContent='No hay exámenes próximos';$('#nextExamDate').textContent='Añade tu calendario académico'}let agenda=data.events.filter(x=>x.date>=today()).sort((a,b)=>a.date.localeCompare(b.date)).slice(0,3);$('#agendaPreview').innerHTML=agenda.length?agenda.map(x=>`<div class="preview-row"><div class="preview-date">${esc(x.date.slice(8,10))}</div><div><b>${esc(x.title)}</b><small>${esc(x.date)} · ${esc(x.description||'')}</small></div></div>`).join(''):'<div class="empty-state">No hay eventos próximos.</div>';let total=done+tasks.length,pct=total?Math.round(done/total*100):0;$('#productivityPercent').textContent=pct+'%';$('#productivityDonut').style.background=`conic-gradient(var(--cyan) ${pct}%,#1a3348 ${pct}%)`;$('#chartDone').textContent=done;$('#chartPending').textContent=tasks.length;$('#chartProjects').textContent=data.projects.filter(p=>p.status==='En desarrollo').length;$('#welcomeName').textContent=`${data.profile.gender==='femenino'?'Bienvenida':'Bienvenido'}, ${data.profile.username||'usuario'}.`;$('#greeting').textContent=`${new Date().getHours()<12?'Buenos días':new Date().getHours()<20?'Buenas tardes':'Buenas noches'}, ${data.profile.username||'usuario'}.`;$$('[data-widget]').forEach(el=>el.style.display=data.widgets[el.dataset.widget]===false?'none':'');let count=(data.notifications.tasks?tasks.length:0)+(data.notifications.exams?exams.filter(x=>(new Date(x.date)-new Date())/86400000<4).length:0)+(data.notifications.events?agenda.length:0);$('#notificationCount').textContent=count>9?'9+':count;applyDashboardOrder()}
+function renderSettings(){$('#settingUsername').value=data.profile.username||'';$('#settingCity').value=data.profile.city||'';$('#settingGender').value=data.profile.gender||'masculino';$('#settingTheme').value=data.appearance.theme;$('#settingAccent').value=data.appearance.accent;$('#notifyTasks').checked=data.notifications.tasks;$('#notifyExams').checked=data.notifications.exams;$('#notifyEvents').checked=data.notifications.events;$('#widgetSettings').innerHTML=Object.keys(data.widgets).map(k=>`<label class="switch-row">${({welcome:'Panel de bienvenida',weather:'Meteorología',tasks:'Tareas pendientes',exams:'Próximo examen',agenda:'Agenda próxima',quick:'Accesos rápidos',productivity:'Productividad',mai:'Asistente MAI',level:'Nivel y experiencia'})[k]} <input type="checkbox" data-widget-toggle="${k}" ${data.widgets[k]!==false?'checked':''}></label>`).join('');$('#widgetSettings').querySelectorAll('[data-widget-toggle]').forEach(c=>c.onchange=()=>{data.widgets[c.dataset.widgetToggle]=c.checked;save()})}
 
 let calendarCursor=new Date(new Date().getFullYear(),new Date().getMonth(),1);
 let calendarSelected=today();
@@ -586,7 +607,7 @@ function maiReply(msg){
   const n=data.tasks.concat(data.homework).filter(x=>x.done).length;return 'Has completado '+n+' tarea(s) o deber(es). ¡Sigue así!';
  }
  if(/(?:estadisticas|resumen|mi progreso)/.test(q)){
-  const g=data.gamification||{};return 'RESUMEN DE MAEL HUB\n• Tareas pendientes: '+data.tasks.concat(data.homework).filter(x=>!x.done).length+'\n• Tareas completadas: '+data.tasks.concat(data.homework).filter(x=>x.done).length+'\n• Exámenes registrados: '+data.exams.length+'\n• Proyectos: '+data.projects.length+'\n• XP: '+(g.xp||0)+' · Nivel '+(Math.floor((g.xp||0)/100)+1)+'\n• Racha: '+(g.streak||0)+' día(s).';
+  const g=data.gamification||{};return 'RESUMEN DE NEXUS HUB\n• Tareas pendientes: '+data.tasks.concat(data.homework).filter(x=>!x.done).length+'\n• Tareas completadas: '+data.tasks.concat(data.homework).filter(x=>x.done).length+'\n• Exámenes registrados: '+data.exams.length+'\n• Proyectos: '+data.projects.length+'\n• XP: '+(g.xp||0)+' · Nivel '+(Math.floor((g.xp||0)/100)+1)+'\n• Racha: '+(g.streak||0)+' día(s).';
  }
  if(/(?:que proyectos|mis proyectos|lista.*proyectos)/.test(q)){
   return data.projects.length?data.projects.slice(0,12).map((x,i)=>(i+1)+'. '+x.title+' · '+(x.status||'Sin estado')).join('\n'):'Todavía no tienes proyectos guardados.';
@@ -650,7 +671,7 @@ function sendMai(text){if(!text.trim())return;let box=$('#maiMessages');box.inse
 function openMai(){$('#maiDrawer').classList.add('open');$('#maiInput').focus()}
 function globalSearch(q){let box=$('#searchResults');if(!q.trim()){box.classList.remove('open');return}let entries=[];const add=(arr,type)=>arr.forEach(x=>{let title=x.title||x.name||x.subject||'';let sub=x.subject||x.description||x.date||type;if((title+' '+sub+' '+(x.content||'')).toLowerCase().includes(q.toLowerCase()))entries.push({title,sub,type,page:type==='Deberes'||type==='Exámenes'||type==='Calificaciones'?'instituto':type==='Proyectos'||type==='Ideas'?'informatica':type==='Tareas'||type==='Eventos'?'organizacion':type==='Canciones'?'musica':'notas'})});add(data.homework,'Deberes');add(data.exams,'Exámenes');add(data.grades,'Calificaciones');add(data.tasks,'Tareas');add(data.events,'Eventos');add(data.projects,'Proyectos');add(data.ideas,'Ideas');add(data.songs,'Canciones');add(data.notes,'Notas');box.innerHTML=entries.length?entries.slice(0,12).map((x,i)=>`<div class="search-result" data-search-index="${i}"><b>${esc(x.title)}</b><small>${esc(x.type)} · ${esc(x.sub)}</small></div>`).join(''):'<div class="empty-state">No se han encontrado resultados.</div>';box.classList.add('open');box.querySelectorAll('[data-search-index]').forEach(b=>b.onclick=()=>{openPage(entries[Number(b.dataset.searchIndex)].page);box.classList.remove('open');$('#globalSearch').value=''})}
 function exportData(){let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`mael-hub-backup-${today()}.json`;a.click();URL.revokeObjectURL(url);toast('Copia de seguridad exportada.')}
-function importData(file){let r=new FileReader();r.onload=()=>{try{let parsed=JSON.parse(r.result);if(!parsed||typeof parsed!=='object'||!parsed.profile||!parsed.schedule)throw Error();if(!confirm('La importación reemplazará todos los datos actuales. ¿Continuar?'))return;data={...defaults(),...parsed};data.widgets={...defaults().widgets,...(parsed.widgets||{})};data.widgetOrder=Array.isArray(parsed.widgetOrder)?parsed.widgetOrder:defaults().widgetOrder;data.gamification={...defaults().gamification,...(parsed.gamification||{})};save();toast('Datos importados correctamente.')}catch{toast('Archivo JSON no válido para MAEL HUB.')}};r.readAsText(file)}
+function importData(file){let r=new FileReader();r.onload=()=>{try{let parsed=JSON.parse(r.result);if(!parsed||typeof parsed!=='object'||!parsed.profile||!parsed.schedule)throw Error();if(!confirm('La importación reemplazará todos los datos actuales. ¿Continuar?'))return;data={...defaults(),...parsed};data.widgets={...defaults().widgets,...(parsed.widgets||{})};data.widgetOrder=Array.isArray(parsed.widgetOrder)?parsed.widgetOrder:defaults().widgetOrder;data.gamification={...defaults().gamification,...(parsed.gamification||{})};save();toast('Datos importados correctamente.')}catch{toast('Archivo JSON no válido para NEXUS HUB.')}};r.readAsText(file)}
 // Navigation and tabs
 $('#mainNav').addEventListener('click',e=>{let b=e.target.closest('[data-page]');if(b)openPage(b.dataset.page)});
 $$('[data-go]').forEach(b=>b.onclick=()=>openPage(b.dataset.go));
@@ -681,11 +702,11 @@ $('#addIdea').onclick=()=>addItem(data.ideas,'Nueva idea',[{name:'title',label:'
 $('#addTool').onclick=()=>addItem(data.tools,'Añadir herramienta',[{name:'title',label:'Nombre',required:true},{name:'url',label:'URL',required:true},{name:'description',label:'Descripción'}]);
 $('#addSong').onclick=()=>addItem(data.songs,'Añadir canción',songFields);$('#addPlaylist').onclick=()=>addItem(data.playlists,'Añadir playlist o álbum',playlistFields);
 $('#addNote').onclick=()=>addItem(data.notes,'Nueva nota',noteFields,{date:today()});$('#noteSearch').oninput=renderNotes;
-$('#saveProfile').onclick=()=>{data.profile.username=$('#settingUsername').value.trim()||'Usuario';data.profile.city=$('#settingCity').value.trim();save();toast('Perfil actualizado')};
+$('#saveProfile').onclick=()=>{data.profile.username=$('#settingUsername').value.trim()||'Usuario';data.profile.city=$('#settingCity').value.trim();data.profile.gender=$('#settingGender').value==='femenino'?'femenino':'masculino';save();toast('Perfil actualizado')};
 $('#saveAppearance').onclick=()=>{data.appearance.theme=$('#settingTheme').value;data.appearance.accent=$('#settingAccent').value;save();toast('Apariencia aplicada')};
 $('#saveNotifications').onclick=()=>{data.notifications={tasks:$('#notifyTasks').checked,exams:$('#notifyExams').checked,events:$('#notifyEvents').checked};save();toast('Preferencias de notificación guardadas')};
 $('#exportData').onclick=exportData;$('#importData').onchange=e=>{if(e.target.files[0])importData(e.target.files[0]);e.target.value=''};
-$('#resetData').onclick=()=>{if(confirm('¿Restaurar MAEL HUB? Se borrarán todos los datos guardados en este navegador. Exporta antes una copia si quieres conservarlos.')){data=defaults();save();toast('Se han restaurado los ajustes iniciales.')}};
+$('#resetData').onclick=()=>{if(confirm('¿Restaurar NEXUS HUB? Se borrarán todos los datos guardados en este navegador. Exporta antes una copia si quieres conservarlos.')){data=defaults();save();toast('Se han restaurado los ajustes iniciales.')}};
 $('#weatherRefresh').onclick=weather;
 $('#notificationsBtn').onclick=()=>{let msgs=[];let tasks=data.tasks.concat(data.homework).filter(x=>!x.done);if(data.notifications.tasks&&tasks.length)msgs.push(`${tasks.length} tarea(s) pendiente(s)`);let soon=data.exams.filter(x=>x.date>=today()&&(new Date(x.date)-new Date())/86400000<=4);if(data.notifications.exams&&soon.length)msgs.push(`${soon.length} examen(es) en los próximos 4 días`);if(data.notifications.events&&data.events.some(x=>x.date===today()))msgs.push('Tienes eventos para hoy');alert(msgs.length?'NOTIFICACIONES\n\n'+msgs.join('\n'):'No tienes notificaciones nuevas.');};
 $('#customizeDashboard').onclick=()=>openPage('configuracion');
@@ -699,13 +720,13 @@ dashboardGrid.addEventListener('dragstart',e=>{const card=e.target.closest('[dat
 dashboardGrid.addEventListener('dragend',()=>{if(draggedWidget)draggedWidget.classList.remove('dragging');draggedWidget=null;data.widgetOrder=[...dashboardGrid.querySelectorAll('[data-widget]')].map(x=>x.dataset.widget);localStorage.setItem(KEY,JSON.stringify(data));window.dispatchEvent(new CustomEvent('maelhub:datachange'))});
 dashboardGrid.addEventListener('dragover',e=>{e.preventDefault();const target=e.target.closest('[data-widget]');if(!target||!draggedWidget||target===draggedWidget)return;const r=target.getBoundingClientRect();const after=(e.clientY-r.top)/r.height>.5;dashboardGrid.insertBefore(draggedWidget,after?target.nextSibling:target)});
 $$('#dashboardGrid [data-widget]').forEach(card=>card.draggable=true);
-// MAEL HUB 2.0: persistent assistant launcher, command palette and focus timer
+// NEXUS HUB 2.0: persistent assistant launcher, command palette and focus timer
 $('#maiFloat').onclick=openMai;
 let focusDuration=25*60,focusRemaining=focusDuration,focusInterval=null;
 function paintFocus(){const m=Math.floor(focusRemaining/60),sec=focusRemaining%60;$('#focusTime').textContent=String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0')}
 function stopFocus(){if(focusInterval){clearInterval(focusInterval);focusInterval=null}}
 $$('[data-minutes]').forEach(b=>b.onclick=()=>{stopFocus();$$('[data-minutes]').forEach(x=>x.classList.toggle('active',x===b));focusDuration=Number(b.dataset.minutes)*60;focusRemaining=focusDuration;$('#focusStatus').textContent='LISTO PARA EMPEZAR';$('#focusStart').textContent='▶ Iniciar';paintFocus()});
-$('#focusStart').onclick=()=>{if(focusInterval){stopFocus();$('#focusStart').textContent='▶ Continuar';$('#focusStatus').textContent='EN PAUSA';return}if(focusRemaining<=0)focusRemaining=focusDuration;$('#focusStart').textContent='Ⅱ Pausar';$('#focusStatus').textContent='CONCENTRACIÓN ACTIVA';focusInterval=setInterval(()=>{focusRemaining--;paintFocus();if(focusRemaining<=0){stopFocus();$('#focusStart').textContent='▶ Iniciar';$('#focusStatus').textContent='SESIÓN COMPLETADA';data.gamification.focusSessions=(data.gamification.focusSessions||0)+1;awardXP(15,'Sesión Focus completada','Has completado un bloque de concentración.');save();if('Notification'in window&&Notification.permission==='granted')new Notification('MAEL HUB · Focus',{body:'¡Sesión completada! Has ganado 15 XP.'});}},1000)};
+$('#focusStart').onclick=()=>{if(focusInterval){stopFocus();$('#focusStart').textContent='▶ Continuar';$('#focusStatus').textContent='EN PAUSA';return}if(focusRemaining<=0)focusRemaining=focusDuration;$('#focusStart').textContent='Ⅱ Pausar';$('#focusStatus').textContent='CONCENTRACIÓN ACTIVA';focusInterval=setInterval(()=>{focusRemaining--;paintFocus();if(focusRemaining<=0){stopFocus();$('#focusStart').textContent='▶ Iniciar';$('#focusStatus').textContent='SESIÓN COMPLETADA';data.gamification.focusSessions=(data.gamification.focusSessions||0)+1;awardXP(15,'Sesión Focus completada','Has completado un bloque de concentración.');save();if('Notification'in window&&Notification.permission==='granted')new Notification('NEXUS HUB · Focus',{body:'¡Sesión completada! Has ganado 15 XP.'});}},1000)};
 $('#focusReset').onclick=()=>{stopFocus();focusRemaining=focusDuration;$('#focusStart').textContent='▶ Iniciar';$('#focusStatus').textContent='LISTO PARA EMPEZAR';paintFocus()};
 // Search results also expose quick system commands and page shortcuts.
 const baseGlobalSearch=globalSearch;
@@ -721,7 +742,7 @@ window.MAELHUB_SYNC_API={getData:()=>data,setData:next=>{data={...defaults(),...
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="./sync.js"></script>
 <script>
-// Instalación de MAEL HUB como aplicación (PWA). Los datos siguen guardándose localmente.
+// Instalación de NEXUS HUB como aplicación (PWA). Los datos siguen guardándose localmente.
 (()=>{
   let installPrompt=null;
   const btn=document.getElementById('installApp');
@@ -733,7 +754,7 @@ window.MAELHUB_SYNC_API={getData:()=>data,setData:next=>{data={...defaults(),...
   window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;btn.hidden=false;});
   btn.addEventListener('click',async()=>{
     if(installPrompt){installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;btn.hidden=true;return;}
-    alert('Para añadir MAEL HUB a tu móvil: pulsa Compartir en el navegador y elige «Añadir a pantalla de inicio» (iPhone) o «Instalar aplicación» (Android/Chrome).');
+    alert('Para añadir NEXUS HUB a tu móvil: pulsa Compartir en el navegador y elige «Añadir a pantalla de inicio» (iPhone) o «Instalar aplicación» (Android/Chrome).');
   });
   window.addEventListener('appinstalled',()=>{btn.hidden=true;installPrompt=null;});
   // En iPhone/iPad el navegador no ofrece el evento de instalación; se muestra una ayuda sencilla.
