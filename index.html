@@ -618,7 +618,7 @@ function addTask(title,date='',description='Añadida mediante MAI'){data.tasks.p
   const rec=new Speech();rec.lang='es-ES';rec.continuous=false;rec.interimResults=false;rec.maxAlternatives=1;
   btn.dataset.listening='true';btn.classList.add('listening');btn.innerHTML='🎙 <span>ESCUCHANDO</span>';btn.title='Escuchando. Pulsa para cancelar';btn.setAttribute('aria-label','Cancelar escucha');
   toast('JARVIS escucha. Di: añade una tarea llamada…');
-  const reset=()=>{btn.dataset.listening='false';btn.classList.remove('listening');btn.innerHTML='✧ <span>JARVIS</span>';btn.title='Activar comandos por voz';btn.setAttribute('aria-label','Activar comandos por voz')};
+  const reset=()=>{btn.dataset.listening='false';btn.classList.remove('listening');btn.innerHTML='✧ <span>JARVIS</span>';btn.title='Activar comandos por voz';btn.setAttribute('aria-label','Activar comandos por voz');btn.onclick=startJarvisVoice};
   rec.onresult=e=>{
    const heard=(e.results[0]?.[0]?.transcript||'').trim();reset();
    if(!heard){toast('No he entendido la orden. Inténtalo otra vez.');return}
