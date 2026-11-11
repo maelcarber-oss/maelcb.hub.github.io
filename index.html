@@ -625,10 +625,13 @@ function addTask(title,date='',description='Añadida mediante MAI'){data.tasks.p
    const match=heard.match(/(?:añade|agrega|crea|apunta|registra)\\s+(?:una\\s+)?tarea(?:\\s+llamada)?\\s+(.+)/i);
    if(!match){toast('He oído: '+heard+'. Prueba «Añade una tarea llamada…»');return}
    let rest=match[1].trim(),subject='';
-   const subjectMatch=rest.match(/\\s+de\\s+(.+)$/i);if(subjectMatch){subject=subjectMatch[1].trim();rest=rest.slice(0,subjectMatch.index).trim()}
    let dateText='',date='';
    const dateMatch=rest.match(/\\s+para\\s+(?:el\\s+)?(.+)$/i);
-   if(dateMatch){dateText=dateMatch[1].trim();rest=rest.slice(0,dateMatch.index).trim();date=parseSpanishTaskDate(dateText)}
+   if(dateMatch){
+    const tail=dateMatch[1].trim();rest=rest.slice(0,dateMatch.index).trim();
+    const parsedTail=tail.match(/^((?:\\d{1,2}\\s+de\\s+(?:enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|setiembre|octubre|noviembre|diciembre)(?:\\s+de\\s+\\d{4})?|\\d{1,2}[\\/\\-]\\d{1,2}(?:[\\/\\-]\\d{2,4})?|mañana|hoy))(?:\\s+de\\s+(.+))?$/i);
+    dateText=parsedTail?parsedTail[1]:tail;subject=parsedTail?.[2]?.trim()||'';date=parseSpanishTaskDate(dateText);
+   }
    const title=rest.replace(/[.,;!?]+$/,'').trim();
    if(!title){toast('No he detectado el nombre de la tarea.');return}
    const description=subject?'Asignatura: '+subject:'Añadida mediante JARVIS';
