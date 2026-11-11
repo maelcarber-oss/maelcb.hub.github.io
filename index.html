@@ -85,7 +85,7 @@
 @media(prefers-reduced-motion:reduce){.sidebar,.mobile-scrim,.mobile-dock{transition:none!important}}
 
 /* JARVIS MODE — capa visual inmersiva, sin ocultar controles */
-.jarvis-toggle{width:auto;min-width:82px;padding:0 10px;font:9px 'DM Mono';letter-spacing:.7px;color:#91a9bb;border:1px solid var(--line2);white-space:nowrap}.jarvis-toggle span{font-size:8px;margin-left:3px}.jarvis-toggle.active{color:var(--cyan);border-color:var(--cyan);background:rgba(57,217,245,.12);box-shadow:0 0 18px rgba(57,217,245,.18)}body.jarvis-mode{background:radial-gradient(ellipse at 70% -20%,rgba(24,125,166,.24),transparent 42%),var(--bg)}body.jarvis-mode:before{content:"";position:fixed;inset:-160px 0 auto;height:140px;z-index:999;pointer-events:none;background:linear-gradient(180deg,transparent,rgba(57,217,245,.055),transparent);animation:jarvisSweep 9s linear infinite}body.jarvis-mode .panel{border-color:rgba(57,217,245,.23);box-shadow:0 16px 50px rgba(0,0,0,.2),0 0 22px rgba(57,217,245,.035)}body.jarvis-mode .sidebar{border-right-color:rgba(57,217,245,.28)}body.jarvis-mode .topbar{border-bottom-color:rgba(57,217,245,.28)}body.jarvis-mode .reactor{box-shadow:0 0 30px rgba(57,217,245,.12)}body.jarvis-mode .reactor:before{animation-duration:9s}body.jarvis-mode .mai-float{box-shadow:0 0 24px rgba(57,217,245,.25)}@keyframes jarvisSweep{to{transform:translateY(calc(100vh + 180px))}}@media(max-width:700px){.jarvis-toggle{min-width:36px;width:36px;padding:0;font-size:0}.jarvis-toggle span{display:none}}
+.jarvis-toggle{width:auto;min-width:82px;padding:0 10px;font:9px 'DM Mono';letter-spacing:.7px;color:#91a9bb;border:1px solid var(--line2);white-space:nowrap}.jarvis-toggle span{font-size:8px;margin-left:3px}.jarvis-toggle.active{color:var(--cyan);border-color:var(--cyan);background:rgba(57,217,245,.12);box-shadow:0 0 18px rgba(57,217,245,.18)}.jarvis-toggle.listening{color:#fff;border-color:var(--cyan);background:rgba(57,217,245,.22);box-shadow:0 0 22px rgba(57,217,245,.38);animation:jarvisPulse 1.2s ease-in-out infinite}@keyframes jarvisPulse{50%{box-shadow:0 0 5px rgba(57,217,245,.2)}}body.jarvis-mode{background:radial-gradient(ellipse at 70% -20%,rgba(24,125,166,.24),transparent 42%),var(--bg)}body.jarvis-mode:before{content:"";position:fixed;inset:-160px 0 auto;height:140px;z-index:999;pointer-events:none;background:linear-gradient(180deg,transparent,rgba(57,217,245,.055),transparent);animation:jarvisSweep 9s linear infinite}body.jarvis-mode .panel{border-color:rgba(57,217,245,.23);box-shadow:0 16px 50px rgba(0,0,0,.2),0 0 22px rgba(57,217,245,.035)}body.jarvis-mode .sidebar{border-right-color:rgba(57,217,245,.28)}body.jarvis-mode .topbar{border-bottom-color:rgba(57,217,245,.28)}body.jarvis-mode .reactor{box-shadow:0 0 30px rgba(57,217,245,.12)}body.jarvis-mode .reactor:before{animation-duration:9s}body.jarvis-mode .mai-float{box-shadow:0 0 24px rgba(57,217,245,.25)}@keyframes jarvisSweep{to{transform:translateY(calc(100vh + 180px))}}@media(max-width:700px){.jarvis-toggle{min-width:36px;width:36px;padding:0;font-size:0}.jarvis-toggle span{display:none}}
   </style>
 <style>
 /* NEXUS HUB 3.1 · Mobile modal and assistant usability fixes */
@@ -269,7 +269,7 @@
         <div class="breadcrumb"><span>NEXUS HUB</span><b>/</b><strong id="pageName">INICIO</strong></div>
         <div class="top-actions">
           <label class="global-search"><span>⌕</span><input id="globalSearch" placeholder="Buscar o ejecutar un comando..." autocomplete="off"><kbd>CTRL K</kbd></label>
-          <button class="icon-btn jarvis-toggle" id="jarvisToggle" type="button" title="Activar modo JARVIS" aria-label="Activar modo JARVIS" aria-pressed="false">✧ <span>JARVIS</span></button>
+          <button class="icon-btn jarvis-toggle" id="jarvisToggle" type="button" title="Activar comandos por voz" aria-label="Activar comandos por voz" aria-pressed="false">✧ <span>JARVIS</span></button>
           <div class="system-status"><span class="pulse"></span><span>ONLINE</span></div>
           <button class="icon-btn" id="notificationsBtn" title="Notificaciones">♧<em id="notificationCount" class="count">0</em></button>
           <button class="icon-btn" data-go="configuracion" title="Configuración">⚙</button>
@@ -600,7 +600,48 @@ function renderGamification(){const v=levelInfo(),g=data.gamification;$('#levelN
  const unlocked=defs.filter(x=>x[4]).length;$('#achievementCount').textContent=`${unlocked} / ${defs.length}`;$('#achievementGrid').innerHTML=defs.map(a=>`<div class="achievement ${a[4]?'unlocked':''}"><div class="achievement-icon">${a[1]}</div><b>${a[2]} ${a[4]?'✓':''}</b><p>${a[3]}</p></div>`).join('');
  const feed=$('#activityFeed');feed.innerHTML=g.activity.length?g.activity.slice(0,12).map(a=>`<div class="activity-item"><div class="activity-symbol">${a.xp?'✦':'◈'}</div><div><b>${esc(a.title)}</b><small>${esc(a.detail)} · ${new Date(a.date).toLocaleString('es-ES',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})}</small></div>${a.xp?`<span class="activity-xp">+${a.xp} XP</span>`:''}</div>`).join(''):'<div class="empty-state">Todavía no hay actividad. Completa una tarea para empezar a ganar experiencia.</div>';
 }
-function addTask(title){data.tasks.push({id:uid(),title,description:'Añadida mediante MAI',date:'',done:false});save()}
+function addTask(title,date='',description='Añadida mediante MAI'){data.tasks.push({id:uid(),title,description,date,done:false});save()}
+ function parseSpanishTaskDate(text){
+  const q=maiNorm(text), months={enero:0,febrero:1,marzo:2,abril:3,mayo:4,junio:5,julio:6,agosto:7,septiembre:8,setiembre:8,octubre:9,noviembre:10,diciembre:11};
+  const now=new Date();let d=null;
+  if(/\\bmanana\\b/.test(q))d=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1);
+  else if(/\\bhoy\\b/.test(q))d=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  let m=q.match(/\\b(\\d{1,2})[\\/\\-](\\d{1,2})(?:[\\/\\-](\\d{2,4}))?\\b/);
+  if(m){let y=m[3]?Number(m[3]):now.getFullYear();if(y<100)y+=2000;d=new Date(y,Number(m[2])-1,Number(m[1]));}
+  if(!d){m=q.match(/\\b(\\d{1,2})\\s+de\\s+(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|setiembre|octubre|noviembre|diciembre)(?:\\s+de\\s+(\\d{4}))?/);if(m){let y=m[3]?Number(m[3]):now.getFullYear();d=new Date(y,months[m[2]],Number(m[1]));if(!m[3]&&d<new Date(now.getFullYear(),now.getMonth(),now.getDate()))d.setFullYear(y+1);}}
+  return d&& !Number.isNaN(d.getTime())?d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'):'';
+ }
+ function startJarvisVoice(){
+  const Speech=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!Speech){toast('Tu navegador no admite reconocimiento de voz. Prueba con Chrome actualizado.');return}
+  const btn=$('#jarvisToggle');if(btn.dataset.listening==='true')return;
+  const rec=new Speech();rec.lang='es-ES';rec.continuous=false;rec.interimResults=false;rec.maxAlternatives=1;
+  btn.dataset.listening='true';btn.classList.add('listening');btn.innerHTML='🎙 <span>ESCUCHANDO</span>';btn.title='Escuchando. Pulsa para cancelar';btn.setAttribute('aria-label','Cancelar escucha');
+  toast('JARVIS escucha. Di: añade una tarea llamada…');
+  const reset=()=>{btn.dataset.listening='false';btn.classList.remove('listening');btn.innerHTML='✧ <span>JARVIS</span>';btn.title='Activar comandos por voz';btn.setAttribute('aria-label','Activar comandos por voz')};
+  rec.onresult=e=>{
+   const heard=(e.results[0]?.[0]?.transcript||'').trim();reset();
+   if(!heard){toast('No he entendido la orden. Inténtalo otra vez.');return}
+   const match=heard.match(/(?:añade|agrega|crea|apunta|registra)\\s+(?:una\\s+)?tarea(?:\\s+llamada)?\\s+(.+)/i);
+   if(!match){toast('He oído: '+heard+'. Prueba «Añade una tarea llamada…»');return}
+   let rest=match[1].trim(),subject='';
+   const subjectMatch=rest.match(/\\s+de\\s+(.+)$/i);if(subjectMatch){subject=subjectMatch[1].trim();rest=rest.slice(0,subjectMatch.index).trim()}
+   let dateText='',date='';
+   const dateMatch=rest.match(/\\s+para\\s+(?:el\\s+)?(.+)$/i);
+   if(dateMatch){dateText=dateMatch[1].trim();rest=rest.slice(0,dateMatch.index).trim();date=parseSpanishTaskDate(dateText)}
+   const title=rest.replace(/[.,;!?]+$/,'').trim();
+   if(!title){toast('No he detectado el nombre de la tarea.');return}
+   const description=subject?'Asignatura: '+subject:'Añadida mediante JARVIS';
+   const dateLabel=date?new Date(date+'T12:00:00').toLocaleDateString('es-ES'):(dateText?'Fecha no reconocida: '+dateText:'Sin fecha');
+   if(confirm('JARVIS ha entendido:\\n\\nTarea: '+title+'\\nFecha: '+dateLabel+'\\n'+(subject?'Asignatura: '+subject+'\\n':'')+'\\n¿La guardo?')){
+    addTask(title,date,description);toast('Tarea añadida correctamente.');
+   }else toast('Tarea cancelada.');
+  };
+  rec.onerror=e=>{reset();toast(e.error==='not-allowed'?'Permite el acceso al micrófono para usar JARVIS.':'No se ha podido reconocer la voz. Inténtalo de nuevo.')};
+  rec.onend=()=>{if(btn.dataset.listening==='true')reset()};
+  btn.onclick=()=>{try{rec.abort()}catch{}reset();toast('Escucha cancelada.')};
+  try{rec.start()}catch{reset();toast('No se pudo iniciar el micrófono.')}
+ }
 function maiCommandHelp(){return [
 'MAI · CENTRO DE COMANDOS',
 'Puedes escribirlos tal cual o usar frases naturales parecidas. Los comandos actúan sobre tus datos guardados en este dispositivo.',
@@ -783,7 +824,7 @@ function importData(file){let r=new FileReader();r.onload=()=>{try{let parsed=JS
 $('#mainNav').addEventListener('click',e=>{let b=e.target.closest('[data-page]');if(b)openPage(b.dataset.page)});
 $$('[data-go]').forEach(b=>b.onclick=()=>openPage(b.dataset.go));
 $('#collapseSidebar').onclick=()=>document.body.classList.toggle('collapsed');
-$('#jarvisToggle').onclick=()=>setJarvisMode(!data.appearance.jarvis);
+$('#jarvisToggle').onclick=startJarvisVoice;
 function toggleMobileMenu(){const opening=!$('#sidebar').classList.contains('mobile-open');$('#sidebar').classList.toggle('mobile-open',opening);$('#mobileScrim').classList.toggle('open',opening);document.body.classList.toggle('menu-open',opening)}
 $('#mobileMenu').onclick=toggleMobileMenu;$('#mobileMore').onclick=toggleMobileMenu;$('#mobileScrim').onclick=closeMobileMenu;$('#mobileDock').addEventListener('click',e=>{const b=e.target.closest('[data-page]');if(b)openPage(b.dataset.page)});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMobileMenu()});
 $$('[data-tabs]').forEach(bar=>bar.addEventListener('click',e=>{let b=e.target.closest('[data-tab]');if(b)tab(bar.dataset.tabs,b.dataset.tab)}));
