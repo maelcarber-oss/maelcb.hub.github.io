@@ -84,6 +84,24 @@
 }
 @media(prefers-reduced-motion:reduce){.sidebar,.mobile-scrim,.mobile-dock{transition:none!important}}
 
+/* JARVIS voice help window */
+.jarvis-help-backdrop{display:none;position:fixed;inset:0;z-index:120;align-items:center;justify-content:center;padding:18px;background:rgba(2,9,17,.78);backdrop-filter:blur(10px)}
+.jarvis-help-backdrop.open{display:flex}
+.jarvis-help{width:min(100%,460px);max-height:min(88dvh,650px);overflow:auto;padding:22px;border:1px solid rgba(57,217,245,.3);border-radius:22px;background:linear-gradient(155deg,#10283b,#081725 72%);box-shadow:0 24px 80px #0009,0 0 35px #39d9f51a;color:#e8f4fb}
+.jarvis-help-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
+.jarvis-help-head h2{margin:7px 0 0;font-size:23px}
+.jarvis-help-intro{margin:8px 0 16px;color:#9db2c2;font-size:13px;line-height:1.5}
+.jarvis-command-list{display:grid;gap:9px;margin:0;padding:0;list-style:none}
+.jarvis-command-list li{display:flex;align-items:flex-start;gap:11px;padding:12px;border:1px solid rgba(133,174,197,.16);border-radius:13px;background:rgba(255,255,255,.025)}
+.jarvis-command-icon{display:grid;place-items:center;flex:0 0 30px;height:30px;border-radius:9px;background:rgba(57,217,245,.1);color:var(--cyan);font-size:17px}
+.jarvis-command-list b,.jarvis-command-list small{display:block}
+.jarvis-command-list b{font-size:13px;margin:1px 0 4px}
+.jarvis-command-list small{color:#9db2c2;font-size:11px;line-height:1.45}
+.jarvis-help-note{margin:14px 0 16px;color:#8da6b8;font-size:11px;line-height:1.5}
+.jarvis-help-actions{display:flex;gap:9px}
+.jarvis-help-actions button{flex:1;min-height:44px;padding:10px}
+@media(max-width:700px){.jarvis-help-backdrop{align-items:flex-end;padding:10px}.jarvis-help{width:100%;max-height:85dvh;padding:19px 16px calc(17px + env(safe-area-inset-bottom));border-radius:20px}.jarvis-help-actions button{font-size:12px}}
+
 /* JARVIS MODE — capa visual inmersiva, sin ocultar controles */
 .jarvis-toggle{width:auto;min-width:82px;padding:0 10px;font:9px 'DM Mono';letter-spacing:.7px;color:#91a9bb;border:1px solid var(--line2);white-space:nowrap}.jarvis-toggle span{font-size:8px;margin-left:3px}.jarvis-toggle.active{color:var(--cyan);border-color:var(--cyan);background:rgba(57,217,245,.12);box-shadow:0 0 18px rgba(57,217,245,.18)}.jarvis-toggle.listening{color:#fff;border-color:var(--cyan);background:rgba(57,217,245,.22);box-shadow:0 0 22px rgba(57,217,245,.38);animation:jarvisPulse 1.2s ease-in-out infinite}@keyframes jarvisPulse{50%{box-shadow:0 0 5px rgba(57,217,245,.2)}}body.jarvis-mode{background:radial-gradient(ellipse at 70% -20%,rgba(24,125,166,.24),transparent 42%),var(--bg)}body.jarvis-mode:before{content:"";position:fixed;inset:-160px 0 auto;height:140px;z-index:999;pointer-events:none;background:linear-gradient(180deg,transparent,rgba(57,217,245,.055),transparent);animation:jarvisSweep 9s linear infinite}body.jarvis-mode .panel{border-color:rgba(57,217,245,.23);box-shadow:0 16px 50px rgba(0,0,0,.2),0 0 22px rgba(57,217,245,.035)}body.jarvis-mode .sidebar{border-right-color:rgba(57,217,245,.28)}body.jarvis-mode .topbar{border-bottom-color:rgba(57,217,245,.28)}body.jarvis-mode .reactor{box-shadow:0 0 30px rgba(57,217,245,.12)}body.jarvis-mode .reactor:before{animation-duration:9s}body.jarvis-mode .mai-float{box-shadow:0 0 24px rgba(57,217,245,.25)}@keyframes jarvisSweep{to{transform:translateY(calc(100vh + 180px))}}@media(max-width:700px){.jarvis-toggle{min-width:36px;width:36px;padding:0;font-size:0}.jarvis-toggle span{display:none}}
   </style>
@@ -429,6 +447,20 @@
   </div>
 
   <div class="modal-backdrop" id="modalBackdrop"><section class="modal" role="dialog" aria-modal="true"><div class="modal-head"><div><span class="eyebrow">NEXUS HUB / EDITOR</span><h2 id="modalTitle">Editar elemento</h2></div><button class="icon-btn" id="closeModal" aria-label="Cerrar">×</button></div><form id="modalForm"><div id="modalFields" class="modal-fields"></div><div class="modal-actions"><button type="button" class="secondary-btn" id="cancelModal">Cancelar</button><button type="submit" class="primary-btn" id="modalSaveBtn">Guardar</button></div></form></section></div>
+
+  <div class="jarvis-help-backdrop" id="jarvisHelp" aria-hidden="true">
+    <section class="jarvis-help" role="dialog" aria-modal="true" aria-labelledby="jarvisHelpTitle">
+      <div class="jarvis-help-head"><div><span class="eyebrow">NEXUS HUB / VOZ</span><h2 id="jarvisHelpTitle">¿Qué puedo decir?</h2></div><button class="icon-btn" id="jarvisHelpClose" type="button" aria-label="Cerrar">×</button></div>
+      <p class="jarvis-help-intro">Di una orden sencilla. Por ahora puedo crear tareas.</p>
+      <ul class="jarvis-command-list">
+        <li><span class="jarvis-command-icon">＋</span><span><b>Añadir una tarea</b><small>«Añade una tarea llamada estudiar»</small></span></li>
+        <li><span class="jarvis-command-icon">◷</span><span><b>Con fecha</b><small>«Crea una tarea llamada estudiar para mañana»</small></span></li>
+        <li><span class="jarvis-command-icon">▦</span><span><b>Con fecha y asignatura</b><small>«Añade tarea llamada ejercicios para el 14 de noviembre de 2026 de Matemáticas»</small></span></li>
+      </ul>
+      <p class="jarvis-help-note">Antes de guardar, te enseñaré lo que he entendido para que lo confirmes.</p>
+      <div class="jarvis-help-actions"><button class="secondary-btn" id="jarvisHelpCancel" type="button">Ahora no</button><button class="primary-btn" id="jarvisHelpStart" type="button">🎙 Empezar a hablar</button></div>
+    </section>
+  </div>
 
   <button class="mai-float" id="maiFloat" title="Activar MAI · Alt + J" aria-label="Abrir asistente MAI"><span>✳</span><small>MAI</small></button>
   <div class="toast-stack" id="toastStack"></div>
@@ -827,7 +859,7 @@ function importData(file){let r=new FileReader();r.onload=()=>{try{let parsed=JS
 $('#mainNav').addEventListener('click',e=>{let b=e.target.closest('[data-page]');if(b)openPage(b.dataset.page)});
 $$('[data-go]').forEach(b=>b.onclick=()=>openPage(b.dataset.go));
 $('#collapseSidebar').onclick=()=>document.body.classList.toggle('collapsed');
-$('#jarvisToggle').onclick=startJarvisVoice;
+function openJarvisHelp(){$('#jarvisHelp').classList.add('open');$('#jarvisHelp').setAttribute('aria-hidden','false')}function closeJarvisHelp(){$('#jarvisHelp').classList.remove('open');$('#jarvisHelp').setAttribute('aria-hidden','true')}$('#jarvisToggle').onclick=openJarvisHelp;$('#jarvisHelpClose').onclick=$('#jarvisHelpCancel').onclick=closeJarvisHelp;$('#jarvisHelp').addEventListener('click',e=>{if(e.target.id==='jarvisHelp')closeJarvisHelp()});$('#jarvisHelpStart').onclick=()=>{closeJarvisHelp();startJarvisVoice()};
 function toggleMobileMenu(){const opening=!$('#sidebar').classList.contains('mobile-open');$('#sidebar').classList.toggle('mobile-open',opening);$('#mobileScrim').classList.toggle('open',opening);document.body.classList.toggle('menu-open',opening)}
 $('#mobileMenu').onclick=toggleMobileMenu;$('#mobileMore').onclick=toggleMobileMenu;$('#mobileScrim').onclick=closeMobileMenu;$('#mobileDock').addEventListener('click',e=>{const b=e.target.closest('[data-page]');if(b)openPage(b.dataset.page)});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMobileMenu()});
 $$('[data-tabs]').forEach(bar=>bar.addEventListener('click',e=>{let b=e.target.closest('[data-tab]');if(b)tab(bar.dataset.tabs,b.dataset.tab)}));
