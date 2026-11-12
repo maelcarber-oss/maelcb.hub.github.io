@@ -1,5 +1,5 @@
-const CACHE_NAME = 'nexus-hub-pwa-v16';
-const CORE = ['./', './index.html', './manifest.webmanifest', './icon.svg', './sync.js', './sync-config.js'];
+const CACHE_NAME = 'nexus-hub-pwa-v17';
+const CORE = ['./', './index.html', './manifest.webmanifest', './icon.svg', './local-profile.js'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(CORE)).then(() => self.skipWaiting()));
 });
