@@ -11,7 +11,7 @@ const say=(s,state='info')=>{if(status){status.textContent=s;status.dataset.stat
 const getData=()=>window.MAELHUB_SYNC_API.getData();
 const stamp=()=>String(Date.now());
 const setSynced=()=>{localStorage.setItem(LAST,stamp());localStorage.setItem(LOCAL,stamp());};
-const hasContent=d=>['homework','exams','grades','tasks','goals','events','quickNotes','projects','snippets','ideas','tools','songs','playlists','notes'].some(k=>Array.isArray(d[k])&&d[k].length)||(d.profile&&((d.profile.username&&d.profile.username!=='Usuario')||d.profile.city));
+const hasContent=d=>['homework','exams','grades','tasks','goals','events','quickNotes','projects','snippets','ideas','tools','songs','playlists','notes','quickLinks'].some(k=>Array.isArray(d[k])&&d[k].length)||(d.profile&&((d.profile.username&&d.profile.username!=='Usuario')||d.profile.city));
 const busyState=v=>{busy=v;[login,register,logout,button].forEach(b=>{if(b)b.disabled=v;});};
 function renderAuth(session){
   user=session?.user||null;
