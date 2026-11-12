@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <title>Política de privacidad · NEXUS HUB</title>
+  <meta name="description" content="Política de privacidad de NEXUS HUB: perfiles locales, almacenamiento cifrado y servicios externos utilizados.">
+  <style>
+    :root{color-scheme:dark;--bg:#07111f;--panel:#102238;--line:rgba(115,178,213,.2);--text:#e8f3fb;--muted:#a0b4c5;--cyan:#39d9f5}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,rgba(31,103,145,.2),transparent 42%),var(--bg);color:var(--text);font:15px/1.75 system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+    main{width:min(850px,100%);margin:0 auto;padding:36px 20px 70px}
+    .brand{display:flex;align-items:center;gap:12px;margin-bottom:34px;color:#fff;text-decoration:none;font-weight:800;letter-spacing:2px}
+    .mark{width:40px;height:40px;border:1px solid var(--cyan);border-radius:12px;display:grid;place-items:center;color:var(--cyan);font:700 13px monospace}
+    .brand span{color:var(--cyan)}.eyebrow{font:10px monospace;letter-spacing:1.5px;color:var(--cyan)}
+    h1{font-size:clamp(30px,5vw,43px);line-height:1.15;letter-spacing:-1.5px;margin:8px 0}
+    h2{font-size:19px;margin:28px 0 8px;color:#d9f4ff}
+    p,li{color:var(--muted)}strong{color:#e8f3fb}a{color:#78dff3;overflow-wrap:anywhere}
+    .updated{font:11px monospace;color:#7896aa;margin-bottom:25px}
+    .lead,.notice{border:1px solid var(--line);background:rgba(16,34,56,.8);border-radius:13px;padding:17px 19px}
+    ul{padding-left:21px}li{padding:3px 0}
+    .foot{margin-top:38px;padding-top:20px;border-top:1px solid var(--line);font-size:12px;color:#7890a3}
+    @media(max-width:520px){main{padding:25px 16px 48px}body{font-size:14px}.lead,.notice{padding:14px}}
+  </style>
+</head>
+<body>
+<main>
+  <a class="brand" href="./"><span class="mark">NX</span><span>NEXUS<span>HUB</span></span></a>
+  <div class="eyebrow">TRANSPARENCIA Y PROTECCIÓN DE DATOS</div>
+  <h1>Política de privacidad</h1>
+  <div class="updated">Última actualización: 12 de noviembre de 2026</div>
+
+  <div class="lead">
+    NEXUS HUB es un espacio personal para organización, estudio y proyectos. Los perfiles de esta versión se crean y funcionan sin conexión a una cuenta online: el contenido personal se guarda cifrado en el dispositivo y no se sincroniza con servidores de NEXUS HUB.
+  </div>
+
+  <h2>1. Responsable y contacto</h2>
+  <p><strong>Proyecto y aplicación:</strong> NEXUS HUB.</p>
+  <p><strong>Canal de contacto:</strong> <a href="https://github.com/maelcarber-oss/maelcb.hub.github.io/issues">Soporte y consultas de privacidad en el repositorio oficial</a>. No publiques contraseñas, datos personales ni información privada en incidencias públicas.</p>
+
+  <h2>2. Perfiles locales y datos que se guardan</h2>
+  <p>Al crear un perfil se guarda en el almacenamiento de este navegador o aplicación un nombre de usuario, parámetros criptográficos y una copia cifrada de los datos de NEXUS HUB. El contenido puede incluir tareas, calendario, horario, notas, proyectos, preferencias y otros datos que decidas introducir.</p>
+  <ul>
+    <li>La contraseña no se guarda ni se envía a un servidor. Se utiliza localmente para derivar una clave criptográfica.</li>
+    <li>El contenido del perfil se cifra con AES-GCM de 256 bits; la clave se deriva mediante PBKDF2-SHA-256.</li>
+    <li>La copia de trabajo descifrada se mantiene en el almacenamiento de sesión mientras utilizas la aplicación. La copia persistente del perfil se conserva cifrada.</li>
+    <li>Si activas «Recordar en este dispositivo», se guarda una clave criptográfica local no exportable en IndexedDB para permitir el acceso automático en ese mismo entorno. No se guarda la contraseña.</li>
+  </ul>
+  <p>El perfil local no es una cuenta online, no verifica una identidad y no permite trasladar automáticamente los datos a otro teléfono, navegador o instalación. El almacenamiento de una aplicación Android puede estar separado del almacenamiento de Chrome en el mismo móvil.</p>
+
+  <h2>3. Servicios externos</h2>
+  <p>NEXUS HUB no incorpora anuncios ni herramientas propias de analítica de uso. Algunas funciones realizan conexiones externas cuando las utilizas:</p>
+  <ul>
+    <li><strong>GitHub Pages:</strong> aloja y entrega los archivos de la web. El proveedor de alojamiento puede procesar datos técnicos habituales de las solicitudes web.</li>
+    <li><strong>Google Fonts:</strong> la interfaz solicita las fuentes Manrope y DM Mono. El navegador contacta con la infraestructura de fuentes de Google para descargarlas. Consulta la <a href="https://policies.google.com/privacy">política de privacidad de Google</a>.</li>
+    <li><strong>Open-Meteo:</strong> si introduces una ciudad para consultar el tiempo, esa ciudad se envía al servicio de geocodificación; después se consultan las coordenadas de esa ciudad para obtener la previsión. NEXUS HUB no solicita la ubicación GPS del dispositivo para esta función. Consulta la <a href="https://open-meteo.com/en/terms">información legal de Open-Meteo</a>.</li>
+    <li><strong>Enlaces externos:</strong> cuando abres enlaces guardados o enlaces de terceros, se aplican las políticas de los sitios que visitas.</li>
+  </ul>
+
+  <h2>4. Sincronización y versiones anteriores</h2>
+  <p>El acceso actual mediante perfiles locales no utiliza Supabase ni transmite el contenido del perfil para sincronizarlo entre dispositivos. La sincronización experimental de versiones anteriores se ha retirado del cliente actual.</p>
+  <div class="notice">
+    <strong>Importante:</strong> si utilizaste una versión anterior y llegaste a sincronizar datos en la nube, desactivar esa función en esta versión no elimina automáticamente las copias que ya se hubieran enviado al proyecto de sincronización anterior. Esas copias tendrían que revisarse y eliminarse por separado.
+  </div>
+
+  <h2>5. Conservación y eliminación</h2>
+  <p>Los datos del perfil permanecen en el almacenamiento local hasta que elimines el perfil, borres los datos del sitio o desinstales/borres los datos de la aplicación. Para eliminar un perfil desde NEXUS HUB, entra en <strong>Configuración → Perfil de este dispositivo → Eliminar este perfil y sus datos</strong>.</p>
+  <p>La eliminación del perfil local borra su copia cifrada de ese navegador o aplicación. No elimina archivos JSON que hayas exportado, capturas o copias que hayas guardado fuera de NEXUS HUB. Si olvidas la contraseña y no tienes activado el acceso recordado ni una copia exportada, el contenido cifrado no se puede recuperar.</p>
+
+  <h2>6. Seguridad y uso compartido del dispositivo</h2>
+  <p>La contraseña y el cifrado ayudan a proteger el perfil almacenado. Aun así, ningún sistema en un dispositivo compartido puede proteger frente a alguien que controle el dispositivo, el navegador o la sesión ya desbloqueada. No actives «Recordar en este dispositivo» en equipos compartidos y bloquea el dispositivo cuando no lo utilices.</p>
+  <p>La aplicación Android desactiva la copia automática de datos de la aplicación mediante el atributo de respaldo de Android. El comportamiento de las transferencias entre dispositivos puede variar según la versión de Android y el fabricante.</p>
+
+  <h2>7. Menores y datos personales</h2>
+  <p>NEXUS HUB puede utilizarse para organizar estudios y actividades personales. Introduce únicamente la información necesaria para esas funciones. No añadas contraseñas de otros servicios, datos bancarios, documentos de identidad ni información especialmente sensible. Los menores deben utilizar el servicio de acuerdo con las indicaciones de sus responsables legales y las normas aplicables.</p>
+
+  <h2>8. Cambios de esta política</h2>
+  <p>Esta política podrá actualizarse cuando cambien las funciones, los servicios externos o las obligaciones legales. La fecha de la última actualización aparecerá al principio de esta página.</p>
+
+  <div class="foot">NEXUS HUB · Política de privacidad · Esta página es pública y puede consultarse sin iniciar sesión.</div>
+</main>
+</body>
+</html>
