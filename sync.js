@@ -7,7 +7,7 @@ const status=$('syncStatus'),account=$('syncAccount'),email=$('syncEmail'),passw
 const login=$('syncLogin'),register=$('syncRegister'),logout=$('syncLogout'),button=$('syncNow');
 const LAST='maelHubLastCloudSync_v1',LOCAL='maelHubLastLocalChange_v1',BACKUP='maelHubBackupBeforeCloudSync_v1';
 const OWNER='nexusHubCloudOwner_v1',PENDING='nexusHubPendingSignupEmail_v1';
-let client=null,user=null,busy=false;
+let client=null,user=null,busy=false,autoSyncTimer=null;
 const say=(s,state='info')=>{if(status){status.textContent=s;status.dataset.state=state;}};
 const getData=()=>window.MAELHUB_SYNC_API.getData();
 const stamp=()=>String(Date.now());
@@ -22,9 +22,16 @@ function renderAuth(session){
   else if(ready)say('Inicia sesión o crea una cuenta para sincronizar tus datos.');
 }
 async function upload(d){
-  const {error}=await client.from('maelhub_user_data').upsert({user_id:user.id,data:d,updated_at:new Date().toISOString()},{onConflict:'user_id'});
+  // Take a fixed snapshot so edits made while the request is in flight stay marked as pending.
+  const localVersionAtStart=Number(localStorage.getItem(LOCAL)||0);
+  const snapshot=JSON.parse(JSON.stringify(d));
+  const {error}=await client.from('maelhub_user_data').upsert({user_id:user.id,data:snapshot,updated_at:new Date().toISOString()},{onConflict:'user_id'});
   if(error)throw error;
-  localStorage.setItem(OWNER,user.id);localStorage.removeItem(PENDING);setSynced();say('Sincronización completada. Tus datos están guardados en la nube.','success');
+  localStorage.setItem(OWNER,user.id);localStorage.removeItem(PENDING);
+  const syncedAt=Date.now(),localVersionNow=Number(localStorage.getItem(LOCAL)||0);
+  localStorage.setItem(LAST,String(syncedAt));
+  localStorage.setItem(LOCAL,String(localVersionNow>localVersionAtStart?Math.max(localVersionNow,syncedAt+1):syncedAt));
+  say('Sincronización completada. Tus datos están guardados en la nube.','success');
 }
 async function download(remote){
   // Conserva una copia local antes de sustituirla por los datos de la cuenta.
@@ -168,8 +175,21 @@ if(logout)logout.addEventListener('click',async()=>{
   finally{busyState(false);}
 });
 if(button)button.addEventListener('click',sync);
+function scheduleAutoSync(){
+  if(!ready||!client||!user)return;
+  if(autoSyncTimer)clearTimeout(autoSyncTimer);
+  autoSyncTimer=setTimeout(()=>{
+    autoSyncTimer=null;
+    if(!user)return;
+    if(busy){scheduleAutoSync();return;}
+    sync();
+  },900);
+}
 window.addEventListener('maelhub:datachange',()=>{
   localStorage.setItem(LOCAL,stamp());
-  if(user&&status?.dataset.state==='success')say('Hay cambios locales pendientes. Pulsa «Sincronizar ahora» para subirlos.');
+  if(user&&ready&&client){
+    if(status?.dataset.state==='success')say('Cambios detectados. Guardando automáticamente en la nube…');
+    scheduleAutoSync();
+  }
 });
 })();
