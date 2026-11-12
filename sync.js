@@ -134,7 +134,7 @@ if(register)register.addEventListener('click',async()=>{
   if(!address||password.value.length<8){say('Escribe un correo válido y una contraseña de al menos 8 caracteres.','error');return;}
   busyState(true);
   try{
-    const {data,error}=await client.auth.signUp({email:address,password:password.value});
+    const {data,error}=await client.auth.signUp({email:address,password:password.value,options:{emailRedirectTo:window.location.origin+window.location.pathname}});
     if(error)throw error;
     // A new account must never inherit another account's local information.
     if(localStorage.getItem(OWNER)||localStorage.getItem(LAST)){
