@@ -84,26 +84,8 @@
 }
 @media(prefers-reduced-motion:reduce){.sidebar,.mobile-scrim,.mobile-dock{transition:none!important}}
 
-/* JARVIS voice help window */
-.jarvis-help-backdrop{display:none;position:fixed;inset:0;z-index:120;align-items:center;justify-content:center;padding:18px;background:rgba(2,9,17,.78);backdrop-filter:blur(10px)}
-.jarvis-help-backdrop.open{display:flex}
-.jarvis-help{width:min(100%,460px);max-height:min(88dvh,650px);overflow:auto;padding:22px;border:1px solid rgba(57,217,245,.3);border-radius:22px;background:linear-gradient(155deg,#10283b,#081725 72%);box-shadow:0 24px 80px #0009,0 0 35px #39d9f51a;color:#e8f4fb}
-.jarvis-help-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
-.jarvis-help-head h2{margin:7px 0 0;font-size:23px}
-.jarvis-help-intro{margin:8px 0 16px;color:#9db2c2;font-size:13px;line-height:1.5}
-.jarvis-command-list{display:grid;gap:9px;margin:0;padding:0;list-style:none}
-.jarvis-command-list li{display:flex;align-items:flex-start;gap:11px;padding:12px;border:1px solid rgba(133,174,197,.16);border-radius:13px;background:rgba(255,255,255,.025)}
-.jarvis-command-icon{display:grid;place-items:center;flex:0 0 30px;height:30px;border-radius:9px;background:rgba(57,217,245,.1);color:var(--cyan);font-size:17px}
-.jarvis-command-list b,.jarvis-command-list small{display:block}
-.jarvis-command-list b{font-size:13px;margin:1px 0 4px}
-.jarvis-command-list small{color:#9db2c2;font-size:11px;line-height:1.45}
-.jarvis-help-note{margin:14px 0 16px;color:#8da6b8;font-size:11px;line-height:1.5}
-.jarvis-help-actions{display:flex;gap:9px}
-.jarvis-help-actions button{flex:1;min-height:44px;padding:10px}
-@media(max-width:700px){.jarvis-help-backdrop{align-items:flex-end;padding:10px}.jarvis-help{width:100%;max-height:85dvh;padding:19px 16px calc(17px + env(safe-area-inset-bottom));border-radius:20px}.jarvis-help-actions button{font-size:12px}}
-
 /* JARVIS MODE — capa visual inmersiva, sin ocultar controles */
-.jarvis-toggle{width:auto;min-width:82px;padding:0 10px;font:9px 'DM Mono';letter-spacing:.7px;color:#91a9bb;border:1px solid var(--line2);white-space:nowrap}.jarvis-toggle span{font-size:8px;margin-left:3px}.jarvis-toggle.active{color:var(--cyan);border-color:var(--cyan);background:rgba(57,217,245,.12);box-shadow:0 0 18px rgba(57,217,245,.18)}.jarvis-toggle.listening{color:#fff;border-color:var(--cyan);background:rgba(57,217,245,.22);box-shadow:0 0 22px rgba(57,217,245,.38);animation:jarvisPulse 1.2s ease-in-out infinite}@keyframes jarvisPulse{50%{box-shadow:0 0 5px rgba(57,217,245,.2)}}body.jarvis-mode{background:radial-gradient(ellipse at 70% -20%,rgba(24,125,166,.24),transparent 42%),var(--bg)}body.jarvis-mode:before{content:"";position:fixed;inset:-160px 0 auto;height:140px;z-index:999;pointer-events:none;background:linear-gradient(180deg,transparent,rgba(57,217,245,.055),transparent);animation:jarvisSweep 9s linear infinite}body.jarvis-mode .panel{border-color:rgba(57,217,245,.23);box-shadow:0 16px 50px rgba(0,0,0,.2),0 0 22px rgba(57,217,245,.035)}body.jarvis-mode .sidebar{border-right-color:rgba(57,217,245,.28)}body.jarvis-mode .topbar{border-bottom-color:rgba(57,217,245,.28)}body.jarvis-mode .reactor{box-shadow:0 0 30px rgba(57,217,245,.12)}body.jarvis-mode .reactor:before{animation-duration:9s}body.jarvis-mode .mai-float{box-shadow:0 0 24px rgba(57,217,245,.25)}@keyframes jarvisSweep{to{transform:translateY(calc(100vh + 180px))}}@media(max-width:700px){.jarvis-toggle{min-width:36px;width:36px;padding:0;font-size:0}.jarvis-toggle span{display:none}}
+body.jarvis-mode{background:radial-gradient(ellipse at 70% -20%,rgba(24,125,166,.24),transparent 42%),var(--bg)}body.jarvis-mode:before{content:"";position:fixed;inset:-160px 0 auto;height:140px;z-index:999;pointer-events:none;background:linear-gradient(180deg,transparent,rgba(57,217,245,.055),transparent);animation:jarvisSweep 9s linear infinite}body.jarvis-mode .panel{border-color:rgba(57,217,245,.23);box-shadow:0 16px 50px rgba(0,0,0,.2),0 0 22px rgba(57,217,245,.035)}body.jarvis-mode .sidebar{border-right-color:rgba(57,217,245,.28)}body.jarvis-mode .topbar{border-bottom-color:rgba(57,217,245,.28)}body.jarvis-mode .reactor{box-shadow:0 0 30px rgba(57,217,245,.12)}body.jarvis-mode .reactor:before{animation-duration:9s}body.jarvis-mode .mai-float{box-shadow:0 0 24px rgba(57,217,245,.25)}@keyframes jarvisSweep{to{transform:translateY(calc(100vh + 180px))}}
   </style>
 <style>
 /* NEXUS HUB 3.1 · Mobile modal and assistant usability fixes */
@@ -286,7 +268,6 @@
         <div class="breadcrumb"><span>NEXUS HUB</span><b>/</b><strong id="pageName">INICIO</strong></div>
         <div class="top-actions">
           <label class="global-search"><span>⌕</span><input id="globalSearch" placeholder="Buscar o ejecutar un comando..." autocomplete="off"><kbd>CTRL K</kbd></label>
-          <button class="icon-btn jarvis-toggle" id="jarvisToggle" type="button" title="Activar comandos por voz" aria-label="Activar comandos por voz" aria-pressed="false">✧ <span>JARVIS</span></button>
           <div class="system-status"><span class="pulse"></span><span>ONLINE</span></div>
           <button class="icon-btn" id="notificationsBtn" title="Notificaciones">♧<em id="notificationCount" class="count">0</em></button>
           <button class="icon-btn" data-go="configuracion" title="Configuración">⚙</button>
@@ -428,20 +409,6 @@
 
   <div class="modal-backdrop" id="modalBackdrop"><section class="modal" role="dialog" aria-modal="true"><div class="modal-head"><div><span class="eyebrow">NEXUS HUB / EDITOR</span><h2 id="modalTitle">Editar elemento</h2></div><button class="icon-btn" id="closeModal" aria-label="Cerrar">×</button></div><form id="modalForm"><div id="modalFields" class="modal-fields"></div><div class="modal-actions"><button type="button" class="secondary-btn" id="cancelModal">Cancelar</button><button type="submit" class="primary-btn" id="modalSaveBtn">Guardar</button></div></form></section></div>
 
-  <div class="jarvis-help-backdrop" id="jarvisHelp" aria-hidden="true">
-    <section class="jarvis-help" role="dialog" aria-modal="true" aria-labelledby="jarvisHelpTitle">
-      <div class="jarvis-help-head"><div><span class="eyebrow">NEXUS HUB / VOZ</span><h2 id="jarvisHelpTitle">¿Qué puedo decir?</h2></div><button class="icon-btn" id="jarvisHelpClose" type="button" aria-label="Cerrar">×</button></div>
-      <p class="jarvis-help-intro">Di una orden sencilla. Por ahora puedo crear tareas.</p>
-      <ul class="jarvis-command-list">
-        <li><span class="jarvis-command-icon">＋</span><span><b>Añadir una tarea</b><small>«Añade una tarea llamada estudiar»</small></span></li>
-        <li><span class="jarvis-command-icon">◷</span><span><b>Con fecha</b><small>«Crea una tarea llamada estudiar para mañana»</small></span></li>
-        <li><span class="jarvis-command-icon">▦</span><span><b>Con fecha y asignatura</b><small>«Añade tarea llamada ejercicios para el 14 de noviembre de 2026 de Matemáticas»</small></span></li>
-      </ul>
-      <p class="jarvis-help-note">Antes de guardar, te enseñaré lo que he entendido para que lo confirmes.</p>
-      <div class="jarvis-help-actions"><button class="secondary-btn" id="jarvisHelpCancel" type="button">Ahora no</button><button class="primary-btn" id="jarvisHelpStart" type="button">🎙 Empezar a hablar</button></div>
-    </section>
-  </div>
-
   <button class="mai-float" id="maiFloat" title="Activar MAI · Alt + J" aria-label="Abrir asistente MAI"><span>✳</span><small>MAI</small></button>
   <div class="toast-stack" id="toastStack"></div>
   <div class="search-results" id="searchResults"></div>
@@ -582,7 +549,7 @@ function safeQuickUrl(value){try{let raw=String(value||'').trim();if(!/^https?:\
 function renderQuickLinks(){const box=$('#quickLinksGrid');if(!box)return;box.innerHTML=data.quickLinks.length?data.quickLinks.map(link=>{const url=safeQuickUrl(link.url),domain=url?new URL(url).hostname:'Enlace no válido';return '<article class="quick-link-card"><div class="quick-link-icon">↗</div><div class="quick-link-info"><h3>'+esc(link.title||'Acceso sin nombre')+'</h3><p>'+esc(link.description||domain)+'</p><small>'+esc(domain)+'</small></div><div class="quick-link-actions">'+(url?'<a class="primary-btn" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">Abrir ↗</a>':'<span class="muted small">URL no válida</span>')+'<button class="icon-btn" type="button" data-quick-edit="'+esc(link.id)+'" title="Editar">✎</button><button class="icon-btn" type="button" data-quick-delete="'+esc(link.id)+'" title="Eliminar">×</button></div></article>'}).join(''):'<div class="empty-state quick-links-empty"><b>Aún no tienes accesos guardados.</b><span>Añade NotebookLM, Canva, Drive, GitHub o cualquier web que quieras abrir rápidamente.</span></div>';box.querySelectorAll('[data-quick-edit]').forEach(b=>b.onclick=()=>editItem(data.quickLinks,b.dataset.quickEdit,'Editar acceso rápido',quickLinkFields));box.querySelectorAll('[data-quick-delete]').forEach(b=>b.onclick=()=>{if(confirmDelete('este acceso rápido')){data.quickLinks=data.quickLinks.filter(x=>x.id!==b.dataset.quickDelete);save()}})}
 function addQuickLink(){modal('Añadir acceso rápido',quickLinkFields,{url:'https://'},obj=>{const url=safeQuickUrl(obj.url);if(!url){toast('Introduce un enlace que empiece por http:// o https://');return}data.quickLinks.push({id:uid(),...obj,url})})}
 function renderAll(){renderSchedule();renderHomework();renderExams();renderGrades();renderOrg();renderProjects();renderCalendar();renderSnippets();renderIdeas();renderTools();renderMusic();renderNotes();renderQuickLinks();renderDashboard();renderSettings();renderGamification();applyAppearance()}
-function applyAppearance(){document.documentElement.classList.toggle('theme-light',data.appearance.theme==='light');document.documentElement.classList.remove('accent-blue','accent-violet','accent-green');if(data.appearance.accent!=='cyan')document.documentElement.classList.add('accent-'+data.appearance.accent);document.body.classList.toggle('jarvis-mode',!!data.appearance.jarvis);const j=$('#jarvisToggle');if(j){j.classList.toggle('active',!!data.appearance.jarvis);j.setAttribute('aria-pressed',String(!!data.appearance.jarvis));j.title=data.appearance.jarvis?'Desactivar modo JARVIS':'Activar modo JARVIS';j.setAttribute('aria-label',j.title)}}
+function applyAppearance(){document.documentElement.classList.toggle('theme-light',data.appearance.theme==='light');document.documentElement.classList.remove('accent-blue','accent-violet','accent-green');if(data.appearance.accent!=='cyan')document.documentElement.classList.add('accent-'+data.appearance.accent);document.body.classList.toggle('jarvis-mode',!!data.appearance.jarvis)}
 function setJarvisMode(enabled){data.appearance.jarvis=!!enabled;applyAppearance();save();toast(data.appearance.jarvis?'Modo JARVIS activado. Sistema inmersivo en línea.':'Modo JARVIS desactivado. Interfaz estándar restaurada.')}
 function updateClock(){let d=new Date();$('#clockTime').textContent=d.toLocaleTimeString('es-ES');$('#clockDate').textContent=d.toLocaleDateString('es-ES',{weekday:'short',day:'2-digit',month:'short'}).toUpperCase();$('#welcomeClock').textContent=d.toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'});$('#fullDate').textContent=d.toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).toUpperCase()}
 async function weather(){let city=data.profile.city.trim();if(!city){toast('Añade una ciudad en Configuración para consultar el tiempo.');return}$('#weatherText').textContent='Consultando...';try{let g=await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=es&format=json`);let gj=await g.json();if(!gj.results?.length)throw Error('No se encontró la ciudad');let p=gj.results[0];let r=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${p.latitude}&longitude=${p.longitude}&current=temperature_2m,weather_code&timezone=auto`);let j=await r.json();let code=j.current.weather_code;let desc=code===0?'Despejado':code<=3?'Parcialmente nublado':code<=48?'Niebla':code<=67?'Lluvia':code<=77?'Nieve':code<=82?'Chubascos':'Tormenta';$('#weatherTemp').textContent=Math.round(j.current.temperature_2m)+'°';$('#weatherText').textContent=desc;$('#weatherLocation').textContent=`${p.name}, ${p.country} · Datos de Open-Meteo`}catch(e){$('#weatherText').textContent='No disponible';$('#weatherLocation').textContent='Comprueba la ciudad o la conexión.';toast('No se ha podido consultar el tiempo.')}}
@@ -597,50 +564,6 @@ function renderGamification(){const v=levelInfo(),g=data.gamification;$('#levelN
  const feed=$('#activityFeed');feed.innerHTML=g.activity.length?g.activity.slice(0,12).map(a=>`<div class="activity-item"><div class="activity-symbol">${a.xp?'✦':'◈'}</div><div><b>${esc(a.title)}</b><small>${esc(a.detail)} · ${new Date(a.date).toLocaleString('es-ES',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})}</small></div>${a.xp?`<span class="activity-xp">+${a.xp} XP</span>`:''}</div>`).join(''):'<div class="empty-state">Todavía no hay actividad. Completa una tarea para empezar a ganar experiencia.</div>';
 }
 function addTask(title,date='',description='Añadida mediante MAI'){data.tasks.push({id:uid(),title,description,date,done:false});save()}
- function parseSpanishTaskDate(text){
-  const q=maiNorm(text), months={enero:0,febrero:1,marzo:2,abril:3,mayo:4,junio:5,julio:6,agosto:7,septiembre:8,setiembre:8,octubre:9,noviembre:10,diciembre:11};
-  const now=new Date();let d=null;
-  if(/\\bmanana\\b/.test(q))d=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1);
-  else if(/\\bhoy\\b/.test(q))d=new Date(now.getFullYear(),now.getMonth(),now.getDate());
-  let m=q.match(/\\b(\\d{1,2})[\\/\\-](\\d{1,2})(?:[\\/\\-](\\d{2,4}))?\\b/);
-  if(m){let y=m[3]?Number(m[3]):now.getFullYear();if(y<100)y+=2000;d=new Date(y,Number(m[2])-1,Number(m[1]));}
-  if(!d){m=q.match(/\\b(\\d{1,2})\\s+de\\s+(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|setiembre|octubre|noviembre|diciembre)(?:\\s+de\\s+(\\d{4}))?/);if(m){let y=m[3]?Number(m[3]):now.getFullYear();d=new Date(y,months[m[2]],Number(m[1]));if(!m[3]&&d<new Date(now.getFullYear(),now.getMonth(),now.getDate()))d.setFullYear(y+1);}}
-  return d&& !Number.isNaN(d.getTime())?d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'):'';
- }
- function startJarvisVoice(){
-  const Speech=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(!Speech){toast('Tu navegador no admite reconocimiento de voz. Prueba con Chrome actualizado.');return}
-  const btn=$('#jarvisToggle');if(btn.dataset.listening==='true')return;
-  const rec=new Speech();rec.lang='es-ES';rec.continuous=false;rec.interimResults=false;rec.maxAlternatives=1;
-  btn.dataset.listening='true';btn.classList.add('listening');btn.innerHTML='🎙 <span>ESCUCHANDO</span>';btn.title='Escuchando. Pulsa para cancelar';btn.setAttribute('aria-label','Cancelar escucha');
-  toast('JARVIS escucha. Di: añade una tarea llamada…');
-  const reset=()=>{btn.dataset.listening='false';btn.classList.remove('listening');btn.innerHTML='✧ <span>JARVIS</span>';btn.title='Activar comandos por voz';btn.setAttribute('aria-label','Activar comandos por voz');btn.onclick=startJarvisVoice};
-  rec.onresult=e=>{
-   const heard=(e.results[0]?.[0]?.transcript||'').trim();reset();
-   if(!heard){toast('No he entendido la orden. Inténtalo otra vez.');return}
-   const match=heard.match(/(?:añade|agrega|crea|apunta|registra)\\s+(?:una\\s+)?tarea(?:\\s+llamada)?\\s+(.+)/i);
-   if(!match){toast('He oído: '+heard+'. Prueba «Añade una tarea llamada…»');return}
-   let rest=match[1].trim(),subject='';
-   let dateText='',date='';
-   const dateMatch=rest.match(/\\s+para\\s+(?:el\\s+)?(.+)$/i);
-   if(dateMatch){
-    const tail=dateMatch[1].trim();rest=rest.slice(0,dateMatch.index).trim();
-    const parsedTail=tail.match(/^((?:\\d{1,2}\\s+de\\s+(?:enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|setiembre|octubre|noviembre|diciembre)(?:\\s+de\\s+\\d{4})?|\\d{1,2}[\\/\\-]\\d{1,2}(?:[\\/\\-]\\d{2,4})?|mañana|hoy))(?:\\s+de\\s+(.+))?$/i);
-    dateText=parsedTail?parsedTail[1]:tail;subject=parsedTail?.[2]?.trim()||'';date=parseSpanishTaskDate(dateText);
-   }
-   const title=rest.replace(/[.,;!?]+$/,'').trim();
-   if(!title){toast('No he detectado el nombre de la tarea.');return}
-   const description=subject?'Asignatura: '+subject:'Añadida mediante JARVIS';
-   const dateLabel=date?new Date(date+'T12:00:00').toLocaleDateString('es-ES'):(dateText?'Fecha no reconocida: '+dateText:'Sin fecha');
-   if(confirm('JARVIS ha entendido:\\n\\nTarea: '+title+'\\nFecha: '+dateLabel+'\\n'+(subject?'Asignatura: '+subject+'\\n':'')+'\\n¿La guardo?')){
-    addTask(title,date,description);toast('Tarea añadida correctamente.');
-   }else toast('Tarea cancelada.');
-  };
-  rec.onerror=e=>{reset();toast(e.error==='not-allowed'?'Permite el acceso al micrófono para usar JARVIS.':'No se ha podido reconocer la voz. Inténtalo de nuevo.')};
-  rec.onend=()=>{if(btn.dataset.listening==='true')reset()};
-  btn.onclick=()=>{try{rec.abort()}catch{}reset();toast('Escucha cancelada.')};
-  try{rec.start()}catch{reset();toast('No se pudo iniciar el micrófono.')}
- }
 function maiCommandHelp(){return [
 'MAI · CENTRO DE COMANDOS',
 'Puedes escribirlos tal cual o usar frases naturales parecidas. Los comandos actúan sobre tus datos guardados en este dispositivo.',
@@ -823,7 +746,6 @@ function importData(file){let r=new FileReader();r.onload=()=>{try{let parsed=JS
 $('#mainNav').addEventListener('click',e=>{let b=e.target.closest('[data-page]');if(b)openPage(b.dataset.page)});
 $$('[data-go]').forEach(b=>b.onclick=()=>openPage(b.dataset.go));
 $('#collapseSidebar').onclick=()=>document.body.classList.toggle('collapsed');
-function openJarvisHelp(){$('#jarvisHelp').classList.add('open');$('#jarvisHelp').setAttribute('aria-hidden','false')}function closeJarvisHelp(){$('#jarvisHelp').classList.remove('open');$('#jarvisHelp').setAttribute('aria-hidden','true')}$('#jarvisToggle').onclick=openJarvisHelp;$('#jarvisHelpClose').onclick=$('#jarvisHelpCancel').onclick=closeJarvisHelp;$('#jarvisHelp').addEventListener('click',e=>{if(e.target.id==='jarvisHelp')closeJarvisHelp()});$('#jarvisHelpStart').onclick=()=>{closeJarvisHelp();startJarvisVoice()};
 function toggleMobileMenu(){const opening=!$('#sidebar').classList.contains('mobile-open');$('#sidebar').classList.toggle('mobile-open',opening);$('#mobileScrim').classList.toggle('open',opening);document.body.classList.toggle('menu-open',opening)}
 $('#mobileMenu').onclick=toggleMobileMenu;$('#mobileMore').onclick=toggleMobileMenu;$('#mobileScrim').onclick=closeMobileMenu;$('#mobileDock').addEventListener('click',e=>{const b=e.target.closest('[data-page]');if(b)openPage(b.dataset.page)});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMobileMenu()});
 $$('[data-tabs]').forEach(bar=>bar.addEventListener('click',e=>{let b=e.target.closest('[data-tab]');if(b)tab(bar.dataset.tabs,b.dataset.tab)}));
