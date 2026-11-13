@@ -254,12 +254,6 @@ body.jarvis-mode{background:radial-gradient(ellipse at 70% -20%,rgba(24,125,166,
 </style></head>
 <body>
   
-  <button id="installApp" class="install-app-btn" type="button" hidden>⬇ Instalar NEXUS HUB</button>
-  <style>
-    .install-app-btn{position:fixed;right:14px;top:78px;z-index:100;border:1px solid rgba(57,217,245,.5);background:rgba(5,22,37,.96);color:#bdf7ff;border-radius:12px;padding:11px 14px;font:600 11px Manrope,Arial,sans-serif;box-shadow:0 0 22px #39d9f522;backdrop-filter:blur(12px)}
-    .install-app-btn[hidden]{display:none}
-    @media(max-width:700px){.install-app-btn{top:auto;bottom:calc(82px + env(safe-area-inset-bottom));right:12px}}
-  </style>
   <div class="app-shell">
     <aside class="sidebar" id="sidebar">
       <div class="brand">
@@ -896,24 +890,10 @@ updateClock();setInterval(updateClock,1000);renderAll();if(data.profile.city)wea
 window.NEXUS_START_APP();
   </script>
 <script>
-// Instalación de NEXUS HUB como aplicación (PWA). Los datos siguen guardándose localmente.
-(()=>{
-  let installPrompt=null;
-  const btn=document.getElementById('installApp');
-  const standalone=window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone===true;
-  if(standalone) return;
-  if('serviceWorker' in navigator && location.protocol.startsWith('http')){
-    window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
-  }
-  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;btn.hidden=false;});
-  btn.addEventListener('click',async()=>{
-    if(installPrompt){installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;btn.hidden=true;return;}
-    alert('Para añadir NEXUS HUB a tu móvil: pulsa Compartir en el navegador y elige «Añadir a pantalla de inicio» (iPhone) o «Instalar aplicación» (Android/Chrome).');
-  });
-  window.addEventListener('appinstalled',()=>{btn.hidden=true;installPrompt=null;});
-  // En iPhone/iPad el navegador no ofrece el evento de instalación; se muestra una ayuda sencilla.
-  if(/iphone|ipad|ipod/i.test(navigator.userAgent)){btn.hidden=false;}
-})();
+// Mantiene el almacenamiento local y la caché de la web.
+if('serviceWorker' in navigator && location.protocol.startsWith('http')){
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+}
 </script>
 </body>
 </html>
