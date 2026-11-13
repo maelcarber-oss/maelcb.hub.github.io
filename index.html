@@ -252,65 +252,8 @@ body.jarvis-mode{background:radial-gradient(ellipse at 70% -20%,rgba(24,125,166,
 
 @media(max-width:760px){.quick-links-grid{grid-template-columns:1fr}.quick-link-card{padding:12px;gap:9px}.quick-link-icon{width:36px;height:36px;flex-basis:36px}.quick-link-actions{gap:4px}.quick-link-actions .primary-btn{padding:9px 10px;min-height:38px;font-size:11px}}
 </style></head>
-<body class="local-locked">
-  <style id="nexus-local-profile-styles">
-body.local-locked{overflow:hidden;background:#07111f}
-body.local-locked .app-shell,body.local-locked #installApp{display:none!important}
-.local-auth-screen{position:fixed;inset:0;z-index:500;display:grid;place-items:center;overflow-y:auto;padding:24px 16px;background:radial-gradient(ellipse at 18% 0%,rgba(45,115,158,.28),transparent 42%),radial-gradient(ellipse at 100% 100%,rgba(78,65,157,.2),transparent 45%),#07111f}
-.local-auth-card{width:min(450px,100%);padding:clamp(22px,5vw,34px);border:1px solid rgba(112,188,224,.24);border-radius:22px;background:linear-gradient(145deg,rgba(15,35,55,.97),rgba(8,22,37,.98));box-shadow:0 28px 90px #0009,inset 0 1px rgba(255,255,255,.04)}
-.local-auth-brand{display:flex;align-items:center;gap:12px;margin-bottom:32px}
-.local-auth-mark{width:42px;height:42px;border:1px solid #39d9f5;border-radius:13px;display:grid;place-items:center;color:#39d9f5;font:700 13px 'DM Mono';box-shadow:0 0 24px #39d9f51c}
-.local-auth-brand b{font-size:18px;letter-spacing:1.8px;color:#e8f3fb}.local-auth-brand b span{color:#39d9f5}
-.local-auth-brand small{display:block;color:#708ba0;font:8px 'DM Mono';letter-spacing:1.3px;margin-top:4px}
-.local-auth-intro .eyebrow{color:#55d9f4;font:9px 'DM Mono';letter-spacing:1.5px}
-.local-auth-intro h1{font-size:29px;letter-spacing:-1px;margin:9px 0 7px;color:#edf8ff}
-.local-auth-intro p{font-size:12px;line-height:1.65;color:#91aabd;margin:0 0 22px}
-.local-auth-field{display:grid;gap:7px;margin:13px 0;color:#b7cad8;font-size:11px;font-weight:600}
-.local-auth-field input{width:100%;height:46px;padding:0 13px;border:1px solid rgba(104,166,205,.24);border-radius:9px;background:#081827;color:#e8f3fb;outline:none;font:12px Manrope,Arial,sans-serif}
-.local-auth-field input:focus{border-color:#39d9f5;box-shadow:0 0 0 3px #39d9f51c}
-.local-auth-remember{display:flex;gap:10px;align-items:flex-start;margin:17px 0;padding:12px;border:1px solid rgba(104,166,205,.17);border-radius:10px;background:rgba(10,28,45,.55);cursor:pointer}
-.local-auth-remember input{accent-color:#39d9f5;margin:3px 0 0;width:15px;height:15px;flex:none}
-.local-auth-remember b,.local-auth-remember small{display:block}.local-auth-remember b{font-size:10px;color:#d6e8f2}.local-auth-remember small{font-size:9px;line-height:1.5;color:#829aac;margin-top:4px}
-.local-auth-submit{width:100%;min-height:47px;border:1px solid #35bcd8;border-radius:9px;background:linear-gradient(130deg,#177f9b,#155d83);color:#f0fcff;font-weight:800;font-size:12px;box-shadow:0 8px 22px #087b9b25}
-.local-auth-switch{display:block;width:100%;border:0;background:transparent;color:#6fdcf1;font-size:10px;padding:13px 5px 3px}
-.local-auth-message{min-height:18px;margin:10px 0 0;font-size:10px;line-height:1.5;color:#91aabd}.local-auth-message.error{color:#ff8290}.local-auth-message.success{color:#55dfb0}
-.local-auth-foot{display:grid;gap:8px;margin-top:19px;padding-top:14px;border-top:1px solid rgba(104,166,205,.15);font-size:9px;line-height:1.5;color:#829aac}
-.local-auth-foot a{color:#71d9f0;text-decoration:none;width:max-content}.local-auth-warning{font-size:9px;line-height:1.55;color:#8d99a7;margin:12px 0 0}
-.local-setup-overlay{position:fixed;inset:0;z-index:450;display:grid;place-items:center;padding:18px;background:rgba(1,8,15,.72);backdrop-filter:blur(8px)}
-.local-setup-overlay[hidden]{display:none!important}.local-setup-card{width:min(420px,100%);padding:24px;border:1px solid rgba(57,217,245,.3);border-radius:16px;background:#0b1b2c;box-shadow:0 25px 90px #000a}
-.local-setup-icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:#10364a;color:#8eeaff;font-size:21px;margin-bottom:14px}
-.local-setup-card h2{font-size:18px;margin:8px 0}.local-setup-card p{color:#a8bdcc;font-size:11px;line-height:1.65;margin:0}
-.local-setup-actions{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-top:20px}
-.local-profile-badge{padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:rgba(8,23,37,.5);margin:10px 0 14px}
-.local-profile-badge b{display:block;color:#d9eef8;font:12px 'DM Mono';overflow-wrap:anywhere}.local-profile-badge small{display:block;color:var(--muted);font-size:9px;margin-top:5px}
-#localProfileDelete{margin-top:7px;width:100%}.local-profile-card .primary-btn,.local-profile-card .secondary-btn{width:100%}
-@media(max-width:500px){.local-auth-card{padding:22px 19px}.local-auth-brand{margin-bottom:25px}.local-auth-intro h1{font-size:26px}.local-setup-actions>*{flex:1}.local-setup-card{padding:20px}}
-</style>
-  <div class="local-auth-screen" id="localAuthGate">
-    <section class="local-auth-card">
-      <div class="local-auth-brand"><div class="local-auth-mark">NX</div><div><b>NEXUS<span>HUB</span></b><small>PERFIL LOCAL DEL DISPOSITIVO</small></div></div>
-      <div class="local-auth-intro"><span class="eyebrow">ACCESO PRIVADO</span><h1 id="localAuthTitle">Crea tu perfil</h1><p id="localAuthDescription">Crea un usuario y una contraseña para proteger tu espacio personal en este dispositivo.</p></div>
-      <form id="localAuthForm" autocomplete="on">
-        <label class="local-auth-field">Usuario<input id="localAuthUsername" name="username" type="text" minlength="3" maxlength="24" autocomplete="username" placeholder="Tu nombre de usuario" required></label>
-        <label class="local-auth-field">Contraseña<input id="localAuthPassword" name="password" type="password" minlength="8" autocomplete="new-password" placeholder="Mínimo 8 caracteres" required></label>
-        <label class="local-auth-field" id="localAuthConfirmWrap">Repite la contraseña<input id="localAuthConfirm" name="password-confirm" type="password" minlength="8" autocomplete="new-password" placeholder="Vuelve a escribirla"></label>
-        <label class="local-auth-remember" id="localAuthRememberWrap"><input id="localAuthRemember" type="checkbox"><span><b>Recordar en este dispositivo</b><small>Si lo activas, no tendrás que introducir la contraseña cada vez que abras NEXUS HUB aquí.</small></span></label>
-        <button class="local-auth-submit" id="localAuthSubmit" type="submit">Crear perfil y entrar</button>
-        <button class="local-auth-switch" id="localAuthSwitch" type="button" hidden>¿Ya tienes perfil? Iniciar sesión</button>
-      </form>
-      <p class="local-auth-message" id="localAuthMessage" role="status" aria-live="polite"></p>
-      <div class="local-auth-foot"><span>🔒 Los datos se guardan cifrados en este dispositivo. No se crea una cuenta online.</span><a href="./privacy.html" target="_blank" rel="noopener">Política de privacidad</a></div>
-      <p class="local-auth-warning">Si olvidas la contraseña y no has activado «Recordar en este dispositivo», no podremos recuperar los datos cifrados.</p>
-    </section>
-  </div>
-  <div class="local-setup-overlay" id="localSetupOverlay" hidden>
-    <section class="local-setup-card" role="dialog" aria-modal="true" aria-labelledby="localSetupTitle">
-      <div class="local-setup-icon">✦</div><span class="panel-kicker">PRIMEROS PASOS</span>
-      <h2 id="localSetupTitle">Tu espacio ya está preparado</h2>
-      <p>Para poner tus datos principales, primero ve a Configuración, y guarda los datos.</p>
-      <div class="local-setup-actions"><button class="secondary-btn" id="localSetupLater" type="button">Ahora no</button><button class="primary-btn" id="localSetupGo" type="button">Ir a Configuración</button></div>
-    </section>
-  </div>
+<body>
+  
   <button id="installApp" class="install-app-btn" type="button" hidden>⬇ Instalar NEXUS HUB</button>
   <style>
     .install-app-btn{position:fixed;right:14px;top:78px;z-index:100;border:1px solid rgba(57,217,245,.5);background:rgba(5,22,37,.96);color:#bdf7ff;border-radius:12px;padding:11px 14px;font:600 11px Manrope,Arial,sans-serif;box-shadow:0 0 22px #39d9f522;backdrop-filter:blur(12px)}
@@ -488,7 +431,7 @@ body.local-locked .app-shell,body.local-locked #installApp{display:none!importan
       <section class="page-view" id="page-configuracion">
         <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> SYSTEM PREFERENCES</div><h1>Configuración</h1><p class="muted">Personaliza NEXUS HUB y gestiona tus datos.</p></div></div>
         <div class="settings-grid">
-          <article class="panel settings-card local-profile-card"><h2>Perfil de este dispositivo</h2><p class="muted">Tu perfil está protegido con contraseña. Los datos se cifran y permanecen en este navegador o aplicación.</p><div class="local-profile-badge"><b id="localProfileName">Perfil local</b><small id="localProfileStatus">Almacenamiento local cifrado</small></div><button class="secondary-btn" id="localLogout" type="button">Bloquear y cerrar sesión</button><button class="danger-outline" id="localProfileDelete" type="button">Eliminar este perfil y sus datos</button><small class="muted">Eliminar el perfil borra su copia cifrada de este dispositivo. No se puede recuperar sin una copia exportada.</small><a class="text-action" href="./privacy.html" target="_blank" rel="noopener">Consultar política de privacidad ↗</a></article>
+          
           <article class="panel settings-card"><h2>Preferencias generales</h2><p class="muted">Configura la ciudad si quieres utilizar el módulo de meteorología.</p><label>Ciudad para el tiempo<input id="settingCity" placeholder="Ej. Madrid"></label><button class="primary-btn" id="saveProfile">Guardar preferencias</button></article>
           <article class="panel settings-card"><h2>Apariencia</h2><p class="muted">Ajusta la interfaz a tu gusto.</p><label class="switch-row">Activar interfaz JARVIS <input type="checkbox" id="settingJarvis"></label><label>Tema<select id="settingTheme"><option value="dark">Oscuro</option><option value="light">Claro</option></select></label><label>Color principal<select id="settingAccent"><option value="cyan">Cian eléctrico</option><option value="blue">Azul tecnológico</option><option value="violet">Violeta</option><option value="green">Verde terminal</option></select></label><button class="primary-btn" id="saveAppearance">Aplicar apariencia</button></article>
           <article class="panel settings-card"><h2>Módulos del dashboard</h2><p class="muted">Activa o desactiva widgets.</p><div id="widgetSettings" class="toggle-list"></div></article>
@@ -545,8 +488,8 @@ data.profile={...defaults().profile,...(data.profile||{})};data.quickLinks=Array
 data.widgets={...defaults().widgets,...(data.widgets||{})};data.widgetOrder=Array.isArray(data.widgetOrder)?data.widgetOrder:defaults().widgetOrder;if(!data.widgetOrder.includes('day'))data.widgetOrder.splice(Math.max(0,data.widgetOrder.indexOf('welcome')+1),0,'day');if(!data.widgetOrder.includes('curiosity'))data.widgetOrder.splice(Math.max(0,data.widgetOrder.indexOf('weather')+1),0,'curiosity');if(!data.widgetOrder.includes('pathway'))data.widgetOrder.splice(Math.max(0,data.widgetOrder.indexOf('curiosity')+1),0,'pathway');data.dayPlan={date:today(),priorities:[],...(data.dayPlan||{})};if(!Array.isArray(data.dayPlan.priorities))data.dayPlan.priorities=[];if(migrateQuickNotes()){try{sessionStorage.setItem(KEY,JSON.stringify(data))}catch{}}
 data.gamification={xp:0,streak:0,lastActiveDate:'',activity:[],focusSessions:0,...(data.gamification||{})};data.gamification.activity=Array.isArray(data.gamification.activity)?data.gamification.activity:[];
 function migrateQuickNotes(){data.notes=Array.isArray(data.notes)?data.notes:[];data.quickNotes=Array.isArray(data.quickNotes)?data.quickNotes:[];if(!data.quickNotes.length)return false;const used=new Set(data.notes.map(n=>n.id).filter(Boolean));data.quickNotes.forEach(n=>{let id=n.id||uid();while(used.has(id))id=uid();used.add(id);data.notes.push({id,title:n.title||'Nota rápida',category:'Nota rápida',date:n.date||today(),url:'',tags:'nota rápida',content:n.content||''})});data.quickNotes=[];return true}
-function load(){try{return {...defaults(),...JSON.parse(sessionStorage.getItem(KEY)||'{}')}}catch{return defaults()}}
-function save(){sessionStorage.setItem(KEY,JSON.stringify(data));renderAll();window.dispatchEvent(new CustomEvent('maelhub:datachange'))}
+function load(){try{const saved=sessionStorage.getItem(KEY)||localStorage.getItem(KEY)||'{}';return {...defaults(),...JSON.parse(saved)}}catch{return defaults()}}
+function save(){const snapshot=JSON.stringify(data);sessionStorage.setItem(KEY,snapshot);localStorage.setItem(KEY,snapshot);renderAll();window.dispatchEvent(new CustomEvent('maelhub:datachange'))}
 function toast(msg){const el=document.createElement('div');el.className='toast';el.textContent=msg;$('#toastStack').append(el);setTimeout(()=>el.remove(),3000)}
 function closeMobileMenu(){ $('#sidebar').classList.remove('mobile-open'); $('#mobileScrim')?.classList.remove('open'); document.body.classList.remove('menu-open'); }
 function openPage(page){$$('.page-view').forEach(x=>x.classList.toggle('active',x.id==='page-'+page));$$('.nav-item[data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===page));$$('#mobileDock [data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===page));$('#pageName').textContent=({dashboard:'INICIO',instituto:'INSTITUTO',calendario:'CALENDARIO',organizacion:'ORGANIZACIÓN',informatica:'INFORMÁTICA',musica:'MÚSICA',notas:'NOTAS Y ARCHIVOS',actividad:'CENTRO DE ACTIVIDAD',accesos:'ACCESOS RÁPIDOS',configuracion:'CONFIGURACIÓN'})[page]||page.toUpperCase();if(page==='calendario')renderCalendar();closeMobileMenu();window.scrollTo({top:0,behavior:'smooth'})}
@@ -651,7 +594,7 @@ function renderCuriosity(){
  const link=$('#curiositySource');link.href=fact.url;link.textContent='FUENTE: '+fact.source+' ↗';
 }
 function renderDashboard(){renderMyDay();renderCuriosity();let tasks=data.tasks.concat(data.homework).filter(x=>!x.done),done=data.tasks.concat(data.homework).filter(x=>x.done).length;$('#pendingMetric').textContent=tasks.length;$('#completedMetric').textContent=`${done} completadas`;$('#taskProgress').style.width=(done+tasks.length?done/(done+tasks.length)*100:0)+'%';let exams=data.exams.filter(x=>x.date>=today()).sort((a,b)=>a.date.localeCompare(b.date));let e=exams[0];if(e){let d=Math.ceil((new Date(e.date+'T00:00:00')-new Date(today()+'T00:00:00'))/86400000);$('#nextExamDays').textContent=d===0?'HOY':`${d} días`;$('#nextExamName').textContent=e.title||e.subject;$('#nextExamDate').textContent=`${e.subject} · ${e.date}`}else{$('#nextExamDays').textContent='—';$('#nextExamName').textContent='No hay exámenes próximos';$('#nextExamDate').textContent='Añade tu calendario académico'}let agenda=data.events.filter(x=>x.date>=today()).sort((a,b)=>a.date.localeCompare(b.date)).slice(0,3);$('#agendaPreview').innerHTML=agenda.length?agenda.map(x=>`<div class="preview-row"><div class="preview-date">${esc(x.date.slice(8,10))}</div><div><b>${esc(x.title)}</b><small>${esc(x.date)} · ${esc(x.description||'')}</small></div></div>`).join(''):'<div class="empty-state">No hay eventos próximos.</div>';let total=done+tasks.length,pct=total?Math.round(done/total*100):0;$('#productivityPercent').textContent=pct+'%';$('#productivityDonut').style.background=`conic-gradient(var(--cyan) ${pct}%,#1a3348 ${pct}%)`;$('#chartDone').textContent=done;$('#chartPending').textContent=tasks.length;$('#chartProjects').textContent=data.projects.filter(p=>p.status==='En desarrollo').length;$('#welcomeName').textContent='NEXUS HUB está preparado.';$('#greeting').textContent='Tu centro de control';$$('[data-widget]').forEach(el=>el.style.display=data.widgets[el.dataset.widget]===false?'none':'');let count=(data.notifications.tasks?tasks.length:0)+(data.notifications.exams?exams.filter(x=>(new Date(x.date)-new Date())/86400000<4).length:0)+(data.notifications.events?agenda.length:0);$('#notificationCount').textContent=count>9?'9+':count;applyDashboardOrder()}
-function renderSettings(){$('#localProfileName').textContent=window.NEXUS_PROFILE_STORE?.username||'Perfil local';$('#localProfileStatus').textContent='Activo · datos cifrados en este dispositivo';$('#settingCity').value=data.profile.city||'';$('#settingTheme').value=data.appearance.theme;$('#settingAccent').value=data.appearance.accent;$('#settingJarvis').checked=!!data.appearance.jarvis;$('#notifyTasks').checked=data.notifications.tasks;$('#notifyExams').checked=data.notifications.exams;$('#notifyEvents').checked=data.notifications.events;$('#widgetSettings').innerHTML=Object.keys(data.widgets).map(k=>`<label class="switch-row">${({welcome:'Panel de bienvenida',day:'Panel Mi día',weather:'Meteorología',tasks:'Tareas pendientes',exams:'Próximo examen',agenda:'Agenda próxima',quick:'Accesos rápidos',productivity:'Productividad',mai:'Asistente MAI',level:'Nivel y experiencia',curiosity:'Curiosidad del día',pathway:'Elige tu camino'})[k]} <input type="checkbox" data-widget-toggle="${k}" ${data.widgets[k]!==false?'checked':''}></label>`).join('');$('#widgetSettings').querySelectorAll('[data-widget-toggle]').forEach(c=>c.onchange=()=>{data.widgets[c.dataset.widgetToggle]=c.checked;save()});}
+function renderSettings(){$('#settingCity').value=data.profile.city||'';$('#settingTheme').value=data.appearance.theme;$('#settingAccent').value=data.appearance.accent;$('#settingJarvis').checked=!!data.appearance.jarvis;$('#notifyTasks').checked=data.notifications.tasks;$('#notifyExams').checked=data.notifications.exams;$('#notifyEvents').checked=data.notifications.events;$('#widgetSettings').innerHTML=Object.keys(data.widgets).map(k=>`<label class="switch-row">${({welcome:'Panel de bienvenida',day:'Panel Mi día',weather:'Meteorología',tasks:'Tareas pendientes',exams:'Próximo examen',agenda:'Agenda próxima',quick:'Accesos rápidos',productivity:'Productividad',mai:'Asistente MAI',level:'Nivel y experiencia',curiosity:'Curiosidad del día',pathway:'Elige tu camino'})[k]} <input type="checkbox" data-widget-toggle="${k}" ${data.widgets[k]!==false?'checked':''}></label>`).join('');$('#widgetSettings').querySelectorAll('[data-widget-toggle]').forEach(c=>c.onchange=()=>{data.widgets[c.dataset.widgetToggle]=c.checked;save()});}
 
 let calendarCursor=new Date(new Date().getFullYear(),new Date().getMonth(),1);
 let calendarSelected=today();
@@ -916,12 +859,10 @@ $('#addNote').onclick=()=>addItem(data.notes,'Nueva nota',noteFields,{date:today
 $('#addQuickLink').onclick=addQuickLink;
 
 $('#saveProfile').onclick=()=>{data.profile.city=$('#settingCity').value.trim();save();toast('Preferencias guardadas')};
-$('#localLogout').onclick=()=>window.NEXUS_PROFILE_STORE?.logout();
-$('#localProfileDelete').onclick=()=>window.NEXUS_PROFILE_STORE?.deleteCurrent();
 $('#saveAppearance').onclick=()=>{data.appearance.theme=$('#settingTheme').value;data.appearance.accent=$('#settingAccent').value;data.appearance.jarvis=$('#settingJarvis').checked;save();toast('Apariencia aplicada')};
 $('#saveNotifications').onclick=()=>{data.notifications={tasks:$('#notifyTasks').checked,exams:$('#notifyExams').checked,events:$('#notifyEvents').checked};save();toast('Preferencias de notificación guardadas')};
 $('#exportData').onclick=exportData;$('#importData').onchange=e=>{if(e.target.files[0])importData(e.target.files[0]);e.target.value=''};
-$('#resetData').onclick=()=>{if(confirm('¿Restaurar los datos de este perfil? Se borrarán las tareas, notas, horarios y demás contenido de NEXUS HUB. Tu usuario y contraseña se mantendrán. Exporta una copia antes si quieres conservar esos datos.')){data=defaults();save();toast('Se han restaurado los ajustes iniciales.')}};
+$('#resetData').onclick=()=>{if(confirm('¿Restaurar los datos de este dispositivo? Se borrarán las tareas, notas, horarios y demás contenido de NEXUS HUB. Exporta una copia antes si quieres conservar esos datos.')){data=defaults();save();toast('Se han restaurado los ajustes iniciales.')}};
 $('#weatherRefresh').onclick=weather;
 $('#notificationsBtn').onclick=()=>{let msgs=[];let tasks=data.tasks.concat(data.homework).filter(x=>!x.done);if(data.notifications.tasks&&tasks.length)msgs.push(`${tasks.length} tarea(s) pendiente(s)`);let soon=data.exams.filter(x=>x.date>=today()&&(new Date(x.date)-new Date())/86400000<=4);if(data.notifications.exams&&soon.length)msgs.push(`${soon.length} examen(es) en los próximos 4 días`);if(data.notifications.events&&data.events.some(x=>x.date===today()))msgs.push('Tienes eventos para hoy');alert(msgs.length?'NOTIFICACIONES\n\n'+msgs.join('\n'):'No tienes notificaciones nuevas.');};
 $('#customizeDashboard').onclick=()=>openPage('configuracion');
@@ -951,10 +892,9 @@ globalSearch=function(q){baseGlobalSearch(q);const box=$('#searchResults');if(!q
 document.addEventListener('keydown',e=>{if(e.altKey&&e.key.toLowerCase()==='j'){e.preventDefault();openMai()}});
 paintFocus();
 updateClock();setInterval(updateClock,1000);renderAll();if(data.profile.city)weather();
-window.NEXUS_PROFILE_STORE?.persist(data);
 };
+window.NEXUS_START_APP();
   </script>
-<script src="./local-profile.js"></script>
 <script>
 // Instalación de NEXUS HUB como aplicación (PWA). Los datos siguen guardándose localmente.
 (()=>{
